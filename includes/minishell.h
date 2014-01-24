@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 17:13:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/01/24 15:06:53 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/01/24 16:53:31 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct		s_builtin
 typedef struct		s_lex
 {
 	char			*token;
+	char			**tab;
 	struct s_lex	*next;
 }					t_lex;
 
@@ -51,8 +52,8 @@ char	*ft_getenv(char **my_env, char *var);
 **		Lexer
 */
 
-void	ft_lexer(char *line, t_lex **lex);
-void	ft_add_token(t_lex **lex, char *line, int start, int end);
+void	ft_lexer_sep(char *line, t_lex **lex);
+void	ft_add_token(t_lex **lex, char *line, int end);
 void	ft_destroy_lex(t_lex **lex);
 
 /*

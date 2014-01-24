@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/25 20:25:23 by mmartin           #+#    #+#             */
-/*   Updated: 2014/01/24 15:03:19 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/01/24 18:44:45 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,39 @@
 #include <printf.h>
 #include "minishell.h"
 
+static char		**ft_read_lex(char **my_env, t_lex *lex)
+{
+	t_lex	*tmp;
+	int		i;
+
+	tmp = lex;
+	while (tmp)
+	{
+		i = 0;
+		my_env = ft_builtin(my_env, tmp->tab, &i);
+		if (i == 0)
+		{
+			if (ft_exec(my_env, tmp->tab) == 0)
+				ft_printf("42sh: command not found: %s\n", tmp->tab[0]);
+		}
+		tmp = tmp->next;
+	}
+	return (my_env);
+}
+
 int				main(void)
 {
 	char	*line;
 	char	**my_env;
-	int		i;
 	t_lex	*lex;
 
 	lex = NULL;
 	my_env = ft_create_env(my_env);
 	while (ft_prompt(my_env) && get_next_line(0, &line))
 	{
-		i = 0;
-		ft_lexer(line, &lex);
+		ft_lexer_sep(line, &lex);
 		free(line);
-/*		my_env = ft_builtin(my_env, tab, &i);
-		if (i == 0)
-		{
-			if (ft_exec(my_env, tab) == 0)
-				ft_printf("ft_minishell2: command not found: %s\n", tab[0]);
-		}*/
+		my_env = ft_read_lex(my_env, lex);
 		ft_destroy_lex(&lex);
 	}
 	return (0);
