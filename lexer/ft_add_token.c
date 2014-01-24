@@ -21,7 +21,8 @@ static t_lex	*ft_new_token(char *line, int end)
 	new = (t_lex *)malloc(sizeof(t_lex));
 	new->next = NULL;
 	new->token = NULL;
-	new->tab = ft_strnsplit_space(line, end);
+	new->tab = ft_strsplit(line, ' ');
+	(void)end;
 	return (new);
 }
 

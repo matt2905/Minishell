@@ -20,7 +20,7 @@ OBJ		=	$(SRC:.c=.o)
 all: $(PRINTF)
 
 $(PRINTF):	$(OBJ)
-	@ar -rc $(PRINTF) $(OBJ)
+	@ar -rc $(PRINTF) $(OBJ) ../libft/ft_itoa.o ../libft/ft_uitoa.o
 	@ranlib $(PRINTF)
 	@echo ""
 	@echo "\033[33m"Compilation of libprintf.a : "\033[32m"Success"\033[0m"

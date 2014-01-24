@@ -43,6 +43,7 @@ int				main(void)
 	t_lex	*lex;
 
 	lex = NULL;
+	my_env = NULL;
 	my_env = ft_create_env(my_env);
 	while (ft_prompt(my_env) && get_next_line(0, &line))
 	{
