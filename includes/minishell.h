@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/06 19:13:27 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/07 13:29:46 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,13 @@ typedef struct		s_tab
 int		ft_backspace(t_data *d);
 int		ft_ctrlc(t_data *d);
 int		ft_delete(t_data *d);
+int		ft_end(t_data *d);
 int		ft_exit_term(t_data *d);
 int		ft_go_down(t_data *d);
 int		ft_go_left(t_data *d);
 int		ft_go_right(t_data *d);
 int		ft_go_up(t_data *d);
+int		ft_home(t_data *d);
 int		ft_print(t_data *d);
 int		ft_return(t_data *d);
 int		ft_tab(t_data *d);

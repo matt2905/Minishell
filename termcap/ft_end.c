@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_tab.c                                      :+:      :+:    :+:   */
+/*   ft_end.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/03 19:38:07 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/07 12:46:06 by mmartin          ###   ########.fr       */
+/*   Created: 2014/02/07 13:30:13 by mmartin           #+#    #+#             */
+/*   Updated: 2014/02/07 13:35:28 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
+#include <termcap.h>
+#include "minishell.h"
 
-void		ft_free_tab(char ***tab)
+int		ft_end(t_data *d)
 {
-	int		i;
-
-	i = ft_tablen(*tab);
-	if (*tab)
+	if (d->line && d->last)
 	{
-		while (i >= 0)
+		while (d->line != d->last)
 		{
-			free((*tab)[i]);
-			(*tab)[i] = NULL;
-			i--;
+		tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
+			d->line = d->line->next;
 		}
-		free(*tab);
-		*tab = NULL;
 	}
+	return (1);
 }
