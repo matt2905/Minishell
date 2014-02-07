@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/07 13:37:07 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/07 13:52:24 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void			ft_termcap(t_data *d)
 			}
 			if (tab_func[i].buffer == NULL)
 				y = tab_func[i].func(d);
-			ft_printf("buff %s\n", d->buff);
 		}
 		ft_termcap_nde(d);
 	}
