@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_backspace.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/25 11:53:48 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/06 18:22:24 by mmartin          ###   ########.fr       */
+/*   Created: 2014/02/06 11:08:24 by mmartin           #+#    #+#             */
+/*   Updated: 2014/02/06 11:08:43 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <libft.h>
 #include "minishell.h"
 
-void	ft_exit(t_data *d, char **argv)
+int		ft_backspace(t_data *d)
 {
-	ft_putendl("exit");
-	tcsetattr(d->tty.fd, TCSAFLUSH, &(d->tty.backup));
-	close(d->tty.fd);
-	if (argv)
-		exit(ft_atoi(argv[1]));
-	else
-		exit(0);
+	(void)d;
+	return (1);
 }

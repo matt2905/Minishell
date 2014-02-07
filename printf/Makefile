@@ -6,39 +6,40 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/17 09:33:34 by mmartin           #+#    #+#              #
-#    Updated: 2014/01/27 15:59:51 by mmartin          ###   ########.fr        #
+#    Updated: 2014/02/04 19:49:27 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	../libprintf.a
+include		Makefile.source
 
-SRC		=	ft_printf.c		\
-			ft_redirect.c	\
-			ft_printstr.c	\
-			ft_printnbr.c	\
+NAME		=	../libprintf.a
 
-OBJ		=	$(SRC:.c=.o)
+OBJ_PRINTF	=	$(SRC_PRINTF:.c=.o)
 
-all:		$(NAME)
+HEAD		=	includes/printf.h
 
-$(NAME):	$(OBJ)
-	@ar -rc $(NAME) $(OBJ)
+all:				$(NAME)
+
+$(NAME):			$(OBJ_PRINTF)
+	@ar -rc $(NAME) $(OBJ_PRINTF)
 	@ranlib $(NAME)
 	@echo ""
 	@echo "\033[33m"Compilation of libprintf.a : "\033[32m"Success"\033[0m"
 
-%.o:		%.c
+$(OBJ_PRINTF):		$(HEAD)
+
+%.o:				%.c
 	@echo -n .
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 clean:
 	@echo "\033[31m"Objects of libprintf.a : deleted"\033[0m"
-	@/bin/rm -f $(OBJ)
+	@/bin/rm -f $(OBJ_PRINTF)
 
-fclean:		clean
+fclean:				clean
 	@echo "\033[31m"libprintf.a : deleted"\033[0m"
 	@/bin/rm -f $(NAME)
 
-re:			fclean all
+re:					fclean all
 
-.PHONY:		all re clean fclean
+.PHONY:				all re clean fclean

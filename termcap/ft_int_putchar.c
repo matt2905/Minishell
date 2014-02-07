@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_int_putchar.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/25 11:53:48 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/06 18:22:24 by mmartin          ###   ########.fr       */
+/*   Created: 2014/02/06 17:38:45 by mmartin           #+#    #+#             */
+/*   Updated: 2014/02/06 18:13:43 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <fcntl.h>
 #include <unistd.h>
-#include <libft.h>
-#include "minishell.h"
 
-void	ft_exit(t_data *d, char **argv)
+int		ft_int_putchar(int c)
 {
-	ft_putendl("exit");
-	tcsetattr(d->tty.fd, TCSAFLUSH, &(d->tty.backup));
-	close(d->tty.fd);
-	if (argv)
-		exit(ft_atoi(argv[1]));
-	else
-		exit(0);
+	int		fd;
+
+	fd = open("/dev/tty", O_WRONLY);
+	write(fd, &c, 1);
+	close(fd);
+	return (1);
 }

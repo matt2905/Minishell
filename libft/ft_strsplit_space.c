@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 16:02:37 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 14:58:41 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/06 14:11:28 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ char		**ft_strsplit_space(char *str)
 	char	**tab;
 
 	i = -1;
+	if (!str)
+		return (NULL);
 	nb_word = ft_count_word(str);
 	tab = (char **)malloc(sizeof(char *) * (nb_word + 1));
 	while (++i < nb_word)

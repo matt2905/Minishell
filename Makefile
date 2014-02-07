@@ -6,11 +6,13 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2014/02/04 14:06:26 by mmartin          ###   ########.fr        #
+#    Updated: 2014/02/06 18:33:18 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 include		libft/Makefile.source
+
+include		printf/Makefile.source
 
 export	CFLAGS	=	-Wall -Wextra -Werror -g
 
@@ -42,11 +44,25 @@ SRC			=	main.c						\
 				misc/ft_check_option.c		\
 				misc/ft_prompt.c			\
 				misc/ft_tilde.c				\
+				termcap/ft_backspace.c		\
+				termcap/ft_ctrlc.c			\
+				termcap/ft_delete.c			\
+				termcap/ft_exit_term.c		\
+				termcap/ft_go_down.c		\
+				termcap/ft_go_left.c		\
+				termcap/ft_go_right.c		\
+				termcap/ft_go_up.c			\
 				termcap/ft_init_term.c		\
+				termcap/ft_print.c			\
+				termcap/ft_return.c			\
+				termcap/ft_struct.c			\
+				termcap/ft_tab.c			\
+				termcap/ft_termcap.c		\
+				termcap/ft_int_putchar.c	\
 
 OBJ			=	$(SRC:.c=.o)
 
-LIB			=	-L./ -lft -lprintf
+LIB			=	-L./ -lft -lprintf -ltermcap
 
 OBJ_LIB		=	$(libft/SRC_LIB:.c=.o)
 

@@ -6,20 +6,16 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 14:06:01 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/06 19:44:49 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <sys/ioctl.h>
 #include <get_next_line.h>
 #include <libft.h>
 #include <printf.h>
 #include "minishell.h"
-
-void	ft_termcap(t_data *d)
-{
-	ft_init_term(d);
-}
 
 void	ft_term(t_data *d)
 {
@@ -46,12 +42,19 @@ void	ft_term(t_data *d)
 	}
 }
 
+void	ft_handle_signal(int sig)
+{
+	if (sig == SIGINT)
+		ioctl(0, TIOCSTI, "\000");
+}
+
 int		main(int argc, char **argv)
 {
 	t_data	d;
 	t_env	*env;
 
 	env = NULL;
+	signal(SIGINT, ft_handle_signal);
 	ft_create_env(&env);
 	d.my_env = env;
 	ft_check_option(argc, argv, &d);

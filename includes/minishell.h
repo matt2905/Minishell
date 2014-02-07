@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 14:06:12 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/06 19:13:27 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,26 @@ typedef struct		s_tty
 	int				flag;
 }					t_tty;
 
+typedef struct		s_line
+{
+	struct s_line	*next;
+	struct s_line	*prev;
+	char			c;
+}					t_line;
+
 typedef struct		s_data
 {
 	t_env			*my_env;
 	t_tty			tty;
+	t_line			*line;
+	t_line			*first;
+	t_line			*last;
+	char			*str;
 	int				save_fd[2];
+	char			buff[6];
 }					t_data;
+
+void	ft_free_list(t_line *list);
 
 /*
 **		Builtin
@@ -63,14 +77,38 @@ char	*ft_getenv_list(t_env *my_env, char *str);
 **		Termcap
 */
 
+typedef struct		s_tab
+{
+	char			*buffer;
+	int				(* func)(t_data *);
+}					t_tab;
+
+int		ft_backspace(t_data *d);
+int		ft_ctrlc(t_data *d);
+int		ft_delete(t_data *d);
+int		ft_exit_term(t_data *d);
+int		ft_go_down(t_data *d);
+int		ft_go_left(t_data *d);
+int		ft_go_right(t_data *d);
+int		ft_go_up(t_data *d);
+int		ft_print(t_data *d);
+int		ft_return(t_data *d);
+int		ft_tab(t_data *d);
+
 void	ft_init_term(t_data *d);
+void	ft_termcap(t_data *d);
+t_line	*ft_find_first(t_line *line);
+t_line	*ft_find_last(t_line *line);
+void	ft_add_char(t_line **tmp, char c);
+t_line	*ft_new_char(char c);
+int		ft_int_putchar(int c);
 
 /*
 **		Exec
 */
 
 int		ft_exec(char **my_env, char **arg);
-char	*ft_search_path(char **my_env, char *argv);
+char	*ft_search_path(char **my_env, char *argv, int *flag);
 char	*ft_getenv(char **my_env, char *var);
 char	**ft_convert_ltt(t_env *my_env);
 

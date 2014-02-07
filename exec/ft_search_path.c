@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:59:01 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 17:53:46 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/06 17:58:33 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <libft.h>
 #include "minishell.h"
 
-static char	*ft_check_exe(char *str, char *path)
+static char	*ft_check_exe(char *str, char *path, int *flag)
 {
 	char	*tmp;
 	char	*ptr;
@@ -32,25 +32,27 @@ static char	*ft_check_exe(char *str, char *path)
 	if (access(tmp, X_OK) == -1)
 	{
 		free(tmp);
+		*flag = 1;
 		ft_putendl("Permission denied");
 		return (NULL);
 	}
 	return (tmp);
 }
 
-static char	*ft_check_direct(char *str)
+static char	*ft_check_direct(char *str, int *flag)
 {
 	if (access(str, F_OK) == -1)
 		return (NULL);
 	if (access(str, X_OK) == -1)
 	{
+		*flag = 1;
 		ft_putendl("Permission denied");
 		return (NULL);
 	}
 	return (str);
 }
 
-char		*ft_search_path(char **my_env, char *argv)
+char		*ft_search_path(char **my_env, char *argv, int *flag)
 {
 	char	*tmp;
 	char	**tab;
@@ -62,12 +64,12 @@ char		*ft_search_path(char **my_env, char *argv)
 	free(tmp);
 	tmp = NULL;
 	while (tab[++i] && tmp == NULL)
-		tmp = ft_check_exe(argv, tab[i]);
+		tmp = ft_check_exe(argv, tab[i], flag);
 	i = 0;
 	while (tab && tab[i])
 		free(tab[i++]);
 	free(tab);
 	if (tmp == NULL)
-		return (ft_check_direct(argv));
+		return (ft_check_direct(argv, flag));
 	return (tmp);
 }
