@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2014/02/07 13:30:07 by mmartin          ###   ########.fr        #
+#    Updated: 2014/02/07 18:01:50 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ SRC			=	main.c						\
 				termcap/ft_tab.c			\
 				termcap/ft_termcap.c		\
 				termcap/ft_int_putchar.c	\
+				termcap/ft_tool_list.c		\
 
 OBJ			=	$(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/07 13:29:46 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/07 18:03:01 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct		s_line
 	struct s_line	*next;
 	struct s_line	*prev;
 	char			c;
+	int				pos;
 }					t_line;
 
 typedef struct		s_data
@@ -44,11 +45,11 @@ typedef struct		s_data
 	t_line			*first;
 	t_line			*last;
 	char			*str;
+	int				len_prompt;
+	int				y;
 	int				save_fd[2];
 	char			buff[6];
 }					t_data;
-
-void	ft_free_list(t_line *list);
 
 /*
 **		Builtin
@@ -104,6 +105,8 @@ t_line	*ft_find_last(t_line *line);
 void	ft_add_char(t_line **tmp, char c);
 t_line	*ft_new_char(char c);
 int		ft_int_putchar(int c);
+void	ft_free_list(t_line *list);
+void	ft_print_list(t_data *d);
 
 /*
 **		Exec
@@ -126,7 +129,7 @@ char	**ft_convert_ltt(t_env *my_env);
 **		Misc
 */
 
-int		ft_prompt(t_env *env);
+int		ft_prompt(t_data *d);
 char	**ft_tilde(char **tab, t_data *d);
 void	ft_check_option(int argc, char **argv, t_data *d);
 

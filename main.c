@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/06 19:44:49 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/07 16:11:40 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_term(t_data *d)
 	char	**tab;
 	int		i;
 
-	while (ft_prompt(d->my_env) && get_next_line(0, &line))
+	while (ft_prompt(d) && get_next_line(0, &line))
 	{
 		i = 0;
 		tab = ft_strsplit_space(line);

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:56 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/07 12:03:22 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/07 18:01:26 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <libft.h>
 #include "minishell.h"
 
-static void		ft_print_list(t_line *first)
+static void		ft_print_error(t_line *first)
 {
 	t_line *tmp;
 
@@ -45,7 +45,7 @@ static int	ft_check_error(t_line *first)
 		{
 			write(0, "\n", 1);
 			write(0, "42sh: file name too long: ", 26);
-			ft_print_list(first);
+			ft_print_error(first);
 			write(0, "\n", 1);
 			return (-1);
 		}

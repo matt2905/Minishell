@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 13:20:05 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/06 19:32:40 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/07 18:02:01 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_line			*ft_new_char(char c)
 	new->prev = NULL;
 	new->next = NULL;
 	new->c = c;
+	new->pos = 0;
 	return (new);
 }
 
@@ -53,31 +54,18 @@ t_line			*ft_find_first(t_line *tmp)
 	return (new);
 }
 
-t_line			*ft_find_last(t_line *tmp)
+t_line			*ft_find_last(t_line *first)
 {
 	t_line	*new;
 
-	new = tmp;
-	while (new->next != NULL)
-		new = new->next;
-	return (new);
-}
-
-void			ft_free_list(t_line *list)
-{
-	t_line	*tmp;
-	t_line	*ptr;
-
-	tmp = list;
-	while (tmp && tmp->prev)
-		tmp = tmp->prev;
-	while (tmp != NULL)
+	new = first;
+	while (new && new->next != NULL)
 	{
-		ptr = tmp;
-		tmp = tmp->next;
-		ptr->next = NULL;
-		ptr->prev = NULL;
-		ptr->c = '\0';
-		free(ptr);
+		if (new->prev)
+			new->pos = new->prev->pos + 1;
+		else
+			new->pos = 0;
+		new = new->next;
 	}
+	return (new);
 }

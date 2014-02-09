@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:08:24 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/07 13:23:42 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/07 18:49:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_backspace(t_data *d)
 {
 	t_line	*ptr;
 
-	if (d->line)
+	if (d->line && d->first && d->line != d->first)
 	{
 		if (d->line->next)
 			d->line->next->prev = d->line->prev;
@@ -35,5 +35,6 @@ int		ft_backspace(t_data *d)
 			tputs(tgetstr("ed", NULL), 1, ft_int_putchar);
 		}
 	}
+	ft_print_list(d);
 	return (1);
 }

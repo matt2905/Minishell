@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 18:31:22 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/06 19:38:52 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/07 16:11:52 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ int		ft_ctrlc(t_data *d)
 	d->line = NULL;
 	d->last = NULL;
 	write(0, "\n", 1);
-	ft_prompt(d->my_env);
+	ft_prompt(d);
 	return (1);
 }
