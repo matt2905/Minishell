@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 12:12:34 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 14:58:23 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/09 17:35:05 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,11 @@ static int	ft_count_word(char const *s, char c)
 static int	ft_len_word(char const *s, char c)
 {
 	int		i;
-	int		len;
 
 	i = 0;
-	len = 0;
 	while (s[i] != '\0' && s[i] != c)
-	{
 		i++;
-		len++;
-	}
-	return (len);
+	return (i);
 }
 
 char		**ft_strsplit(char const *s, char c)
@@ -73,6 +68,6 @@ char		**ft_strsplit(char const *s, char c)
 		while (*s != '\0' && *s != c)
 			s++;
 	}
-	tab[j] = '\0';
+	tab[j] = NULL;
 	return (tab);
 }

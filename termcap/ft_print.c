@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:57:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/09 14:14:28 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/09 19:38:12 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int			ft_print(t_data *d)
 		d->line = tmp;
 		d->first = ft_find_first(tmp);
 		d->last = ft_find_last(tmp);
-		d->y = d->last->pos / tgetnum("co");
 		if (d->line->next != NULL)
 			d->line = tmp->next;
 		ft_print_new(tmp);

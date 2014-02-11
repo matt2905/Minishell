@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_end.c                                           :+:      :+:    :+:   */
+/*   ft_add_history.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/07 13:30:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/09 16:16:17 by mmartin          ###   ########.fr       */
+/*   Created: 2014/02/09 18:45:41 by mmartin           #+#    #+#             */
+/*   Updated: 2014/02/09 18:55:03 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <termcap.h>
 #include "minishell.h"
 
-int		ft_end(t_data *d)
+static t_history	*ft_new_history(char *line)
 {
-	if (d->line && d->last)
+	t_history	*new;
+
+	new = (t_history *)malloc(sizeof(t_history));
+	new->prev = NULL;
+	new->next = NULL;
+	new->line = line;
+	return (new);
+}
+
+void				ft_add_history(t_history **history, char *line)
+{
+	if (*history == NULL)
+		*history = ft_new_history(line);
+	else
 	{
-		while (d->line != d->last)
-		{
-			tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
-			d->line = d->line->next;
-			if ((d->line->pos + d->len_prompt) % tgetnum("co") == 0)
-			{
-				tputs(tgetstr("cr", NULL), 1, ft_int_putchar);
-				tputs(tgetstr("do", NULL), 1, ft_int_putchar);
-			}
-		}
+		(*history)->next = ft_new_history(line);
+		(*history)->next->prev = *history;
+		*history = (*history)->next;
 	}
-	return (1);
 }

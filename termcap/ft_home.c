@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 13:30:44 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/07 13:34:02 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/09 16:30:55 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_home(t_data *d)
 	{
 		while (d->line != d->first)
 		{
-		tputs(tgetstr("le", NULL), 1, ft_int_putchar);
+			tputs(tgetstr("le", NULL), 1, ft_int_putchar);
 			d->line = d->line->prev;
 		}
 	}

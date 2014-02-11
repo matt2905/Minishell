@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:57:46 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/07 19:31:21 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/09 17:56:26 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_print_list(t_data *d)
 	d->last = ft_find_last(d->first);
 }
 
-void			ft_free_list(t_line *list)
+void	ft_free_list(t_line *list)
 {
 	t_line	*tmp;
 	t_line	*ptr;

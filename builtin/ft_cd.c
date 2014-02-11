@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:32:30 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 19:05:10 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/11 17:48:43 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ static void	ft_modify_pwd(t_data *d)
 	free(tab[2]);
 	tab[1] = ft_strdup("OLDPWD");
 	tab[2] = ft_strdup(old);
+	ft_setenv(d, tab);
 	ft_free(&old, &pwd, &ptr, &tab);
 }
 

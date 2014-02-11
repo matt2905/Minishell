@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2014/02/07 18:01:50 by mmartin          ###   ########.fr        #
+#    Updated: 2014/02/09 18:50:59 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,34 +27,35 @@ INC			+=	-I includes
 HEAD		=	includes/minishell.h
 
 SRC			=	main.c						\
+				builtin/ft_add_env.c		\
+				builtin/ft_add_history.c	\
 				builtin/ft_builtin.c		\
+				builtin/ft_cd.c				\
+				builtin/ft_create_env.c		\
+				builtin/ft_create_history.c	\
 				builtin/ft_env.c			\
 				builtin/ft_exit.c			\
-				builtin/ft_cd.c				\
+				builtin/ft_getenv_list.c	\
+				builtin/ft_history.c		\
+				builtin/ft_modify_env.c		\
 				builtin/ft_setenv.c			\
 				builtin/ft_unsetenv.c		\
-				builtin/ft_add_env.c		\
-				builtin/ft_create_env.c		\
-				builtin/ft_modify_env.c		\
-				builtin/ft_getenv_list.c	\
-				exec/ft_exec.c				\
 				exec/ft_convert_ltt.c		\
+				exec/ft_exec.c				\
 				exec/ft_getenv.c			\
 				exec/ft_search_path.c		\
 				misc/ft_check_option.c		\
 				misc/ft_prompt.c			\
 				misc/ft_tilde.c				\
+				termcap/ft_alt.c			\
 				termcap/ft_backspace.c		\
 				termcap/ft_ctrlc.c			\
 				termcap/ft_delete.c			\
 				termcap/ft_end.c			\
 				termcap/ft_exit_term.c		\
-				termcap/ft_go_down.c		\
-				termcap/ft_go_left.c		\
-				termcap/ft_go_right.c		\
-				termcap/ft_go_up.c			\
 				termcap/ft_home.c			\
 				termcap/ft_init_term.c		\
+				termcap/ft_move.c			\
 				termcap/ft_print.c			\
 				termcap/ft_return.c			\
 				termcap/ft_struct.c			\

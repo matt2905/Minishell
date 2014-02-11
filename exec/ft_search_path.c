@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:59:01 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/06 17:58:33 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/11 17:47:49 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	*ft_check_direct(char *str, int *flag)
 		ft_putendl("Permission denied");
 		return (NULL);
 	}
-	return (str);
+	return (ft_strdup(str));
 }
 
 char		*ft_search_path(char **my_env, char *argv, int *flag)

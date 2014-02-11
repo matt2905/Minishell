@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/07 17:54:30 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/09 15:47:08 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@
 #include <printf.h>
 #include "minishell.h"
 
-static const t_tab	tab_func[13] =
+static const t_tab	tab_func[17] =
 {
 	{"\E[A", ft_go_up},
+	{"\E\E[A", ft_alt_up},
 	{"\E[B", ft_go_down},
+	{"\E\E[B", ft_alt_down},
 	{"\E[C", ft_go_right},
+	{"\E\E[C", ft_alt_right},
 	{"\E[D", ft_go_left},
+	{"\E\E[D", ft_alt_left},
 	{"\E[H", ft_home},
 	{"\E[F", ft_end},
 	{"\012", ft_return},

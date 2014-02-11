@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:56 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/07 18:01:26 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/11 17:47:07 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static void		ft_print_error(t_line *first)
 {
-	t_line *tmp;
+	t_line	*tmp;
 
 	tmp = first;
 	while (tmp)
@@ -27,7 +27,7 @@ static void		ft_print_error(t_line *first)
 	}
 }
 
-static int	ft_check_error(t_line *first)
+static int		ft_check_error(t_line *first)
 {
 	t_line	*tmp;
 	int		word;
@@ -62,6 +62,7 @@ int				ft_return(t_data *d)
 
 	i = 0;
 	tmp = d->first;
+	ft_history(d);
 	while (tmp)
 	{
 		tmp = tmp->next;

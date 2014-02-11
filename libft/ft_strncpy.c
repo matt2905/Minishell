@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 11:23:52 by mmartin           #+#    #+#             */
-/*   Updated: 2013/11/28 12:08:15 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/09 15:43:31 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ char	*ft_strncpy(char *s1, const char *s2, size_t n)
 		*s1++ = '\0';
 		n--;
 	}
+	*s1 = '\0';
 	return (save);
 }
