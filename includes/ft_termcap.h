@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:56:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 17:00:02 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 19:03:07 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,21 @@ int			ft_tab(t_data *d);
 
 void		ft_init_term(t_data *d);
 void		ft_termcap(t_data *d);
+int			ft_int_putchar(int c);
+
+/*
+**		ft_struct.c
+*/
+
 t_line		*ft_find_first(t_line *line);
 t_line		*ft_find_last(t_line *line);
 void		ft_add_char(t_line **tmp, char c);
 t_line		*ft_new_char(char c);
-int			ft_int_putchar(int c);
+
+/*
+**		ft_tool_list.c
+*/
+
 void		ft_free_list(t_line *list);
 void		ft_print_list(t_data *d);
 

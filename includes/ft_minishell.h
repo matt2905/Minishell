@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 17:22:40 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 19:24:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ typedef struct		s_line
 typedef struct		s_tmp
 {
 	t_line			*line;
+	t_line			*first;
+	t_line			*last;
 	struct s_tmp	*next;
+	struct s_tmp	*prev;
 }					t_tmp;
 
 typedef struct		s_data
@@ -67,6 +70,7 @@ typedef struct		s_data
 */
 
 void		ft_history(t_data *d);
+void		ft_add_tmp(t_data *d);
 
 /*
 **		Exec

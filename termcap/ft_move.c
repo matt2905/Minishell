@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 15:25:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:59:04 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 19:45:18 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,47 +16,32 @@
 #include <libft.h>
 #include "ft_termcap.h"
 
-static char		*ft_init(t_data *d, t_line **ptr, int flag)
+static void		ft_print_hist(t_data *d)
 {
-	char	*tmp;
-
-	if (flag == 0)
-		d->history = d->history->next;
-	else
-		d->history = d->history->prev;
-	tmp = d->history->line;
-	while (d->line != d->first)
+	if (d->line && d->line->c == ' ')
+		d->line = d->line->next;
+	while (d->line && d->line->next)
 	{
-		tputs(tgetstr("le", NULL), 1, ft_int_putchar);
-		d->line = d->line->prev;
+		ft_putchar_fd(d->line->c, 0);
+		d->line = d->line->next;
 	}
-	tputs(tgetstr("cd", NULL), 1, ft_int_putchar);
-	ft_free_list(d->first);
-	*ptr = ft_new_char(' ');
-	ft_putstr(tmp);
-	return (tmp);
+	if (d->line)
+		ft_putchar_fd(d->line->c, 0);
 }
 
 int				ft_go_down(t_data *d)
 {
-	char	*tmp;
-	int		i;
-	t_line	*ptr;
-
-	i = 0;
-	if (d->history)
+	if (d->history && d->history->next->flag == 1)
 	{
-		tmp = ft_init(d, &ptr, 0);
-		while (tmp && tmp[i])
-		{
-			ft_add_char(&ptr, tmp[i]);
-			if (ptr && ptr->next)
-				ptr = ptr->next;
-			i++;
-		}
-		d->line = ptr;
-		d->first = ft_find_first(ptr);
-		d->last = ft_find_last(ptr);
+		ft_home(d);
+		tputs(tgetstr("cd", NULL), 1, ft_int_putchar);
+		d->tmp_hist = d->tmp_hist->prev;
+		d->line = d->tmp_hist->line;
+		d->first = d->tmp_hist->first;
+		d->last = d->tmp_hist->last;
+		ft_print_hist(d);
+		d->history = d->history->next;
+		d->history->flag = 0;
 	}
 	return (1);
 }
@@ -88,24 +73,20 @@ int				ft_go_right(t_data *d)
 
 int				ft_go_up(t_data *d)
 {
-	char	*tmp;
-	int		i;
-	t_line	*ptr;
-
-	i = 0;
-	if (d->history)
+	if (d->history && d->history->flag == 0)
 	{
-		tmp = ft_init(d, &ptr, 1);
-		while (tmp && tmp[i])
-		{
-			ft_add_char(&ptr, tmp[i]);
-			if (ptr && ptr->next)
-				ptr = ptr->next;
-			i++;
-		}
-		d->line = ptr;
-		d->first = ft_find_first(ptr);
-		d->last = ft_find_last(ptr);
+		if (!d->tmp_hist || !d->tmp_hist->next)
+			ft_add_tmp(d);
+		else
+			d->tmp_hist = d->tmp_hist->next;
+		ft_home(d);
+		tputs(tgetstr("cd", NULL), 1, ft_int_putchar);
+		d->line = d->tmp_hist->line;
+		d->first = d->tmp_hist->first;
+		d->last = d->tmp_hist->last;
+		ft_print_hist(d);
+		d->history->flag = 1;
+		d->history = d->history->prev;
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/25 16:41:52 by mmartin           #+#    #+#              #
-#    Updated: 2014/02/25 17:16:18 by mmartin          ###   ########.fr        #
+#    Updated: 2014/02/25 18:13:19 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC			=	main.c						\
 				history/ft_add_history.c	\
 				history/ft_create_history.c	\
 				history/ft_history.c		\
+				history/ft_tmp_hist.c		\
 				misc/ft_check_option.c		\
 				misc/ft_prompt.c			\
 				misc/ft_tilde.c				\
