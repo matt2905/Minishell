@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/09 15:47:08 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:59:33 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <unistd.h>
 #include <libft.h>
 #include <printf.h>
-#include "minishell.h"
+#include "ft_builtin.h"
+#include "ft_termcap.h"
 
 static const t_tab	tab_func[17] =
 {

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/09 21:52:50 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 17:02:57 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include <get_next_line.h>
 #include <libft.h>
 #include <printf.h>
-#include "minishell.h"
+#include "ft_builtin.h"
+#include "ft_termcap.h"
 
 void	ft_term(t_data *d)
 {

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:57:21 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/06 17:48:18 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:51:19 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <libft.h>
-#include "minishell.h"
+#include "ft_minishell.h"
 
 int		ft_exec(char **my_env, char **argv)
 {

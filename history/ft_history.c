@@ -6,14 +6,14 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 18:06:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/09 22:07:25 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:52:25 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "minishell.h"
+#include "ft_minishell.h"
 
 t_history		*ft_last_history(t_history *hist)
 {

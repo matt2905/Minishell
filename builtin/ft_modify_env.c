@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 12:51:22 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 15:04:52 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:50:31 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <libft.h>
-#include "minishell.h"
+#include "ft_minishell.h"
 
 void	ft_modify_env(t_env **my_env, char *str, char *env)
 {

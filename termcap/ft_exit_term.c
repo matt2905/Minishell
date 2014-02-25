@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 18:19:12 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/06 18:23:19 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:54:34 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <unistd.h>
-#include "minishell.h"
+#include "ft_builtin.h"
 
 int		ft_exit_term(t_data *d)
 {

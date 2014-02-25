@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_history.c                                :+:      :+:    :+:   */
+/*   ft_history.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/09 18:43:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/09 18:50:24 by mmartin          ###   ########.fr       */
+/*   Created: 2014/02/25 17:00:22 by mmartin           #+#    #+#             */
+/*   Updated: 2014/02/25 17:03:22 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <get_next_line.h>
-#include "minishell.h"
+#ifndef FT_HISTORY_H
+# define FT_HISTORY_H
 
-void	ft_create_history(t_history **history)
+typedef struct		s_hist
 {
-	int		fd;
-	char	*line;
+	struct s_hist	*next;
+	struct s_hist	*prev;
+	char			*line;
+}					t_history;
 
-	fd = open("./.42sh_history", O_RDONLY);
-	if (fd != -1)
-	{
-		while (get_next_line(fd, &line))
-			ft_add_history(history, line);
-	}
-}
+void		ft_create_history(t_history **history);
+void		ft_add_history(t_history **history, char *line);
+t_history	*ft_first_history(t_history *hist);
+t_history	*ft_last_history(t_history *hist);
+
+#endif

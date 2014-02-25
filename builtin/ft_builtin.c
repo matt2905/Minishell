@@ -6,12 +6,12 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:17:28 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 18:50:54 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:49:18 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include "minishell.h"
+#include "ft_builtin.h"
 
 static const t_builtin	built[6] =
 {

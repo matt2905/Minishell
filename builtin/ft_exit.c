@@ -6,14 +6,14 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:53:48 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/06 18:22:24 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:50:11 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include <libft.h>
-#include "minishell.h"
+#include "ft_minishell.h"
 
 void	ft_exit(t_data *d, char **argv)
 {

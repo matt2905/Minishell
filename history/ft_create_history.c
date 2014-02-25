@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_env.c                                       :+:      :+:    :+:   */
+/*   ft_create_history.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/25 12:26:44 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:48:58 by mmartin          ###   ########.fr       */
+/*   Created: 2014/02/09 18:43:18 by mmartin           #+#    #+#             */
+/*   Updated: 2014/02/25 16:52:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <libft.h>
+#include <fcntl.h>
+#include <get_next_line.h>
 #include "ft_minishell.h"
 
-static t_env	*ft_new_env(char *str)
+void	ft_create_history(t_history **history)
 {
-	t_env	*new;
+	int		fd;
+	char	*line;
 
-	new = (t_env *)malloc(sizeof(t_env));
-	new->next = NULL;
-	new->tab = str;
-	return (new);
-}
-
-void			ft_add_env(t_env **env, char *str)
-{
-	if (*env == NULL)
-		*env = ft_new_env(str);
-	else
-		ft_add_env(&((*env)->next), str);
+	fd = open("./.42sh_history", O_RDONLY);
+	if (fd != -1)
+	{
+		while (get_next_line(fd, &line))
+			ft_add_history(history, line);
+	}
 }

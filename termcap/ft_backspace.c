@@ -6,14 +6,14 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:08:24 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/07 18:49:15 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:58:17 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <string.h>
 #include <termcap.h>
-#include "minishell.h"
+#include "ft_termcap.h"
 
 int		ft_backspace(t_data *d)
 {

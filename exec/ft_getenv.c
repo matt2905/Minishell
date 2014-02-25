@@ -6,12 +6,12 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 17:44:17 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 17:53:03 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:51:39 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include "minishell.h"
+#include "ft_builtin.h"
 
 char	*ft_getenv(char **my_env, char *var)
 {

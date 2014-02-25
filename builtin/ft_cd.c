@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:32:30 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/11 17:48:43 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:49:35 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <libft.h>
 #include <printf.h>
-#include "minishell.h"
+#include "ft_builtin.h"
 
 static int	ft_check_path(char *str)
 {

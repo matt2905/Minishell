@@ -6,12 +6,12 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:23:06 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/06 18:35:46 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:52:34 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include "minishell.h"
+#include "ft_minishell.h"
 
 void	ft_check_option(int argc, char **argv, t_data *d)
 {

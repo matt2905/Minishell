@@ -1,0 +1,49 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile.source                                    :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2014/02/25 16:41:52 by mmartin           #+#    #+#              #
+#    Updated: 2014/02/25 16:44:27 by mmartin          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRC			=	main.c						\
+				builtin/ft_add_env.c		\
+				builtin/ft_builtin.c		\
+				builtin/ft_cd.c				\
+				builtin/ft_create_env.c		\
+				builtin/ft_env.c			\
+				builtin/ft_exit.c			\
+				builtin/ft_getenv_list.c	\
+				builtin/ft_modify_env.c		\
+				builtin/ft_setenv.c			\
+				builtin/ft_unsetenv.c		\
+				exec/ft_convert_ltt.c		\
+				exec/ft_exec.c				\
+				exec/ft_getenv.c			\
+				exec/ft_search_path.c		\
+				history/ft_add_history.c	\
+				history/ft_create_history.c	\
+				history/ft_history.c		\
+				misc/ft_check_option.c		\
+				misc/ft_prompt.c			\
+				misc/ft_tilde.c				\
+				termcap/ft_alt.c			\
+				termcap/ft_backspace.c		\
+				termcap/ft_ctrlc.c			\
+				termcap/ft_delete.c			\
+				termcap/ft_end.c			\
+				termcap/ft_exit_term.c		\
+				termcap/ft_home.c			\
+				termcap/ft_init_term.c		\
+				termcap/ft_move.c			\
+				termcap/ft_print.c			\
+				termcap/ft_return.c			\
+				termcap/ft_struct.c			\
+				termcap/ft_tab.c			\
+				termcap/ft_termcap.c		\
+				termcap/ft_int_putchar.c	\
+				termcap/ft_tool_list.c		\

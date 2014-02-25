@@ -6,14 +6,14 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:57:46 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/09 17:56:26 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:59:41 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <termcap.h>
 #include <stdlib.h>
 #include <libft.h>
-#include "minishell.h"
+#include "ft_termcap.h"
 
 void	ft_print_list(t_data *d)
 {

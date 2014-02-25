@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 13:24:12 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 19:20:11 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:49:48 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <get_next_line.h>
 #include <libft.h>
-#include "minishell.h"
+#include "ft_builtin.h"
 
 char	*ft_create_path(void)
 {

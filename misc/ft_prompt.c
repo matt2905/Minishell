@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 14:41:49 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/07 16:21:28 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:52:47 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <libft.h>
-#include "minishell.h"
+#include "ft_builtin.h"
 
 int		ft_prompt(t_data *d)
 {

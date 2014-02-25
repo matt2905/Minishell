@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:55:29 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 19:20:47 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:50:43 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <libft.h>
-#include "minishell.h"
+#include "ft_builtin.h"
 
 static int	ft_error(char **argv)
 {

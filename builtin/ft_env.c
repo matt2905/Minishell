@@ -6,12 +6,12 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:47:38 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 13:49:12 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:49:59 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include "minishell.h"
+#include "ft_minishell.h"
 
 static void	ft_error(char *str)
 {

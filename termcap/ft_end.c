@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 13:30:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/09 16:16:17 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:58:50 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <termcap.h>
-#include "minishell.h"
+#include "ft_termcap.h"
 
 int		ft_end(t_data *d)
 {

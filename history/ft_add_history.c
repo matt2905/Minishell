@@ -6,12 +6,12 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 18:45:41 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/09 18:55:03 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:52:07 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "minishell.h"
+#include "ft_minishell.h"
 
 static t_history	*ft_new_history(char *line)
 {

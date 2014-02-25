@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:01:46 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 18:49:34 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:53:03 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <libft.h>
-#include "minishell.h"
+#include "ft_builtin.h"
 
 static char		**ft_cd_empty(t_data *d, char **tab)
 {

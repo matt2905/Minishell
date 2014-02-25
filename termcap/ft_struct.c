@@ -6,12 +6,12 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 13:20:05 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/09 19:34:47 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 16:55:41 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "minishell.h"
+#include "ft_minishell.h"
 
 t_line			*ft_new_char(char c)
 {
