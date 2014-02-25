@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:45:51 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:48:32 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 17:15:54 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct		s_builtin
 }					t_builtin;
 
 void		ft_cd(t_data *d, char **arg);
+void		ft_echo(t_data *d, char **arg);
 void		ft_env(t_data *d, char **arg);
 void		ft_exit(t_data *d, char **arg);
 void		ft_setenv(t_data *d, char **arg);

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 18:45:41 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:52:07 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 17:10:05 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static t_history	*ft_new_history(char *line)
 	new->prev = NULL;
 	new->next = NULL;
 	new->line = line;
+	new->flag = 0;
 	return (new);
 }
 

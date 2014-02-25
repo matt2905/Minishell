@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 18:06:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:52:25 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 17:35:44 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,13 @@ void			ft_history(t_data *d)
 	t_history	*hist;
 
 	tmp = d->first;
-	fd = open("./.42sh_history", O_CREAT | O_RDWR | O_APPEND, 0644);
-	ptr = (char *)malloc(sizeof(char) * (d->last->pos + 1));
+	if ((fd = open("./.42sh_history", O_CREAT | O_RDWR | O_APPEND, 0644)) == -1)
+		return ;
+	if (!d->last->prev)
+		return ;
+	ptr = (char *)malloc(sizeof(char) * (d->last->prev->pos + 2));
 	i = 0;
-	while (tmp->next != d->first && (tmp = tmp->next))
+	while ((tmp = tmp->next))
 	{
 		write(fd, &tmp->c, 1);
 		ptr[i++] = tmp->c;

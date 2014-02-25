@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 17:03:52 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/25 17:22:40 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,19 @@ typedef struct		s_line
 	int				pos;
 }					t_line;
 
+typedef struct		s_tmp
+{
+	t_line			*line;
+	struct s_tmp	*next;
+}					t_tmp;
+
 typedef struct		s_data
 {
 	t_env			*my_env;
 	t_history		*history;
 	t_history		*first_hist;
 	t_history		*last_hist;
+	t_tmp			*tmp_hist;
 	t_tty			tty;
 	t_line			*line;
 	t_line			*first;

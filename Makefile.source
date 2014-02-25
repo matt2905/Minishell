@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/25 16:41:52 by mmartin           #+#    #+#              #
-#    Updated: 2014/02/25 16:44:27 by mmartin          ###   ########.fr        #
+#    Updated: 2014/02/25 17:16:18 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC			=	main.c						\
 				builtin/ft_builtin.c		\
 				builtin/ft_cd.c				\
 				builtin/ft_create_env.c		\
+				builtin/ft_echo.c			\
 				builtin/ft_env.c			\
 				builtin/ft_exit.c			\
 				builtin/ft_getenv_list.c	\

@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2014/02/25 17:01:36 by mmartin          ###   ########.fr        #
+#    Updated: 2014/02/25 17:36:34 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,11 +67,9 @@ clean:
 fclean:			clean
 	@/bin/rm -f $(NAME)
 	@echo "\033[31m"$(NAME) : deleted"\033[0m"
-
-fcleanlib:
 	@Make fclean -C libft
 	@Make fclean -C printf
 
-re:				fclean fcleanlib all
+re:				fclean all
 
-.PHONY:			all clean fclean fcleanlib re
+.PHONY:			all clean fclean re
