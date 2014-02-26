@@ -6,12 +6,18 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:47:38 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:49:59 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 12:48:22 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include "ft_minishell.h"
+
+/*
+**			Too do
+**		check argument: if it's a function
+**		execve with env modify or NULL
+*/
 
 static void	ft_error(char *str)
 {

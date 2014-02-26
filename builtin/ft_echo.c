@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 17:15:04 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 12:46:45 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 12:48:32 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ft_termcap.h"
 
 /*
-**		Too do
+**					Too do
 **		Globing: example echo Mak* = Makefile
 **		Color:	echo "\033[33m"test"" = test in yellow color
 */
