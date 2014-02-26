@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 17:38:40 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 15:36:51 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "ft_builtin.h"
 #include "ft_termcap.h"
 
-void	ft_term(t_data *d)
+static void		ft_term(t_data *d)
 {
 	char	*line;
 	char	**tab;
@@ -43,28 +43,49 @@ void	ft_term(t_data *d)
 	}
 }
 
-void	ft_handle_signal(int sig)
+static void		ft_handle_signal(int sig)
 {
 	if (sig == SIGINT)
 		ioctl(0, TIOCSTI, "\000");
 }
 
-int		main(int argc, char **argv)
+static void		ft_signal(void)
 {
-	t_data		d;
+	int		i;
+
+	i = 1;
+	while (i < 32)
+	{
+		if (i != 2)
+			signal(i, SIG_IGN);
+		else
+			signal(i, ft_handle_signal);
+		i++;
+	}
+}
+
+static void		ft_init_data(t_data *d)
+{
 	t_env		*env;
 	t_history	*history;
 
 	env = NULL;
 	history = NULL;
-	signal(SIGINT, ft_handle_signal);
 	ft_create_env(&env);
 	ft_create_history(&history);
-	d.tmp_hist = NULL;
-	d.my_env = env;
-	d.history = history;
-	d.first_hist = ft_first_history(d.history);
-	d.last_hist = ft_last_history(d.history);
+	d->tmp_hist = NULL;
+	d->my_env = env;
+	d->history = history;
+	d->first_hist = ft_first_history(d->history);
+	d->last_hist = ft_last_history(d->history);
+}
+
+int				main(int argc, char **argv)
+{
+	t_data		d;
+
+	ft_init_data(&d);
+	ft_signal();
 	if (d.last_hist)
 		d.last_hist->prev = d.first_hist;
 	if (d.first_hist)

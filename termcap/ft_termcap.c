@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:59:33 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 15:17:40 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "ft_builtin.h"
 #include "ft_termcap.h"
 
-static const t_tab	tab_func[17] =
+static const t_tab	tab_func[19] =
 {
 	{"\E[A", ft_go_up},
 	{"\E\E[A", ft_alt_up},
@@ -35,6 +35,8 @@ static const t_tab	tab_func[17] =
 	{"\177", ft_backspace},
 	{"\004", ft_exit_term},
 	{"\000", ft_ctrlc},
+	{"\EK", ft_cut},
+	{"\EY", ft_paste},
 	{NULL, ft_print}
 };
 
