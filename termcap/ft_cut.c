@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 15:19:03 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 16:40:12 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 16:42:01 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,22 @@ int				ft_cut(t_data *d)
 {
 	t_line	*tmp;
 
-	if (d->cpy)
+	if (d->line->next)
 	{
-		ft_free_list(d->cpy);
-		d->cpy = NULL;
+		if (d->cpy)
+		{
+			ft_free_list(d->cpy);
+			d->cpy = NULL;
+		}
+		tmp = d->cpy;
+		ft_copy(&tmp, d->line);
+		d->cpy = tmp;
+		tputs(tgetstr("cd", NULL), 1, ft_int_putchar);
+		tmp = d->line->next;
+		d->line->next = NULL;
+		d->last = d->line;
+		tmp->prev = NULL;
+		ft_free_list(tmp);
 	}
-	tmp = d->cpy;
-	ft_copy(&tmp, d->line);
-	d->cpy = tmp;
-	tputs(tgetstr("cd", NULL), 1, ft_int_putchar);
-	tmp = d->line->next;
-	d->line->next = NULL;
-	d->last = d->line;
-	tmp->prev = NULL;
-	ft_free_list(tmp);
 	return (1);
 }
