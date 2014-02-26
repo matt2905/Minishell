@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 15:19:03 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 16:42:01 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 18:22:21 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				ft_cut(t_data *d)
 		tputs(tgetstr("cd", NULL), 1, ft_int_putchar);
 		tmp = d->line->next;
 		d->line->next = NULL;
-		d->last = d->line;
+		d->last = ft_find_last(d->first);
 		tmp->prev = NULL;
 		ft_free_list(tmp);
 	}
