@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 15:19:03 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 16:17:02 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 16:40:12 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,16 @@ static void		ft_copy(t_line **new, t_line *line)
 	t_line	*tmp;
 
 	tmp = line;
-	while (tmp)
+	while (tmp && tmp->next)
 	{
-		ft_add_char(new, tmp->c);
 		tmp = tmp->next;
+		ft_add_char(new, tmp->c);
+		if ((*new)->next)
+			*new = (*new)->next;
 	}
+	while (*new && (*new)->prev)
+		*new = (*new)->prev;
+
 }
 
 int				ft_cut(t_data *d)
