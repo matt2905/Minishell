@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 16:08:09 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 19:07:40 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 19:54:42 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <libft.h>
 #include "ft_builtin.h"
 #include "ft_termcap.h"
-
 
 static void		ft_modify_termios(t_data *d)
 {

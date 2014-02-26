@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:56:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 15:31:04 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 19:44:55 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,15 @@ int			ft_go_right(t_data *d);
 int			ft_go_up(t_data *d);
 int			ft_home(t_data *d);
 int			ft_paste(t_data *d);
-int			ft_print(t_data *d);
 int			ft_return(t_data *d);
 int			ft_tab(t_data *d);
+
+/*
+**		ft_print.c
+*/
+
+int			ft_print(t_data *d);
+void		ft_print_new(t_line *tmp);
 
 void		ft_init_term(t_data *d);
 void		ft_oneshot(t_data *d);
