@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 18:18:18 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 19:04:21 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static const t_tab	tab_func[19] =
 	{"\177", ft_backspace},
 	{"\004", ft_exit_term},
 	{"\000", ft_ctrlc},
-	{"\030", ft_cut},
-	{"\026", ft_paste},
+	{"\013", ft_cut},
+	{"\031", ft_paste},
 	{NULL, ft_print}
 };
 
