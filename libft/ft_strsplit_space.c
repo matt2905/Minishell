@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 16:02:37 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/06 14:11:28 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 18:05:28 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	*ft_get_str(char *str)
 	int		i;
 
 	i = ft_len_word(str);
-	tmp = (char *)malloc(sizeof(*tmp) * (i + 1));
+	tmp = (char *)malloc(sizeof(char) * (i + 1));
 	i = 0;
 	while (*str && *str != ' ' && *str != '\t')
 	{
