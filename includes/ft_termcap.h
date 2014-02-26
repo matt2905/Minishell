@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:56:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 19:03:07 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 10:59:50 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int			ft_return(t_data *d);
 int			ft_tab(t_data *d);
 
 void		ft_init_term(t_data *d);
+void		ft_oneshot(t_data *d);
 void		ft_termcap(t_data *d);
 int			ft_int_putchar(int c);
 
