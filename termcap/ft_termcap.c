@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 15:17:40 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 16:11:22 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static const t_tab	tab_func[19] =
 	{"\177", ft_backspace},
 	{"\004", ft_exit_term},
 	{"\000", ft_ctrlc},
-	{"\EK", ft_cut},
-	{"\EY", ft_paste},
+	{"\030", ft_cut},
+	{"\026", ft_paste},
 	{NULL, ft_print}
 };
 
@@ -85,11 +85,11 @@ void			ft_termcap(t_data *d)
 		{
 			y = 0;
 			i = -1;
-			ret = read(0, d->buff, 6);
+			ret = read(0, d->buff, 8);
 			d->buff[ret] = '\0';
 			while (tab_func[++i].buffer != NULL && y == 0)
 			{
-				if (!ft_strncmp(d->buff, tab_func[i].buffer, ret))
+				if (!ft_strcmp(d->buff, tab_func[i].buffer))
 					y = tab_func[i].func(d);
 			}
 			if (tab_func[i].buffer == NULL)

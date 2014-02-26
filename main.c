@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 15:36:51 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 15:43:56 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,10 @@ static void		ft_init_data(t_data *d)
 
 	env = NULL;
 	history = NULL;
+	d->tmp_hist = NULL;
+	d->cpy = NULL;
 	ft_create_env(&env);
 	ft_create_history(&history);
-	d->tmp_hist = NULL;
 	d->my_env = env;
 	d->history = history;
 	d->first_hist = ft_first_history(d->history);
