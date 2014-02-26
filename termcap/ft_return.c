@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:56 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 19:43:55 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 10:55:23 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,37 +55,50 @@ static int		ft_check_error(t_line *first)
 	return (1);
 }
 
+static void		ft_free_tmp(t_tmp **save, t_data *d)
+{
+	t_tmp	*ptr;
+
+	if (*save != d->tmp_hist)
+	{
+		ptr = *save;
+		*save = (*save)->next;
+		ft_free_list(ptr->line);
+		ptr->first = NULL;
+		ptr->last = NULL;
+		ptr->next = NULL;
+		ptr->prev = NULL;
+		free(ptr);
+	}
+	else
+	{
+		ptr = *save;
+		*save = (*save)->next;
+		ptr->next = NULL;
+		ptr->prev = NULL;
+		free(ptr);
+	}
+}
+
 static void		ft_reset_history(t_data *d)
 {
-	t_tmp	*tmp;
-	t_tmp	*ptr;
-	t_tmp	*save;
+	t_history	*tmp;
+	t_tmp		*save;
 
-	d->history = d->first_hist;
-	while (d->history != d->last_hist)
+	tmp = d->last_hist;
+	tmp->flag = 0;
+	tmp = tmp->next;
+	while (tmp != d->last_hist)
 	{
-		d->history->flag = 0;
-		d->history = d->history->prev;
+		tmp->flag = 0;
+		tmp = tmp->next;
 	}
 	d->history = d->first_hist;
-	tmp = d->tmp_hist;
 	save = d->tmp_hist;
-	while (tmp && tmp->prev)
-		tmp = tmp->prev;
-	while (tmp)
-	{
-		if (tmp != save)
-		{
-			ptr = tmp;
-			tmp = tmp->next;
-			ft_free_list(ptr->line);
-			ptr->first = NULL;
-			ptr->last = NULL;
-			free(ptr);
-		}
-		else
-			tmp = tmp->next;
-	}
+	while (save && save->prev)
+		save = save->prev;
+	while (save)
+		ft_free_tmp(&save, d);
 	d->tmp_hist = NULL;
 }
 
