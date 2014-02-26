@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 15:19:25 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 18:22:34 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 18:46:02 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int				ft_paste(t_data *d)
 		tmp = d->cpy;
 		while (tmp)
 		{
-			line = line->next;
+			if (line->next)
+				line = line->next;
 			ft_add_char(&line, tmp->c);
 			tmp = tmp->next;
 		}
