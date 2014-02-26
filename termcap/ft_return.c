@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:56 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 10:55:23 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/26 11:59:22 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,21 +85,24 @@ static void		ft_reset_history(t_data *d)
 	t_history	*tmp;
 	t_tmp		*save;
 
-	tmp = d->last_hist;
-	tmp->flag = 0;
-	tmp = tmp->next;
-	while (tmp != d->last_hist)
+	if (d->last_hist)
 	{
+		tmp = d->last_hist;
 		tmp->flag = 0;
 		tmp = tmp->next;
+		while (tmp != d->last_hist)
+		{
+			tmp->flag = 0;
+			tmp = tmp->next;
+		}
+		d->history = d->first_hist;
+		save = d->tmp_hist;
+		while (save && save->prev)
+			save = save->prev;
+		while (save)
+			ft_free_tmp(&save, d);
+		d->tmp_hist = NULL;
 	}
-	d->history = d->first_hist;
-	save = d->tmp_hist;
-	while (save && save->prev)
-		save = save->prev;
-	while (save)
-		ft_free_tmp(&save, d);
-	d->tmp_hist = NULL;
 }
 
 int				ft_return(t_data *d)
