@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2014/02/25 17:36:34 by mmartin          ###   ########.fr        #
+#    Updated: 2014/02/27 16:52:03 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ INC			+=	-I includes
 
 HEAD		=	includes/ft_builtin.h	\
 				includes/ft_history.h	\
+				includes/ft_lexpars.h	\
 				includes/ft_minishell.h	\
 				includes/ft_termcap.h
 
