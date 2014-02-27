@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 17:15:04 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 12:58:02 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 13:06:46 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		ft_print_echo(char **argv)
 	ft_free_tab(&argv);
 }
 
-void	ft_echo(t_data *d, char **argv)
+int				ft_echo(t_data *d, char **argv)
 {
 	int		i;
 	int		j;
@@ -57,4 +57,5 @@ void	ft_echo(t_data *d, char **argv)
 		if (ft_strcmp(argv[1], "-n") != 0)
 			ft_putchar('\n');
 	}
+	return (0);
 }

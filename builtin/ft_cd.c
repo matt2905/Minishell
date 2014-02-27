@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:32:30 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:49:35 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 13:06:30 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <printf.h>
 #include "ft_builtin.h"
 
-static int	ft_check_path(char *str)
+static int		ft_check_path(char *str)
 {
 	if (ft_strcmp(str, "-") == 0)
 		return (1);
@@ -33,7 +33,7 @@ static int	ft_check_path(char *str)
 	return (1);
 }
 
-static char	*ft_switch_pwd(t_data *d)
+static char		*ft_switch_pwd(t_data *d)
 {
 	char	*tmp;
 	char	*ptr;
@@ -57,7 +57,7 @@ static char	*ft_switch_pwd(t_data *d)
 	return (tmp);
 }
 
-static void	ft_free(char **old, char **pwd, char **ptr, char ***tab)
+static void		ft_free(char **old, char **pwd, char **ptr, char ***tab)
 {
 	free(*old);
 	free(*pwd);
@@ -65,7 +65,7 @@ static void	ft_free(char **old, char **pwd, char **ptr, char ***tab)
 	ft_free_tab(tab);
 }
 
-static void	ft_modify_pwd(t_data *d)
+static void		ft_modify_pwd(t_data *d)
 {
 	char	*old;
 	char	*pwd;
@@ -92,7 +92,7 @@ static void	ft_modify_pwd(t_data *d)
 	ft_free(&old, &pwd, &ptr, &tab);
 }
 
-void		ft_cd(t_data *d, char **argv)
+int				ft_cd(t_data *d, char **argv)
 {
 	char		*ptr;
 
@@ -105,8 +105,15 @@ void		ft_cd(t_data *d, char **argv)
 			free(ptr);
 		}
 		if (chdir(argv[1]) == -1)
-			ft_printf("cd: bot a directory: %s\n", argv[1]);
+		{
+			ft_printf("cd: not a directory: %s\n", argv[1]);
+			return (1);
+		}
 		else
+		{
 			ft_modify_pwd(d);
+			return (0);
+		}
 	}
+	return (1);
 }

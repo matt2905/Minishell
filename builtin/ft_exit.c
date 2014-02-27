@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:53:48 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:50:11 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 13:03:27 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <libft.h>
 #include "ft_minishell.h"
 
-void	ft_exit(t_data *d, char **argv)
+int		ft_exit(t_data *d, char **argv)
 {
 	ft_putendl("exit");
 	tcsetattr(d->tty.fd, TCSAFLUSH, &(d->tty.backup));
@@ -24,4 +24,5 @@ void	ft_exit(t_data *d, char **argv)
 		exit(ft_atoi(argv[1]));
 	else
 		exit(0);
+	return (0);
 }

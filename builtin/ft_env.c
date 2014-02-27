@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:47:38 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 12:48:22 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 13:03:53 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ft_error(char *str)
 	ft_putendl_fd(": no such file or directory", 2);
 }
 
-void		ft_env(t_data *d, char **argv)
+int			ft_env(t_data *d, char **argv)
 {
 	int		i;
 	t_env	*tmp;
@@ -37,7 +37,7 @@ void		ft_env(t_data *d, char **argv)
 		if (!ft_strchr(argv[i], '='))
 		{
 			ft_error(argv[i]);
-			return ;
+			return (1);
 		}
 	}
 	tmp = d->my_env;
@@ -52,4 +52,5 @@ void		ft_env(t_data *d, char **argv)
 		if (ft_strchr(argv[i], '='))
 			ft_putendl(argv[i]);
 	}
+	return (0);
 }

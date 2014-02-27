@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:55:29 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:50:43 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 13:07:03 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <libft.h>
 #include "ft_builtin.h"
 
-static int	ft_error(char **argv)
+static int		ft_error(char **argv)
 {
 	int		i;
 
@@ -34,7 +34,7 @@ static int	ft_error(char **argv)
 	return (0);
 }
 
-static char	*x_ft_strjoin(char *s1, char *s2, char *s3)
+static char		*x_ft_strjoin(char *s1, char *s2, char *s3)
 {
 	int		len;
 	char	*tmp;
@@ -53,7 +53,7 @@ static char	*x_ft_strjoin(char *s1, char *s2, char *s3)
 	return (tmp);
 }
 
-static char	*ft_search_tmp(char *env, char **argv)
+static char		*ft_search_tmp(char *env, char **argv)
 {
 	int		i;
 	char	*tmp;
@@ -68,7 +68,7 @@ static char	*ft_search_tmp(char *env, char **argv)
 	return (tmp);
 }
 
-void		ft_setenv(t_data *d, char **argv)
+int				ft_setenv(t_data *d, char **argv)
 {
 	char	*env;
 	char	*tmp;
@@ -76,7 +76,7 @@ void		ft_setenv(t_data *d, char **argv)
 
 	new = d->my_env;
 	if (ft_error(argv) == 1)
-		return ;
+		return (1);
 	env = ft_getenv_list(d->my_env, argv[1]);
 	tmp = ft_search_tmp(env, argv);
 	if (env == NULL)
@@ -85,4 +85,5 @@ void		ft_setenv(t_data *d, char **argv)
 		ft_modify_env(&new, tmp, env);
 	free(env);
 	d->my_env = new;
+	return (0);
 }

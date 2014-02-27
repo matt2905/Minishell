@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 13:16:17 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:50:55 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 13:04:18 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ static void	ft_deleted(t_data *d, t_env *tmp)
 	free(tmp);
 }
 
-void		ft_unsetenv(t_data *d, char **argv)
+int			ft_unsetenv(t_data *d, char **argv)
 {
 	int		i;
 	t_env	*tmp;
 
 	i = 1;
 	if (ft_error(argv) == 1)
-		return ;
+		return (1);
 	while (argv[i])
 	{
 		tmp = d->my_env;
@@ -68,4 +68,5 @@ void		ft_unsetenv(t_data *d, char **argv)
 		}
 		i++;
 	}
+	return (0);
 }

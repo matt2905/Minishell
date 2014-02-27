@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 15:19:03 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 18:22:21 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 13:07:29 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void		ft_copy(t_line **new, t_line *line)
 	}
 	while (*new && (*new)->prev)
 		*new = (*new)->prev;
-
 }
 
 int				ft_cut(t_data *d)
