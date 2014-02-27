@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 15:19:25 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 19:54:23 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 11:12:01 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		ft_print_paste(t_line *line)
 	int		save;
 
 	save = line->pos;
-	while (line->next)
+	while (line && line->next)
 	{
 		line = line->next;
 		write(0, &line->c, 1);
@@ -44,17 +44,15 @@ int				ft_paste(t_data *d)
 		while (tmp)
 		{
 			write(1, &tmp->c, 1);
+			ft_add_char(&line, tmp->c);
 			if (line->next)
 				line = line->next;
-			ft_add_char(&line, tmp->c);
 			tmp = tmp->next;
 		}
-		if (line->next)
-			line = line->next;
+		ft_print_paste(line);
 		d->line = line;
 		d->first = ft_find_first(d->line);
 		d->last = ft_find_last(d->first);
-		ft_print_paste(d->line);
 	}
 	return (1);
 }
