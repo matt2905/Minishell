@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 15:57:07 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 11:15:36 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ typedef struct		s_env
 	struct s_env	*next;
 	char			*tab;
 }					t_env;
+
+typedef struct		s_id
+{
+	int				id;
+	pid_t			father;
+}					t_id;
 
 typedef struct		s_tty
 {

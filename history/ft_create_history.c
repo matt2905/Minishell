@@ -6,20 +6,26 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 18:43:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:52:15 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 11:55:11 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
+#include <stdlib.h>
 #include <get_next_line.h>
-#include "ft_minishell.h"
+#include <libft.h>
+#include "ft_builtin.h"
 
-void	ft_create_history(t_history **history)
+void	ft_create_history(char *ptr, t_history **history)
 {
 	int		fd;
 	char	*line;
+	char	*str;
 
-	fd = open("./.42sh_history", O_RDONLY);
+	str = ft_strjoin(ptr + 5, "/.42sh_history");
+	free(ptr);
+	fd = open(str, O_RDONLY);
+	free(str);
 	if (fd != -1)
 	{
 		while (get_next_line(fd, &line))

@@ -6,14 +6,15 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 18:06:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 18:05:23 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 11:55:13 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "ft_minishell.h"
+#include <libft.h>
+#include "ft_builtin.h"
 
 t_history		*ft_last_history(t_history *hist)
 {
@@ -46,6 +47,24 @@ static void		ft_init_history(t_data *d)
 	d->first_hist->next = d->last_hist;
 }
 
+static int		ft_open_hist(t_data *d)
+{
+	int		fd;
+	char	*str;
+	char	*ptr;
+
+	str = ft_getenv_list(d->my_env, "HOME");
+	ptr = str;
+	str = ft_strjoin(str + 5, "/.42sh_history");
+	free(ptr);
+	fd = open(str, O_CREAT | O_RDWR | O_APPEND, 0644);
+	free(str);
+	if (fd == -1)
+		return (-1);
+	else
+		return (fd);
+}
+
 void			ft_history(t_data *d)
 {
 	int			fd;
@@ -55,7 +74,7 @@ void			ft_history(t_data *d)
 	t_history	*hist;
 
 	tmp = d->first;
-	if ((fd = open("./.42sh_history", O_CREAT | O_RDWR | O_APPEND, 0644)) == -1)
+	if ((fd = ft_open_hist(d)) == -1)
 		return ;
 	if (!d->last->prev)
 		return ;

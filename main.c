@@ -6,17 +6,20 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/27 10:33:30 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 11:54:43 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <signal.h>
 #include <sys/ioctl.h>
 #include <get_next_line.h>
 #include <libft.h>
 #include <printf.h>
 #include "ft_builtin.h"
 #include "ft_termcap.h"
+
+t_id			gl_pid;
 
 static void		ft_term(t_data *d)
 {
@@ -45,8 +48,15 @@ static void		ft_term(t_data *d)
 
 static void		ft_handle_signal(int sig)
 {
-	if (sig == SIGINT)
-		ioctl(0, TIOCSTI, "\000");
+	extern t_id		gl_pid;
+
+	if (gl_pid.father != 0)
+		kill(gl_pid.father, sig);
+	else
+	{
+		if (sig == SIGINT)
+			ioctl(0, TIOCSTI, "\000");
+	}
 }
 
 static void		ft_signal(void)
@@ -55,8 +65,11 @@ static void		ft_signal(void)
 
 	i = 1;
 	while (i < 32)
+	{
+		if (i > 13 || i == 1 || i == 2 || i == 3)
+		signal(i, ft_handle_signal);
 		i++;
-	signal(SIGINT, ft_handle_signal);
+	}
 }
 
 static void		ft_init_data(t_data *d)
@@ -69,8 +82,8 @@ static void		ft_init_data(t_data *d)
 	d->tmp_hist = NULL;
 	d->cpy = NULL;
 	ft_create_env(&env);
-	ft_create_history(&history);
 	d->my_env = env;
+	ft_create_history(ft_getenv_list(d->my_env, "HOME"), &history);
 	d->history = history;
 	d->first_hist = ft_first_history(d->history);
 	d->last_hist = ft_last_history(d->history);
@@ -80,6 +93,8 @@ int				main(int argc, char **argv)
 {
 	t_data		d;
 
+	gl_pid.father = 0;
+	gl_pid.id = 0;
 	ft_init_data(&d);
 	ft_signal();
 	if (d.last_hist)

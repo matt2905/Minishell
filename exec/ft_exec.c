@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:57:21 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:51:19 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 11:23:19 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@
 
 int		ft_exec(char **my_env, char **argv)
 {
-	pid_t	father;
-	char	*path;
-	int		i;
+	extern t_id		gl_pid;
+	char			*path;
+	int				i;
 
 	i = 0;
 	if ((path = ft_search_path(my_env, argv[0], &i)) != NULL)
 	{
-		father = fork();
-		if (father > 0)
+		gl_pid.father = fork();
+		if (gl_pid.father > 0)
 		{
-			wait(&father);
+			wait(&gl_pid.id);
 			ft_free_tab(&my_env);
 			free(path);
 			return (1);
