@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 15:43:56 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 10:33:30 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,8 @@ static void		ft_signal(void)
 
 	i = 1;
 	while (i < 32)
-	{
-		if (i != 2)
-			signal(i, SIG_IGN);
-		else
-			signal(i, ft_handle_signal);
 		i++;
-	}
+	signal(SIGINT, ft_handle_signal);
 }
 
 static void		ft_init_data(t_data *d)

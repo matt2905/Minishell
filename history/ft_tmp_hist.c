@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 18:06:14 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 19:03:18 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 10:47:36 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static t_tmp	*ft_new_tmp(t_data *d, t_line *line)
 void			ft_add_tmp(t_data *d)
 {
 	if (d->tmp_hist == NULL)
-		d->tmp_hist = ft_new_tmp(d, d->first);
+		d->tmp_hist = ft_new_tmp(d, d->line);
 	else
 	{
 		d->tmp_hist->next = ft_new_tmp(d, NULL);

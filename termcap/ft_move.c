@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 15:25:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 10:46:08 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/27 10:51:44 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 
 static void		ft_print_hist(t_data *d)
 {
-	if (d->line && d->line->c == ' ')
+	if (d->line && d->line->next && d->line->c == ' ')
 		d->line = d->line->next;
 	while (d->line && d->line->next)
 	{
 		ft_putchar_fd(d->line->c, 0);
 		d->line = d->line->next;
 	}
-	if (d->line)
+	if (d->line && d->line != d->first)
 		ft_putchar_fd(d->line->c, 0);
 }
 
@@ -37,8 +37,8 @@ int				ft_go_down(t_data *d)
 		tputs(tgetstr("cd", NULL), 1, ft_int_putchar);
 		d->tmp_hist = d->tmp_hist->prev;
 		d->line = d->tmp_hist->line;
-		d->first = d->tmp_hist->first;
-		d->last = d->tmp_hist->last;
+		d->first = ft_find_first(d->line);
+		d->last = ft_find_last(d->last);
 		ft_print_hist(d);
 		d->history = d->history->next;
 		d->history->flag = 0;
@@ -82,8 +82,8 @@ int				ft_go_up(t_data *d)
 		ft_home(d);
 		tputs(tgetstr("cd", NULL), 1, ft_int_putchar);
 		d->line = d->tmp_hist->line;
-		d->first = d->tmp_hist->first;
-		d->last = d->tmp_hist->last;
+		d->first = ft_find_first(d->line);
+		d->last = ft_find_last(d->first);
 		ft_print_hist(d);
 		d->history->flag = 1;
 		d->history = d->history->prev;
