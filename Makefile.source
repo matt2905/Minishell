@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/25 16:41:52 by mmartin           #+#    #+#              #
-#    Updated: 2014/02/27 17:14:05 by mmartin          ###   ########.fr        #
+#    Updated: 2014/02/28 11:38:34 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRC			=	main.c						\
 				history/ft_history.c		\
 				history/ft_tmp_hist.c		\
 				lex_pars/ft_addlex.c		\
+				lex_pars/ft_free_lex.c		\
+				lex_pars/ft_free_pars.c		\
 				lex_pars/ft_lexer.c			\
 				lex_pars/ft_parser.c		\
 				misc/ft_check_option.c		\
