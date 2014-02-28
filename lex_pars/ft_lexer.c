@@ -6,7 +6,7 @@
 /*   By: amorfan <amorfan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 15:31:04 by amorfan           #+#    #+#             */
-/*   Updated: 2014/02/27 17:13:54 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/28 13:11:58 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void					ft_lexer(t_lexer **root, char *str)
 {
 	int			i;
 	int			j;
-	char		*ptr;
 
 	i = -1;
 	j = 9;
@@ -52,12 +51,6 @@ void					ft_lexer(t_lexer **root, char *str)
 	}
 	else if (str[i] && tok[j].type > 0)
 		ft_add_lexer(root, ft_strndup(str + i, 1), tok[j].type, tok[j].rank);
-	if (str[i])
-	{
-		ptr = str;
-		str = ft_strsub(str, i + 1, ft_strlen(str) - i - 1);
-		free(ptr);
-		if (*str)
-			ft_lexer(root, str);
-	}
+	if (str[i] && *(str + i + 1))
+		ft_lexer(root, str + i + 1);
 }

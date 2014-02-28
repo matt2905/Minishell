@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lexpars.h                                       :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amorfan <amorfan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/27 14:59:30 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/28 11:34:03 by mmartin          ###   ########.fr       */
+/*   Created: 2014/02/12 14:16:48 by amorfan           #+#    #+#             */
+/*   Updated: 2014/02/28 19:00:39 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,18 @@ typedef struct			s_parser
 	struct s_parser		*right;
 }						t_parser;
 
+typedef struct			s_var
+{
+	int					check;
+	char				sens;
+}						t_var;
+
 void	ft_lexer(t_lexer **root, char *str);
 void	ft_add_lexer(t_lexer **root, char *str, int type, int rank);
 void	ft_free_lex(t_lexer **lex);
 void	ft_parser(t_parser **tree, t_lexer *list);
+void	ft_priority(t_parser **tree, t_lexer *list, t_var v);
+void	ft_add_tree(t_parser **tree, t_lexer *tmp, t_lexer *list, t_var v);
 void	ft_free_pars(t_parser **pars);
 
 #endif

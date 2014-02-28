@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 11:33:11 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/28 11:39:07 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/28 11:55:14 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_free_pars(t_parser **pars)
 	{
 		ft_free_pars(&((*pars)->left));
 		ft_free_pars(&((*pars)->right));
+		free((*pars)->str);
 		(*pars)->left = NULL;
 		(*pars)->right = NULL;
 		(*pars)->type = 0;

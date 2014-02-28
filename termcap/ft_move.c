@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 15:25:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/27 10:51:44 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/28 15:00:39 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				ft_go_right(t_data *d)
 	{
 		d->line = d->line->next;
 		tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
-		if ((d->line->pos + d->len_prompt) % tgetnum("co") == 0)
+		if (ft_check_pos(d))
 		{
 			tputs(tgetstr("cr", NULL), 1, ft_int_putchar);
 			tputs(tgetstr("do", NULL), 1, ft_int_putchar);

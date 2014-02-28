@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_lex.c                                      :+:      :+:    :+:   */
+/*   ft_check_pos.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/28 11:30:26 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/28 11:50:14 by mmartin          ###   ########.fr       */
+/*   Created: 2014/02/28 14:08:35 by mmartin           #+#    #+#             */
+/*   Updated: 2014/02/28 15:14:54 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "ft_lexpars.h"
+#include <sys/ioctl.h>
+#include "ft_minishell.h"
 
-void	ft_free_lex(t_lexer **lex)
+int		ft_check_pos(t_data *d)
 {
-	t_lexer		*ptr;
+	struct winsize	size;
 
-	while (*lex)
-	{
-		ptr = *lex;
-		*lex = (*lex)->next;
-		ptr->flag = 0;
-		ptr->rank = 0;
-		ptr->type = 0;
-		ptr->next = NULL;
-		ptr->prev = NULL;
-		free(ptr);
-		ptr = NULL;
-	}
+	ioctl(0, TIOCGWINSZ, &size);
+	if ((d->line->pos + d->len_prompt) % (size.ws_col) == 0)
+		return (1);
+	else
+		return (0);
 }

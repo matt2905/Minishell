@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/27 11:54:43 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/28 17:14:10 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,40 +23,15 @@ t_id			gl_pid;
 
 static void		ft_term(t_data *d)
 {
-	char	*line;
-	char	**tab;
-	int		i;
-
-	while (ft_prompt(d) && get_next_line(0, &line))
-	{
-		i = 0;
-		tab = ft_strsplit_space(line);
-		tab = ft_tilde(tab, d);
-		if (tab[0] != NULL)
-		{
-			ft_builtin(d, tab, &i);
-			if (i == 0)
-			{
-				if (ft_exec(ft_convert_ltt(d->my_env), tab) == 0)
-					ft_printf("42sh: command not found: %s\n", tab[0]);
-			}
-		}
-		ft_free_tab(&tab);
-		free(line);
-	}
+	d->first = NULL;
+	while (ft_prompt(d) && get_next_line(0, &d->str))
+		ft_processing(d);
 }
 
 static void		ft_handle_signal(int sig)
 {
-	extern t_id		gl_pid;
-
-	if (gl_pid.father != 0)
-		kill(gl_pid.father, sig);
-	else
-	{
-		if (sig == SIGINT)
-			ioctl(0, TIOCSTI, "\000");
-	}
+	if (sig == SIGINT)
+		ioctl(0, TIOCSTI, "\200");
 }
 
 static void		ft_signal(void)
@@ -65,11 +40,8 @@ static void		ft_signal(void)
 
 	i = 1;
 	while (i < 32)
-	{
-		if (i > 13 || i == 1 || i == 2 || i == 3)
-		signal(i, ft_handle_signal);
 		i++;
-	}
+	signal(SIGINT, ft_handle_signal);
 }
 
 static void		ft_init_data(t_data *d)

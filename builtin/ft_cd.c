@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:32:30 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/27 13:06:30 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/28 18:17:47 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void		ft_modify_pwd(t_data *d)
 	if (ptr == NULL)
 		old = ft_strdup(pwd);
 	else
-		old = ft_strdup(ptr);
+		old = ft_strdup(ptr + 4);
 	tab = (char **)malloc(sizeof(char *) * 5);
 	tab[0] = ft_strdup("setenv");
 	tab[1] = ft_strdup("PWD");

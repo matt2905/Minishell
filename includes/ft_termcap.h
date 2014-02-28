@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:56:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 19:44:55 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/28 14:45:37 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void		ft_init_term(t_data *d);
 void		ft_oneshot(t_data *d);
 void		ft_termcap(t_data *d);
 int			ft_int_putchar(int c);
+int			ft_check_pos(t_data *d);
 
 /*
 **		ft_struct.c

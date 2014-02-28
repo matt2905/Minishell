@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 19:04:21 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/28 18:14:08 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <printf.h>
 #include "ft_builtin.h"
 #include "ft_termcap.h"
+#include "ft_lexpars.h"
 
 static const t_tab	tab_func[19] =
 {
@@ -34,34 +35,11 @@ static const t_tab	tab_func[19] =
 	{"\E[3~", ft_delete},
 	{"\177", ft_backspace},
 	{"\004", ft_exit_term},
-	{"\000", ft_ctrlc},
+	{"\200", ft_ctrlc},
 	{"\013", ft_cut},
 	{"\031", ft_paste},
 	{NULL, ft_print}
 };
-
-static void		ft_termcap_nde(t_data *d)
-{
-	char	**tab;
-	int		i;
-
-	i = 0;
-	tab = ft_strsplit_space(d->str);
-	if (tab && tab[0] != NULL)
-	{
-		tab = ft_tilde(tab, d);
-		ft_builtin(d, tab, &i);
-		if (i == 0)
-		{
-			if (ft_exec(ft_convert_ltt(d->my_env), tab) == 0)
-				ft_printf("42sh: command not found: %s\n", tab[0]);
-		}
-	}
-	ft_free_tab(&tab);
-	if (d->str)
-		free(d->str);
-	ft_free_list(d->first);
-}
 
 static int		ft_init_line(t_data *d)
 {
@@ -95,6 +73,6 @@ void			ft_termcap(t_data *d)
 			if (tab_func[i].buffer == NULL)
 				y = tab_func[i].func(d);
 		}
-		ft_termcap_nde(d);
+		ft_processing(d);
 	}
 }

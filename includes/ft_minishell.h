@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/27 17:15:41 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/02/28 17:03:06 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int			ft_exec(char **my_env, char **arg);
 char		*ft_search_path(char **my_env, char *argv, int *flag);
 char		*ft_getenv(char **my_env, char *var);
 char		**ft_convert_ltt(t_env *my_env);
+void		ft_processing(t_data *d);
 
 /*
 **		Misc

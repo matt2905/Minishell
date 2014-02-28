@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/25 16:41:52 by mmartin           #+#    #+#              #
-#    Updated: 2014/02/28 11:38:34 by mmartin          ###   ########.fr        #
+#    Updated: 2014/02/28 18:42:09 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,14 @@ SRC			=	main.c						\
 				exec/ft_convert_ltt.c		\
 				exec/ft_exec.c				\
 				exec/ft_getenv.c			\
+				exec/ft_processing.c		\
 				exec/ft_search_path.c		\
 				history/ft_add_history.c	\
 				history/ft_create_history.c	\
 				history/ft_history.c		\
 				history/ft_tmp_hist.c		\
 				lex_pars/ft_addlex.c		\
+				lex_pars/ft_addtree.c		\
 				lex_pars/ft_free_lex.c		\
 				lex_pars/ft_free_pars.c		\
 				lex_pars/ft_lexer.c			\
@@ -40,6 +42,7 @@ SRC			=	main.c						\
 				misc/ft_tilde.c				\
 				termcap/ft_alt.c			\
 				termcap/ft_backspace.c		\
+				termcap/ft_check_pos.c		\
 				termcap/ft_ctrlc.c			\
 				termcap/ft_cut.c			\
 				termcap/ft_delete.c			\
