@@ -6,7 +6,7 @@
 /*   By: amorfan <amorfan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 14:16:48 by amorfan           #+#    #+#             */
-/*   Updated: 2014/02/28 19:00:39 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/01 10:48:25 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ typedef struct			s_lexer
 	struct s_lexer		*next;
 }						t_lexer;
 
-typedef struct			s_token
-{
-	char				c;
-	int					type;
-	int					rank;
-}						t_token;
-
 typedef struct			s_parser
 {
 	char				*str;
@@ -38,6 +31,13 @@ typedef struct			s_parser
 	struct s_parser		*left;
 	struct s_parser		*right;
 }						t_parser;
+
+typedef struct			s_token
+{
+	char				c;
+	int					type;
+	int					rank;
+}						t_token;
 
 typedef struct			s_var
 {

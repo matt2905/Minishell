@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 15:25:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/28 15:00:39 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/01 10:30:23 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int				ft_go_down(t_data *d)
 		tputs(tgetstr("cd", NULL), 1, ft_int_putchar);
 		d->tmp_hist = d->tmp_hist->prev;
 		d->line = d->tmp_hist->line;
-		d->first = ft_find_first(d->line);
-		d->last = ft_find_last(d->last);
+		d->first = d->tmp_hist->first;
+		d->last = d->tmp_hist->last;
 		ft_print_hist(d);
 		d->history = d->history->next;
 		d->history->flag = 0;
@@ -82,8 +82,8 @@ int				ft_go_up(t_data *d)
 		ft_home(d);
 		tputs(tgetstr("cd", NULL), 1, ft_int_putchar);
 		d->line = d->tmp_hist->line;
-		d->first = ft_find_first(d->line);
-		d->last = ft_find_last(d->first);
+		d->first = d->tmp_hist->first;
+		d->last = d->tmp_hist->last;
 		ft_print_hist(d);
 		d->history->flag = 1;
 		d->history = d->history->prev;

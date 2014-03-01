@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/28 17:03:06 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/01 11:07:42 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct		s_data
 	int				len_prompt;
 	int				y;
 	int				save_fd[2];
+	int				pipe[2];
 	char			buff[8];
 }					t_data;
 
@@ -78,16 +79,6 @@ typedef struct		s_data
 
 void		ft_history(t_data *d);
 void		ft_add_tmp(t_data *d);
-
-/*
-**		Exec
-*/
-
-int			ft_exec(char **my_env, char **arg);
-char		*ft_search_path(char **my_env, char *argv, int *flag);
-char		*ft_getenv(char **my_env, char *var);
-char		**ft_convert_ltt(t_env *my_env);
-void		ft_processing(t_data *d);
 
 /*
 **		Misc

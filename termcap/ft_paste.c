@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 15:19:25 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/27 11:12:01 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/01 10:30:28 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ int				ft_paste(t_data *d)
 				line = line->next;
 			tmp = tmp->next;
 		}
-		ft_print_paste(line);
 		d->line = line;
 		d->first = ft_find_first(d->line);
 		d->last = ft_find_last(d->first);
+		ft_print_paste(line);
 	}
 	return (1);
 }

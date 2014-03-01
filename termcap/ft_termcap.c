@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/28 18:14:08 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/01 10:53:21 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <printf.h>
 #include "ft_builtin.h"
 #include "ft_termcap.h"
-#include "ft_lexpars.h"
+#include "ft_exec.h"
 
 static const t_tab	tab_func[19] =
 {

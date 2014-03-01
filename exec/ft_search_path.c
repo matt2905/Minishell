@@ -6,14 +6,14 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:59:01 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:51:54 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/01 10:53:00 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include <libft.h>
-#include "ft_minishell.h"
+#include "ft_exec.h"
 
 static char	*ft_check_exe(char *str, char *path, int *flag)
 {

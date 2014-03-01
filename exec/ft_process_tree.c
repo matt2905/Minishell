@@ -1,30 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_oneshot.c                                       :+:      :+:    :+:   */
+/*   ft_process_tree.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/26 10:58:57 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/01 10:53:11 by mmartin          ###   ########.fr       */
+/*   Created: 2014/03/01 10:59:11 by mmartin           #+#    #+#             */
+/*   Updated: 2014/03/01 11:58:29 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <get_next_line.h>
-#include "ft_builtin.h"
+#include <string.h>
 #include "ft_exec.h"
 
-void	ft_oneshot(t_data *d)
+static const t_exec	process[10] =
 {
-	char	*line;
+	{1, ft_great},
+	{2, ft_dgreat},
+	{3, ft_less},
+	{4, ft_dless},
+	{5, ft_pipe},
+	{6, ft_or},
+	{7, ft_amp},
+	{8, ft_and},
+	{9, ft_sep},
+	{0, NULL}
+};
+
+void			ft_process_tree(t_parser *parser, t_data *d)
+{
 	int		i;
 
 	i = 0;
-	while (get_next_line(0, &line))
+	if (parser)
 	{
-		ft_processing(d);
-		free(line);
+		while (process[i].func != NULL)
+		{
+			if (process[i].type == parser->type)
+				process[i].func(parser, d);
+			i++;
+		}
+		if (parser->rank == 5)
+			ft_process(d, parser->str);
 	}
-	exit(EXIT_SUCCESS);
 }

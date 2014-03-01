@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 18:06:14 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/27 10:47:36 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/01 10:51:07 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static t_tmp	*ft_save_line(t_tmp *next, t_line *line)
 	new = (t_tmp *)malloc(sizeof(*new));
 	new->next = next;
 	new->prev = NULL;
-	new->line = line;
-	new->first = ft_find_first(new->line);
+	new->line = ft_find_first(line);
+	new->first = new->line;
 	new->last = ft_find_last(new->first);
 	return (new);
 }

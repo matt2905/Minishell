@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:55:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/28 18:17:13 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/01 12:00:42 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <libft.h>
 #include <printf.h>
 #include "ft_builtin.h"
-#include "ft_lexpars.h"
+#include "ft_exec.h"
 #include "ft_termcap.h"
 
-static void		ft_process(t_data *d, char *str)
+void		ft_process(t_data *d, char *str)
 {
 	int		i;
 	char	**tab;
@@ -36,19 +36,7 @@ static void		ft_process(t_data *d, char *str)
 	}
 	ft_free_tab(&tab);
 }
-
-static void		ft_process_tree(t_parser *parser, t_data *d)
-{
-	if (parser)
-	{
-		if (parser->rank == 5)
-			ft_process(d, parser->str);
-		ft_process_tree(parser->left, d);
-		ft_process_tree(parser->right, d);
-	}
-}
-
-void			ft_processing(t_data *d)
+void		ft_processing(t_data *d)
 {
 	t_lexer		*lex;
 	t_parser	*parser;
