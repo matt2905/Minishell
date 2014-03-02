@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/25 16:41:52 by mmartin           #+#    #+#              #
-#    Updated: 2014/03/01 11:01:51 by mmartin          ###   ########.fr        #
+#    Updated: 2014/03/02 16:30:53 by bbouabou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRC			=	main.c						\
 				termcap/ft_backspace.c		\
 				termcap/ft_check_pos.c		\
 				termcap/ft_ctrlc.c			\
+				termcap/ft_ctrll.c			\
 				termcap/ft_cut.c			\
 				termcap/ft_delete.c			\
 				termcap/ft_end.c			\

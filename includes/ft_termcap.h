@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:56:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/28 14:45:37 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/02 16:27:05 by bbouabou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int			ft_alt_right(t_data *d);
 int			ft_alt_up(t_data *d);
 int			ft_backspace(t_data *d);
 int			ft_ctrlc(t_data *d);
+int			ft_ctrll(t_data *d);
 int			ft_cut(t_data *d);
 int			ft_delete(t_data *d);
 int			ft_end(t_data *d);
