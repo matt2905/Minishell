@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:24 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/02 10:11:04 by bbouabou         ###   ########.fr       */
+/*   Updated: 2014/03/02 11:35:02 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_less(t_parser *parser, t_data *d)
 	struct stat		buf;
 	char			**tab;
 
+	dup2(d->save_fd[0], 0);
 	tab = ft_strsplit_space(parser->left->str);
 	stat(tab[0], &buf);
 	result = buf.st_mode & S_IFMT;
