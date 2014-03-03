@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/01 11:07:42 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/03 11:40:03 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct		s_data
 	char			*str;
 	int				len_prompt;
 	int				y;
-	int				save_fd[2];
+	int				save_fd[3];
 	int				pipe[2];
 	char			buff[8];
 }					t_data;
