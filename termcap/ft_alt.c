@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 15:27:05 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:58:10 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/03 18:10:20 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <termcap.h>
 #include "ft_termcap.h"
 
-int		ft_alt_down(t_data *d)
+int				ft_alt_down(t_data *d)
 {
 	int		save;
 
@@ -35,53 +35,79 @@ int		ft_alt_down(t_data *d)
 	return (1);
 }
 
-int		ft_alt_left(t_data *d)
+int				ft_alt_left(t_data *d)
 {
 	if (d->line != d->first)
 	{
-		while (d->line->c != ' ' && d->line->prev)
+		if (d->line != d->last)
 		{
-			tputs(tgetstr("le", NULL), 1, ft_int_putchar);
-			d->line = d->line->prev;
+			while (d->line->c != ' ' && d->line->prev)
+			{
+				tputs(tgetstr("le", NULL), 1, ft_int_putchar);
+				d->line = d->line->prev;
+			}
 		}
 		while (d->line->c == ' ' && d->line->prev)
 		{
 			tputs(tgetstr("le", NULL), 1, ft_int_putchar);
 			d->line = d->line->prev;
 		}
-	}
-		return (1);
-}
-
-int		ft_alt_right(t_data *d)
-{
-	if (d->line != d->last)
-	{
-		while (d->line->c == ' ' && d->line->next)
+		while (d->line->c != ' ' && d->line->prev)
 		{
-			tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
-			d->line = d->line->next;
-			if ((d->line->pos + d->len_prompt) % tgetnum("co") == 0)
-			{
-				tputs(tgetstr("cr", NULL), 1, ft_int_putchar);
-				tputs(tgetstr("do", NULL), 1, ft_int_putchar);
-			}
-		}
-		while (d->line->c != ' ' && d->line->next)
-		{
-			tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
-			d->line = d->line->next;
-			if ((d->line->pos + d->len_prompt) % tgetnum("co") == 0)
-			{
-				tputs(tgetstr("cr", NULL), 1, ft_int_putchar);
-				tputs(tgetstr("do", NULL), 1, ft_int_putchar);
-			}
+			tputs(tgetstr("le", NULL), 1, ft_int_putchar);
+			d->line = d->line->prev;
 		}
 	}
 	return (1);
 }
 
-int		ft_alt_up(t_data *d)
+static void		ft_ar_bis(t_data *d)
+{
+	while (d->line->c == ' ' && d->line->next)
+	{
+		tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
+		d->line = d->line->next;
+		if ((d->line->pos + d->len_prompt) % tgetnum("co") == 0)
+		{
+			tputs(tgetstr("cr", NULL), 1, ft_int_putchar);
+			tputs(tgetstr("do", NULL), 1, ft_int_putchar);
+		}
+	}
+	while (d->line->next && d->line->next->c != ' ')
+	{
+		tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
+		d->line = d->line->next;
+		if ((d->line->pos + d->len_prompt) % tgetnum("co") == 0)
+		{
+			tputs(tgetstr("cr", NULL), 1, ft_int_putchar);
+			tputs(tgetstr("do", NULL), 1, ft_int_putchar);
+		}
+	}
+}
+
+int				ft_alt_right(t_data *d)
+{
+	if (d->line != d->last)
+	{
+		if (d->line != d->first)
+		{
+			while (d->line->c != ' ' && d->line->next)
+			{
+				tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
+				d->line = d->line->next;
+				if ((d->line->pos + d->len_prompt) % tgetnum("co") == 0)
+				{
+					tputs(tgetstr("cr", NULL), 1, ft_int_putchar);
+					tputs(tgetstr("do", NULL), 1, ft_int_putchar);
+				}
+			}
+		}
+		ft_ar_bis(d);
+	}
+	return (1);
+}
+
+int				ft_alt_up(t_data *d)
 {
 	int		save;
 

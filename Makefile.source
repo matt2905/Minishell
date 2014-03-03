@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/25 16:41:52 by mmartin           #+#    #+#              #
-#    Updated: 2014/03/02 16:30:53 by bbouabou         ###   ########.fr        #
+#    Updated: 2014/03/03 12:30:50 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRC			=	main.c						\
 				lex_pars/ft_free_pars.c		\
 				lex_pars/ft_lexer.c			\
 				lex_pars/ft_parser.c		\
+				lex_pars/ft_search_word.c	\
 				misc/ft_check_option.c		\
 				misc/ft_prompt.c			\
 				misc/ft_tilde.c				\

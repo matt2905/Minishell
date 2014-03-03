@@ -6,14 +6,14 @@
 /*   By: amorfan <amorfan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 13:52:19 by amorfan           #+#    #+#             */
-/*   Updated: 2014/02/28 19:00:08 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/03 12:37:36 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ft_lexpars.h"
 
-void	ft_priority(t_parser **tree, t_lexer *list, t_var v)
+void		ft_priority(t_parser **tree, t_lexer *list, t_var v)
 {
 	t_lexer			*tmp;
 
@@ -30,7 +30,7 @@ void	ft_priority(t_parser **tree, t_lexer *list, t_var v)
 	ft_add_tree(tree, tmp, list, v);
 }
 
-void			ft_parser(t_parser **tree, t_lexer *list)
+void		ft_parser(t_parser **tree, t_lexer *list)
 {
 	t_var	v;
 

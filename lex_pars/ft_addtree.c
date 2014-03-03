@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_tree.c                                      :+:      :+:    :+:   */
+/*   ft_addtree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:41:02 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/28 19:05:45 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/03 12:36:58 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ft_lexpars.h"
 
-static t_parser		*ft_create_parser(char *str, int type, int rank)
+t_parser	*ft_create_parser(char *str, int type, int rank)
 {
 	t_parser		*tmp;
 
