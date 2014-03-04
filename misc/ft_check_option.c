@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:23:06 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/03 11:50:39 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/04 12:40:53 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	ft_check_option(int argc, char **argv, t_data *d)
 {
+	d->tty.flag = 0;
 	if (argc != 1)
 	{
 		if (ft_strncmp(argv[1], "-t", 2) == 0)
@@ -25,6 +26,4 @@ void	ft_check_option(int argc, char **argv, t_data *d)
 			ft_putendl_fd("-t: desactivate termcap mode", 2);
 		}
 	}
-	else
-		d->tty.flag = 0;
 }

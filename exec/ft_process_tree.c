@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:59:11 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/02 11:26:34 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/04 12:52:50 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void			ft_process_tree(t_parser *parser, t_data *d)
 	i = 0;
 	if (parser)
 	{
-		while (process[i].func != NULL)
+		while (process[i].func != NULL && parser->rank != 5)
 		{
 			if (process[i].type == parser->type)
 				process[i].func(parser, d);

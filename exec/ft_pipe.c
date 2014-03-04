@@ -6,10 +6,11 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:39 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/01 10:57:44 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/04 14:02:36 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "ft_exec.h"
 
 void	ft_pipe(t_parser *parser, t_data *d)

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 13:20:05 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:55:41 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/04 10:04:37 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,9 @@ t_line			*ft_find_last(t_line *first)
 			new->pos = 0;
 		new = new->next;
 	}
+	if (new->prev)
+		new->pos = new->prev->pos + 1;
+	else
+		new->pos = 0;
 	return (new);
 }
