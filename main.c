@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/03 11:39:54 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/04 16:36:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "ft_exec.h"
 #include "ft_termcap.h"
 
-t_id			gl_pid;
+t_id			g_pid;
 
 static void		ft_term(t_data *d)
 {
@@ -32,8 +32,15 @@ static void		ft_term(t_data *d)
 
 static void		ft_handle_signal(int sig)
 {
-	if (sig == SIGINT)
-		ioctl(0, TIOCSTI, "\200");
+	if (g_pid.father != 0)
+		kill(sig, g_pid.father);
+	else
+	{
+		if (sig == SIGINT)
+			ioctl(0, TIOCSTI, "\200");
+		else
+			signal(sig, SIG_DFL);
+	}
 }
 
 static void		ft_signal(void)
@@ -42,8 +49,10 @@ static void		ft_signal(void)
 
 	i = 1;
 	while (i < 32)
+	{
+		signal(i, ft_handle_signal);
 		i++;
-	signal(SIGINT, ft_handle_signal);
+	}
 }
 
 static void		ft_init_data(t_data *d)
@@ -70,8 +79,9 @@ int				main(int argc, char **argv)
 {
 	t_data		d;
 
-	gl_pid.father = 0;
-	gl_pid.id = 0;
+	g_pid.father = 0;
+	g_pid.id = 0;
+	g_pid.built = -1;
 	ft_init_data(&d);
 	ft_signal();
 	if (d.last_hist)

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 13:57:44 by mmartin           #+#    #+#             */
-/*   Updated: 2013/12/06 17:28:52 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/04 20:00:17 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *s)
 	int	i;
 
 	i = 0;
-	while (s[i] != '\0')
+	while (s && s[i] != '\0')
 		i++;
 	return (i);
 }

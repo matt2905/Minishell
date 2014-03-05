@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 14:24:37 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/03 19:40:42 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/04 18:37:38 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ char			**ft_strsplit_space(char *s);
 char			*ft_strstr(const char *s1, const char *s2);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strtrim(char const *s);
+char			**ft_tabdup(char **tab);
 size_t			ft_tablen(char **tab);
 int				ft_tolower(int c);
 int				ft_toupper(int c);

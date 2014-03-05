@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:45:51 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/03 12:39:54 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/05 11:02:03 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		ft_unsetenv(t_data *d, char **arg);
 void	ft_builtin(t_data *d, char **arg, int *i);
 void	ft_create_env(t_env **my_env);
 void	ft_add_env(t_env **my_env, char *str);
+t_env	*ft_new_env(t_env *my_env, char **argv);
 void	ft_modify_env(t_env **my_env, char *arg, char *env);
 char	*ft_create_path(void);
 char	*ft_getenv_list(t_env *my_env, char *str);

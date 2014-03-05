@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_tabdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/21 17:39:49 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/04 20:01:10 by mmartin          ###   ########.fr       */
+/*   Created: 2014/03/04 17:48:38 by mmartin           #+#    #+#             */
+/*   Updated: 2014/03/05 10:27:57 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char	**ft_tabdup(char **tab)
 {
-	size_t	len;
-	size_t	i;
-	char	*strdup;
+	int		len;
+	int		i;
+	char	**new;
 
 	i = -1;
-	len = ft_strlen(s1) + 1;
-	if ((strdup = ft_strnew(len)) == NULL)
+	len = ft_tablen(tab);
+	if ((new = (char **)malloc(sizeof(char *) * (len + 1))) == NULL)
 		return (NULL);
-	while (s1 && ++i < len)
-		strdup[i] = s1[i];
-	return (strdup);
+	while (++i < len)
+		new[i] = ft_strdup(tab[i]);
+	new[i] = NULL;
+	return (new);
 }
