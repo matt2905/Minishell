@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:57:21 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/04 16:22:52 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/05 11:13:16 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int		ft_exec(char **my_env, char **argv)
 	int				i;
 
 	i = 0;
+	g_pid.father = 0;
+	g_pid.id = 0;
 	if ((path = ft_search_path(my_env, argv[0], &i)) != NULL)
 	{
 		g_pid.father = fork();

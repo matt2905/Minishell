@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:47:38 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/05 10:35:46 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/05 11:12:58 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				ft_exec_env(t_data *d, char **argv, int i, t_env *new_env)
 		}
 	}
 	ft_free_tab(&tab);
-	return (0);
+	return (-1);
 }
 
 static void		ft_free_env(t_env *new)
