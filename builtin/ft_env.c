@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:47:38 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/05 11:12:58 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/05 11:52:51 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		ft_error(char *str)
 	ft_putendl_fd(": No such file or directory", 2);
 }
 
-int				ft_exec_env(t_data *d, char **argv, int i, t_env *new_env)
+static int		ft_exec_env(t_data *d, char **argv, int i, t_env *new_env)
 {
 	char	**tab;
 	int		k;
@@ -60,12 +60,48 @@ static void		ft_free_env(t_env *new)
 	}
 }
 
+static int		ft_chec_option(char **argv)
+{
+	int		i;
+
+	i = 0;
+	while (argv && argv[++i] && argv[i][0] == '-')
+	{
+		if (ft_strcmp(argv[i], "--help") == 0)
+		{
+			ft_putstr("Usage: env [--help] [- | -i | --ignore-environ]");
+			ft_putendl(" [name=value ...] [utility [argument ...]]");
+			return (2);
+		}
+		if (ft_strcmp(argv[i], "--help") && ft_strcmp(argv[i], "-i")
+				&& ft_strcmp(argv[i], "--ignore-environ") && argv[i][1] != '\0')
+		{
+			ft_putstr("env: illegal option -- ");
+			if (argv[i][1] != '-' && argv[i][1] != 'i')
+				ft_putchar(argv[i][1]);
+			else
+				ft_putchar(argv[i][2]);
+			ft_putstr("\nUsage: env [--help] [- | -i | --ignore-environ]");
+			ft_putendl(" [name=value ...] [utility [argument ...]]");
+			return (1);
+		}
+	}
+	return (0);
+}
+
 int				ft_env(t_data *d, char **argv)
 {
 	int		i;
 	t_env	*new;
+	int		ret;
 
 	i = 0;
+	if ((ret = ft_chec_option(argv)) != 0)
+	{
+		if (ret == 2)
+			ret = 0;
+		return (ret);
+	}
 	new = ft_new_env(d->my_env, argv);
 	while (argv[++i])
 	{
