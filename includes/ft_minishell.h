@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/04 16:29:48 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/05 16:41:31 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ typedef struct		s_data
 	t_line			*first;
 	t_line			*last;
 	t_line			*cpy;
+	int				fork;
 	char			*str;
 	int				len_prompt;
 	int				y;
 	int				save_fd[3];
-	int				pipe[2];
 	char			buff[8];
 }					t_data;
 

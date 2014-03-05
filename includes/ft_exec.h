@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:48:33 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/01 11:03:16 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/05 16:48:42 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		ft_dgreat(t_parser *parser, t_data *d);
 void		ft_and(t_parser *parser, t_data *d);
 void		ft_sep(t_parser *parser, t_data *d);
 
-int			ft_exec(char **my_env, char **arg);
+int			ft_exec(char **my_env, char **arg, int ok);
 char		*ft_search_path(char **my_env, char *argv, int *flag);
 char		*ft_getenv(char **my_env, char *var);
 char		**ft_convert_ltt(t_env *my_env);

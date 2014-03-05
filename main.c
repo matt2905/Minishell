@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/04 16:36:15 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/05 16:41:39 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int				main(int argc, char **argv)
 {
 	t_data		d;
 
+	d.fork = 0;
 	g_pid.father = 0;
 	g_pid.id = 0;
 	g_pid.built = -1;

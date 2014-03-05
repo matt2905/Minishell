@@ -6,26 +6,29 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 15:27:05 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/03 18:10:20 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/05 19:45:29 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include <sys/ioctl.h>
 #include <termcap.h>
 #include "ft_termcap.h"
 
 int				ft_alt_down(t_data *d)
 {
-	int		save;
+	struct winsize	size;
+	int				save;
 
-	save = d->line->pos + tgetnum("co");
+	ioctl(0, TIOCGWINSZ, &size);
+	save = d->line->pos + size.ws_col;
 	if (d->line != d->last)
 	{
 		while (d->line != d->last && d->line->pos != save)
 		{
 			tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
 			d->line = d->line->next;
-			if ((d->line->pos + d->len_prompt) % tgetnum("co") == 0)
+			if (ft_check_pos(d->line, d->len_prompt))
 			{
 				tputs(tgetstr("cr", NULL), 1, ft_int_putchar);
 				tputs(tgetstr("do", NULL), 1, ft_int_putchar);
@@ -67,7 +70,7 @@ static void		ft_ar_bis(t_data *d)
 	{
 		tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
 		d->line = d->line->next;
-		if ((d->line->pos + d->len_prompt) % tgetnum("co") == 0)
+		if (ft_check_pos(d->line, d->len_prompt))
 		{
 			tputs(tgetstr("cr", NULL), 1, ft_int_putchar);
 			tputs(tgetstr("do", NULL), 1, ft_int_putchar);
@@ -77,7 +80,7 @@ static void		ft_ar_bis(t_data *d)
 	{
 		tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
 		d->line = d->line->next;
-		if ((d->line->pos + d->len_prompt) % tgetnum("co") == 0)
+		if (ft_check_pos(d->line, d->len_prompt))
 		{
 			tputs(tgetstr("cr", NULL), 1, ft_int_putchar);
 			tputs(tgetstr("do", NULL), 1, ft_int_putchar);
@@ -95,7 +98,7 @@ int				ft_alt_right(t_data *d)
 			{
 				tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
 				d->line = d->line->next;
-				if ((d->line->pos + d->len_prompt) % tgetnum("co") == 0)
+				if (ft_check_pos(d->line, d->len_prompt))
 				{
 					tputs(tgetstr("cr", NULL), 1, ft_int_putchar);
 					tputs(tgetstr("do", NULL), 1, ft_int_putchar);
@@ -109,14 +112,13 @@ int				ft_alt_right(t_data *d)
 
 int				ft_alt_up(t_data *d)
 {
-	int		save;
+	int				save;
+	struct winsize	size;
 
 	if (d->line != d->first)
 	{
-		if (d->line == d->last)
-			save = d->line->prev->pos - tgetnum("co") + 1;
-		else
-			save = d->line->pos - tgetnum("co");
+		ioctl(0, TIOCGWINSZ, &size);
+		save = d->line->pos - size.ws_col;
 		while (d->line != d->first && d->line->pos != save)
 		{
 			tputs(tgetstr("le", NULL), 1, ft_int_putchar);

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:47:38 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/05 11:52:51 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/05 16:49:12 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int		ft_exec_env(t_data *d, char **argv, int i, t_env *new_env)
 		ft_builtin(d, tab, &k);
 		if (k == 0)
 		{
-			if (ft_exec(ft_convert_ltt(new_env), tab) == 0)
+			if (ft_exec(ft_convert_ltt(new_env), tab, d->fork) == 0)
 			{
 				ft_error(tab[0]);
 				ft_free_tab(&tab);
