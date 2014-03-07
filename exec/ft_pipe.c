@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:39 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/05 19:58:49 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/07 11:57:00 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void		ft_right(t_parser *parser, t_data *d, int *fd_pipe)
 	d->fork = 1;
 	close(fd_pipe[1]);
 	dup2(fd_pipe[0], 0);
-	dup2(d->save_fd[1], 1);
 	ft_process_tree(parser->right, d);
 	exit(1);
 }
@@ -44,14 +43,13 @@ void			ft_pipe(t_parser *parser, t_data *d)
 
 	pipe(fd_pipe);
 	child1 = fork();
-	if (child1 > 0)
-		waitpid(child1, &id, 0);
 	if (child1 == 0)
-	{
-		child2 = fork();
-		if (child2 > 0)
-			ft_left(parser, d, fd_pipe);
-		if (child2 == 0)
-			ft_right(parser, d, fd_pipe);
-	}
+		ft_left(parser, d, fd_pipe);
+	child2 = fork();
+	if (child2 == 0)
+		ft_right(parser, d, fd_pipe);
+	close(fd_pipe[0]);
+	close(fd_pipe[1]);
+	waitpid(child1, &id, 0);
+	waitpid(child2, &id, 0);
 }

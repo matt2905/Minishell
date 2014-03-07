@@ -6,7 +6,7 @@
 /*   By: amorfan <amorfan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 13:52:19 by amorfan           #+#    #+#             */
-/*   Updated: 2014/03/05 16:16:09 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/07 11:58:07 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,7 @@ void		ft_priority(t_parser **tree, t_lexer *list, t_var v)
 		if (v.sens == 'r')
 			tmp = tmp->next;
 		else
-		{
-			if (v.check == 4)
-			{
-				while (tmp->prev && tmp->flag)
-					tmp = tmp->prev;
-				tmp = tmp->next;
-				v.sens = 'r';
-			}
-			else
-				tmp = tmp->prev;
-		}
+			tmp = tmp->prev;
 	}
 	ft_add_tree(tree, tmp, list, v);
 }
