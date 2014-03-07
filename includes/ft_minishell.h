@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/05 16:41:31 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/07 16:35:02 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct		s_data
 
 void		ft_history(t_data *d);
 void		ft_add_tmp(t_data *d);
+void		ft_reset_history(t_data *d);
 
 /*
 **		Misc

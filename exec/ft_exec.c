@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:57:21 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/05 19:41:38 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/07 14:02:59 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <libft.h>
 #include "ft_exec.h"
 
-static int	ft_launch(char **my_env, char **argv, char *path)
+static int		ft_launch(char **my_env, char **argv, char *path)
 {
 	extern t_id		g_pid;
 
@@ -33,7 +33,7 @@ static int	ft_launch(char **my_env, char **argv, char *path)
 	return (0);
 }
 
-int		ft_exec(char **my_env, char **argv, int ok)
+int				ft_exec(char **my_env, char **argv, int ok)
 {
 	extern t_id		g_pid;
 	char			*path;

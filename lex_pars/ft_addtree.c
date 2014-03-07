@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:41:02 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/07 11:58:31 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/07 13:09:47 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ t_parser	*ft_create_parser(char *str, int type, int rank)
 	return (tmp);
 }
 
-void		ft_add_tree(t_parser **tree, t_lexer *tmp, t_lexer *list, t_var v)
+void		ft_add_tree(t_parser **tree, t_lexer *tmp, t_lexer *list, int check)
 {
-	if (tmp && tmp->rank == v.check && v.sens == 'r')
+	if (tmp && tmp->rank == check)
 	{
 		tmp->flag = 0;
 		*tree = ft_create_parser(tmp->str, tmp->type, tmp->rank);
-		ft_priority(&((*tree)->right), tmp->next, v);
-		v.check++;
-		ft_priority(&((*tree)->left), list, v);
+		ft_parser(&((*tree)->right), tmp->next, check);
+		check++;
+		ft_parser(&((*tree)->left), list, check);
 	}
 	else
 	{
-		v.check++;
-		ft_priority(tree, list, v);
+		check++;
+		ft_parser(tree, list, check);
 	}
 }

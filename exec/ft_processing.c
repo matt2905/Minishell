@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:55:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/05 16:50:19 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/07 13:09:29 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		ft_processing(t_data *d)
 	ft_lexer(&lex, d->str);
 	if (lex)
 	{
-		ft_parser(&parser, lex);
+		ft_parser(&parser, lex, 1);
 		ft_free_lex(&lex);
 		ft_process_tree(parser, d);
 		ft_free_pars(&parser);

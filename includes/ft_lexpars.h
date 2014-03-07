@@ -6,7 +6,7 @@
 /*   By: amorfan <amorfan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 14:16:48 by amorfan           #+#    #+#             */
-/*   Updated: 2014/03/03 12:59:22 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/07 13:09:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,8 @@ typedef struct			s_token
 	int					rank;
 }						t_token;
 
-typedef struct			s_var
-{
-	int					check;
-	char				sens;
-}						t_var;
-
 void	ft_add_lexer(t_lexer **root, char *str, int type, int rank);
-void	ft_add_tree(t_parser **tree, t_lexer *tmp, t_lexer *list, t_var v);
+void	ft_add_tree(t_parser **tree, t_lexer *tmp, t_lexer *list, int check);
 void	ft_free_lex(t_lexer **lex);
 void	ft_free_pars(t_parser **pars);
 char	*ft_search_word(char **str, int i, char c);
@@ -62,7 +56,6 @@ void	ft_lexer(t_lexer **root, char *str);
 **		ft_parser.c
 */
 
-void	ft_parser(t_parser **tree, t_lexer *list);
-void	ft_priority(t_parser **tree, t_lexer *list, t_var v);
+void	ft_parser(t_parser **tree, t_lexer *list, int check);
 
 #endif
