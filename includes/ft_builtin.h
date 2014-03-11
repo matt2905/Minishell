@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:45:51 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/05 11:02:03 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/11 12:33:38 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ typedef struct		s_builtin
 	int				(* func)(t_data *, char **);
 }					t_builtin;
 
+typedef struct		s_echo
+{
+	char			c;
+	int				back;
+	char			val;
+	int				newback;
+}					t_echo;
+
 int		ft_cd(t_data *d, char **arg);
 int		ft_echo(t_data *d, char **arg);
 int		ft_env(t_data *d, char **arg);
@@ -28,6 +36,7 @@ int		ft_exit(t_data *d, char **arg);
 int		ft_setenv(t_data *d, char **arg);
 int		ft_unsetenv(t_data *d, char **arg);
 
+void	ft_putstr_echo(char *str, int *ok);
 void	ft_builtin(t_data *d, char **arg, int *i);
 void	ft_create_env(t_env **my_env);
 void	ft_add_env(t_env **my_env, char *str);

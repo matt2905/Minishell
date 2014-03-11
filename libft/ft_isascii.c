@@ -6,11 +6,11 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 11:38:26 by mmartin           #+#    #+#             */
-/*   Updated: 2013/12/06 17:18:38 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/11 14:22:12 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+int		ft_isascii(int c)
 {
 	if (c >= 0 && c <= 127)
 		return (1);

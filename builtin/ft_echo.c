@@ -6,13 +6,15 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 17:15:04 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/07 14:36:08 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/11 12:31:01 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <termcap.h>
 #include <libft.h>
+#include <printf.h>
 #include "ft_termcap.h"
+#include "ft_builtin.h"
 
 /*
 **					Too do
@@ -20,42 +22,83 @@
 **		Color:	echo "\033[33m"test"" = test in yellow color
 */
 
-static void		ft_print_echo(char **argv)
+static int		ft_print_echo(char **argv, int el, int eu)
 {
 	int		j;
+	int		ok;
 
+	ok = 1;
 	j = 0;
-	while (argv[j])
+	if (eu == 1 && el == 0)
 	{
-		ft_putstr(argv[j]);
-		j++;
+		while (argv[j])
+		{
+			ft_putstr(argv[j]);
+			j++;
+		}
+	}
+	else
+	{
+		while (argv[j])
+		{
+			ft_putstr_echo(argv[j], &ok);
+			if (ok == 0)
+				return (0);
+			j++;
+		}
 	}
 	ft_free_tab(&argv);
+	return (1);
+}
+
+static int		ft_get_option(char **argv, int *n, int *el, int *eu)
+{
+	int		i;
+
+	i = 1;
+	*n = 0;
+	*el = 0;
+	*eu = 0;
+	while (argv[i] && argv[i][0] == '-')
+	{
+		if (argv[i][1] == 'e')
+			*el = 1;
+		else if (argv[i][1] == 'E')
+			*eu = 1;
+		else if (argv[i][1] == 'n')
+			*n = 1;
+		else
+			return (i);
+		i++;
+	}
+	return (i);
 }
 
 int				ft_echo(t_data *d, char **argv)
 {
-	int		i;
 	int		j;
+	int		n;
+	int		el;
+	int		eu;
+	int		ok;
 
 	(void)d;
-	i = ft_tablen(argv);
-	if (i == 1)
-		ft_putchar('\n');
-	else if (i == 2 && ft_strcmp(argv[1], "-n") == 0)
-		ft_putchar('\0');
-	else
+	j = ft_get_option(argv, &n, &el, &eu);
+	while (argv[j])
 	{
-		j = (ft_strcmp(argv[1], "-n") == 0) ? 2 : 1;
-		while (argv[j])
-		{
-			ft_print_echo(ft_strsplit(argv[j], '"'));
-			j++;
-			if (argv[j])
-				ft_putchar(' ');
-		}
-		if (ft_strcmp(argv[1], "-n") != 0)
-			ft_putchar('\n');
+		if (argv[j][0] == '\"')
+			ok = ft_print_echo(ft_strsplit(argv[j], '\"'), el, eu);
+		else if (argv[j][0] == '\'')
+			ok = ft_print_echo(ft_strsplit(argv[j], '\''), el, eu);
+		else
+			ok = ft_print_echo(ft_strsplit(argv[j], ' '), el, eu);
+		if (ok == 0)
+			return (0);
+		j++;
+		if (argv[j])
+			ft_putchar(' ');
 	}
+	if (n == 0)
+		ft_putchar('\n');
 	return (0);
 }
