@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:55:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/07 13:09:29 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/12 15:04:40 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,21 @@ void		ft_process(t_data *d, char *str)
 {
 	int		i;
 	char	**tab;
+	char	*tmp;
 
 	i = 0;
-	tab = ft_strsplit_space(str);
+	tmp = ft_tilde(str, d);
+	tab = ft_strsplit_shell(tmp);
+	free(tmp);
 	if (tab && tab[0])
 	{
-		tab = ft_tilde(tab, d);
 		ft_builtin(d, tab, &i);
 		if (i == 0)
 		{
 			if (ft_exec(ft_convert_ltt(d->my_env), tab, d->fork) == 0)
 				ft_printf("42sh: command not found: %s\n", tab[0]);
 		}
+		ft_reset_termcap(d);
 	}
 	ft_free_tab(&tab);
 }
@@ -44,6 +47,7 @@ void		ft_processing(t_data *d)
 
 	parser = NULL;
 	lex = NULL;
+	d->pipe = 0;
 	ft_lexer(&lex, d->str);
 	if (lex)
 	{

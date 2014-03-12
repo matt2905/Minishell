@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:39 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/07 13:59:52 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/12 15:07:04 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void			ft_pipe(t_parser *parser, t_data *d)
 	pid_t			child1;
 	int				id;
 
+	d->pipe = 1;
 	pipe(fd_pipe);
 	child1 = fork();
 	if (child1 == 0)
@@ -53,4 +54,5 @@ void			ft_pipe(t_parser *parser, t_data *d)
 	close(fd_pipe[1]);
 	waitpid(child1, &id, 0);
 	waitpid(g_pid.father, &g_pid.id, 0);
+	d->pipe = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:47:38 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/05 16:49:12 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/12 12:22:20 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static int		ft_exec_env(t_data *d, char **argv, int i, t_env *new_env)
 	tab = ft_tabdup(argv + i);
 	if (tab && tab[0])
 	{
-		tab = ft_tilde(tab, d);
 		ft_builtin(d, tab, &k);
 		if (k == 0)
 		{

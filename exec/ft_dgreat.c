@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:56:51 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/07 13:12:59 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/12 15:08:25 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void	ft_dgreat(t_parser *parser, t_data *d)
 		return ;
 	}
 	ft_free_tab(&tab);
-	if (dup(1) == d->save_fd[1])
+	if (d->pipe == 0)
 		dup2(fd, 1);
 	ft_process_tree(parser->right, d);
+	if (d->pipe == 0)
+		dup2(d->save_fd[1], 1);
 }

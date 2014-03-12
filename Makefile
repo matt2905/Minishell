@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2014/03/05 16:49:01 by mmartin          ###   ########.fr        #
+#    Updated: 2014/03/12 12:46:06 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ include		printf/Makefile.source
 
 include		Makefile.source
 
-export	CFLAGS	=	-Wall -Wextra -Werror
+export	CFLAGS	=	-Wall -Wextra -Werror -g
 
 export	CC		=	gcc
 

@@ -6,14 +6,14 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:17:28 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/04 16:29:32 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/11 17:26:26 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include "ft_builtin.h"
 
-static const t_builtin	built[7] =
+static const t_builtin	built[8] =
 {
 	{"cd", ft_cd},
 	{"env", ft_env},

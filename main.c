@@ -6,13 +6,11 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/05 16:41:39 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/12 14:59:32 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <signal.h>
-#include <sys/ioctl.h>
 #include <unistd.h>
 #include <get_next_line.h>
 #include <libft.h>
@@ -28,31 +26,6 @@ static void		ft_term(t_data *d)
 	d->first = NULL;
 	while (ft_prompt(d) && get_next_line(0, &d->str))
 		ft_processing(d);
-}
-
-static void		ft_handle_signal(int sig)
-{
-	if (g_pid.father != 0)
-		kill(sig, g_pid.father);
-	else
-	{
-		if (sig == SIGINT)
-			ioctl(0, TIOCSTI, "\200");
-		else
-			signal(sig, SIG_DFL);
-	}
-}
-
-static void		ft_signal(void)
-{
-	int		i;
-
-	i = 1;
-	while (i < 32)
-	{
-		signal(i, ft_handle_signal);
-		i++;
-	}
 }
 
 static void		ft_init_data(t_data *d)

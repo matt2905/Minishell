@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/07 12:23:09 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/12 15:08:08 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_great(t_parser *parser, t_data *d)
 	struct stat		buf;
 	char			**tab;
 
-	tab = ft_strsplit_space(parser->left->str);
+	tab = ft_strsplit_shell(parser->left->str);
 	fd = open(tab[0], O_CREAT | O_TRUNC | O_RDWR, 0644);
 	stat(tab[0], &buf);
 	result = buf.st_mode & S_IFMT;
@@ -39,7 +39,9 @@ void	ft_great(t_parser *parser, t_data *d)
 		return ;
 	}
 	ft_free_tab(&tab);
-	if (dup(1) == d->save_fd[1])
+	if (d->pipe == 0)
 		dup2(fd, 1);
 	ft_process_tree(parser->right, d);
+	if (d->pipe == 0)
+		dup2(d->save_fd[1], 1);
 }
