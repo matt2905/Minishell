@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/12 15:06:32 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/12 19:47:19 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void		ft_reset_history(t_data *d);
 */
 
 void		ft_check_option(int argc, char **argv, t_data *d);
+char		*ft_get_word(char *str);
 void		ft_print_octale(char *str, int *i);
 void		ft_print_hexa(char *str, int *i);
 int			ft_prompt(t_data *d);

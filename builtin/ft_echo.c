@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 17:15:04 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/11 12:31:01 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/12 17:15:27 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 **		Color:	echo "\033[33m"test"" = test in yellow color
 */
 
-static int		ft_print_echo(char **argv, int el, int eu)
+static int		ft_print_echo(char *argv, int el, int eu)
 {
 	int		j;
 	int		ok;
@@ -31,23 +31,14 @@ static int		ft_print_echo(char **argv, int el, int eu)
 	j = 0;
 	if (eu == 1 && el == 0)
 	{
-		while (argv[j])
-		{
-			ft_putstr(argv[j]);
-			j++;
-		}
+		ft_putstr(argv);
 	}
 	else
 	{
-		while (argv[j])
-		{
-			ft_putstr_echo(argv[j], &ok);
-			if (ok == 0)
-				return (0);
-			j++;
-		}
+		ft_putstr_echo(argv, &ok);
+		if (ok == 0)
+			return (0);
 	}
-	ft_free_tab(&argv);
 	return (1);
 }
 
@@ -86,12 +77,7 @@ int				ft_echo(t_data *d, char **argv)
 	j = ft_get_option(argv, &n, &el, &eu);
 	while (argv[j])
 	{
-		if (argv[j][0] == '\"')
-			ok = ft_print_echo(ft_strsplit(argv[j], '\"'), el, eu);
-		else if (argv[j][0] == '\'')
-			ok = ft_print_echo(ft_strsplit(argv[j], '\''), el, eu);
-		else
-			ok = ft_print_echo(ft_strsplit(argv[j], ' '), el, eu);
+		ok = ft_print_echo(argv[j], el, eu);
 		if (ok == 0)
 			return (0);
 		j++;

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 14:24:37 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/11 16:12:12 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/14 11:20:02 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ typedef struct		s_btree
 	char			*item;
 }					t_btree;
 
+typedef struct		s_atof
+{
+	double			ip;
+	double			fp;
+	int				div;
+	int				sign;
+	int				flag;
+}					t_atof;
+
+double			ft_atof(const char *str);
+unsigned int	ft_atoh(const char *str);
 int				ft_atoi(const char *str);
 unsigned long	ft_atoul(const char *str, int base);
 void			ft_bzero(void *s, size_t n);
@@ -37,8 +48,8 @@ int				ft_isalpha(int c);
 int				ft_isascii(int c);
 int				ft_isdigit(int c);
 int				ft_ishexa(int c);
-int				ft_isprint(int c);
 int				ft_isoctale(int c);
+int				ft_isprint(int c);
 int				ft_isspace(int c);
 int				ft_isupper(int c);
 char			*ft_itoa(long int n, int sys);

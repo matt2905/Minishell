@@ -6,12 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 12:34:27 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/12 14:50:10 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/12 20:09:45 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <libft.h>
+#include "ft_minishell.h"
 
 static int		ft_search_next_word(char *str, int i, char c)
 {
@@ -44,7 +45,7 @@ static int		ft_count_word(char *str)
 			word++;
 			while (str[i] && !ft_isspace(str[i]))
 			{
-				if (str[i] == '\"' || str[i] == '\'')
+				if (str[i - 1] != '\\' && (str[i] == '\"' || str[i] == '\''))
 					i = ft_search_next_word(str, i, str[i]);
 				else
 					i++;
@@ -52,49 +53,6 @@ static int		ft_count_word(char *str)
 		}
 	}
 	return (word);
-}
-
-static int		ft_len_word(char *str)
-{
-	int			i;
-	int			len;
-
-	i = 0;
-	len = 0;
-	while (str[i] && !ft_isspace(str[i]))
-	{
-		if (str[i - 1] != '\\' && (str[i] == '\"' || str[i] == '\''))
-			i++;
-		else
-		{
-			i++;
-			len++;
-		}
-	}
-	return (len);
-}
-
-static char		*ft_get_str(char *str)
-{
-	char		*tmp;
-	int			i;
-
-	i = ft_len_word(str);
-	tmp = (char *)malloc(sizeof(char) * (i + 1));
-	i = 0;
-	while (*str && !ft_isspace(*str))
-	{
-		if (*str - 1 != '\\' && (*str == '\'' || *str == '\"'))
-			str++;
-		else
-		{
-			tmp[i] = *str;
-			i++;
-			str++;
-		}
-	}
-	tmp[i] = '\0';
-	return (tmp);
 }
 
 char			**ft_strsplit_shell(char *str)
@@ -112,10 +70,10 @@ char			**ft_strsplit_shell(char *str)
 	{
 		while (*str && ft_isspace(*str))
 			str++;
-		tab[i] = ft_get_str(str);
+		tab[i] = ft_get_word(str);
 		while (*str && !ft_isspace(*str))
 		{
-			if (*str == '\"' || *str == '\'')
+			if (*str - 1 != '\\' && (*str == '\"' || *str == '\''))
 				str += ft_search_next_word(str, 0, *str);
 			else
 				str++;

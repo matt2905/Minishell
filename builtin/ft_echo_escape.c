@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 12:11:50 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/11 16:59:24 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/12 17:20:22 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ static const t_echo		escape[12] =
 	{0, 0, 0, 0}
 };
 
-static void				ft_print(int *back, int j, int *print)
+static void				ft_print(int *back, int j, int *print, int *ok)
 {
 	*back = escape[j].newback;
 	if (j != 0)
 		ft_putchar(escape[j].val);
+	if (j == 3)
+		*ok = 0;
 	*print = 1;
 }
 
@@ -75,7 +77,7 @@ void					ft_putstr_echo(char *str, int *ok)
 		while (++j < 12 && print == 0)
 		{
 			if (str[i] == escape[j].c && back == escape[j].back)
-				ft_print(&back, j, &print);
+				ft_print(&back, j, &print, ok);
 		}
 		if (j == 12)
 			ft_check(str, &i, &back);
