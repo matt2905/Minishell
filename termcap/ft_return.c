@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:56 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/07 16:38:06 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/15 11:56:02 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,13 @@ int				ft_return(t_data *d)
 	t_line	*tmp;
 	int		i;
 
-	i = 0;
+	i = -1;
+	ft_end(d);
 	tmp = d->first;
 	ft_reset_history(d);
 	ft_history(d);
-	while (tmp)
-	{
+	while (++i > -1 && tmp)
 		tmp = tmp->next;
-		i++;
-	}
 	if (ft_check_error(d->first) == -1)
 		return (-1);
 	tmp = d->first;

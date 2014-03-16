@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:47:38 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/12 12:22:20 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/16 10:24:20 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void		ft_free_env(t_env *new)
 	}
 }
 
-static int		ft_chec_option(char **argv)
+static int		ft_search_option(char **argv)
 {
 	int		i;
 
@@ -95,7 +95,7 @@ int				ft_env(t_data *d, char **argv)
 	int		ret;
 
 	i = 0;
-	if ((ret = ft_chec_option(argv)) != 0)
+	if ((ret = ft_search_option(argv)) != 0)
 	{
 		if (ret == 2)
 			ret = 0;

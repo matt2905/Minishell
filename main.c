@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/12 14:59:32 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/16 13:44:23 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,25 @@ static void		ft_term(t_data *d)
 		ft_processing(d);
 }
 
+static void		ft_set_manpath(t_data *d)
+{
+	char		**tab;
+	char		*tmp;
+	char		*ptr;
+
+	tmp = getcwd(NULL, 0);
+	ptr = tmp;
+	tmp = ft_strjoin(tmp, "/man:/usr/share/man");
+	free(ptr);
+	tab = (char **)malloc(sizeof(char *) * 4);
+	tab[0] = ft_strdup("setenv");
+	tab[1] = ft_strdup("MANPATH");
+	tab[2] = tmp;
+	tab[3] = NULL;
+	ft_setenv(d, tab);
+	ft_free_tab(&tab);
+}
+
 static void		ft_init_data(t_data *d)
 {
 	t_env		*env;
@@ -42,6 +61,8 @@ static void		ft_init_data(t_data *d)
 	d->save_fd[2] = dup(2);
 	ft_create_env(&env);
 	d->my_env = env;
+	ft_levelup_shell(d);
+	ft_set_manpath(d);
 	ft_create_history(ft_getenv_list(d->my_env, "HOME"), &history);
 	d->history = history;
 	d->first_hist = ft_first_history(d->history);

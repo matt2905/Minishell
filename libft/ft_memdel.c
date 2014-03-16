@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/24 13:52:35 by mmartin           #+#    #+#             */
-/*   Updated: 2013/11/28 11:52:44 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/16 16:32:03 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 void	ft_memdel(void **ap)
 {
-	free(*ap);
-	*ap = NULL;
+	if (*ap)
+	{
+		free(*ap);
+		*ap = NULL;
+	}
 }

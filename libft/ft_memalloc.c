@@ -6,24 +6,20 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/24 13:43:29 by mmartin           #+#    #+#             */
-/*   Updated: 2013/12/06 17:22:02 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/16 16:34:43 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <string.h>
+#include "libft.h"
 
 void	*ft_memalloc(size_t size)
 {
-	char	*ptr;
+	void	*ptr;
 
-	if ((ptr = (char *)malloc(size * sizeof(*ptr))) == NULL)
+	if ((ptr = malloc(size)) == NULL)
 		return (NULL);
-	while (size != 0)
-	{
-		ptr[size] = '\0';
-		size--;
-	}
-	ptr[size] = '\0';
+	ft_bzero(ptr, size);
 	return (ptr);
 }

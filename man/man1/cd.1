@@ -1,0 +1,234 @@
+.Dd March 16, 2014
+.Dt CD 1
+.Os
+.Sh NAME
+.Nm cd
+.Nd change the working directory
+.Sh SYNOPSIS
+.Nm
+.Op Fl L | P
+.Op Ar directory
+.Nm
+-
+.Sh DESCRIPTION
+The
+.Nm
+utility shall change the working directory of the current shell execution
+environment by executing the following steps in sequence\&.
+(In the following steps, the symbol \fBcurpath\fP represents an
+intermediate value used to simplify the description of the
+algorithm used by \fBcd\fP. There is no requirement
+that \fBcurpath\fP be made visible to the application\&.)
+.Bl -tag -width flag
+.It 1\&.
+If no \fIdirectory\fP operand is given and the \fIHOME\fP environment
+variable is empty or undefined, the default behavior is
+implementation\-defined and no further steps shall be taken.
+.It 2\&.
+If no \fIdirectory\fP operand is given and the \fIHOME\fP environment
+variable is set to a non-empty value, the
+.Nm
+utility shall behave as if the directory named in the \fIHOME\fP
+environment variable was specified as the \fIdirectory\fP operand.
+.It 3\&.
+If the \fIdirectory\fP operand begins with a slash character, set
+\fBcurpath\fP to the operand and proceed to step 7.
+.It 4\&.
+If the first component of the directory operand is dot or dot-dot, proceed to
+step 6.
+.It 5\&.
+Starting with the first pathname in the colon-separated pathnames of
+\fICDPATH\fP (see the ENVIRONMENT VARIABLES section) if the pathname
+is non-null, test if the concatenation of that pathname, a slash character,
+and the \fIdirectory\fP operand names a directory. If the pathname is null,
+test if the concatenation of dot, a slash character, and the operand names
+a directory. In either case, if the resulting string names an existing
+directory, set \fBcurpath\fP to that string and proceed to step 7.
+Otherwise, repeat this step with the next pathname in \fICDPATH\fP
+until all pathnames have been tested.
+.It 6\&.
+Set \fBcurpath\fP to the string formed by the concatenation of the value
+of \fIPWD\fP, a slash character, and the operand.
+.It 7\&.
+If the i\fB-P\fP option is in effect, the
+.Nm
+utility shall perform actions equivalent to the \fIchdir\fP() function,
+called with \fBcurpath\fP as the path argument. If these actions succeed,
+the \fIPWD\fP environment variable shall be set to an absolute pathname for
+the current working directory and shall not contain filename components that,
+in the context of pathname resolution, refer to a file of type symbolic link.
+If there is insufficient permission on the new directory, or on any parent of
+that directory, to determine the current working directory, the value of the
+\fIPWD\fP environment variable is unspecified. If the actions equivalent
+to \fIchdir\fP() fail for any reason, the
+.Nm
+utility shall display an appropriate error message and not alter the
+\fIPWD\fP environment variable. Whether the actions equivalent to
+\fIchdir\fP() succeed or fail, no further steps shall be taken.
+.It 8\&.
+The \fBcurpath\fP value shall then be converted to canonical form as
+follows, considering each component from beginning to end, in sequence:
+.Bl -tag -width flag
+.It a\&.
+Dot components and any slashes that separate them from the next component shall
+be deleted.
+.It b\&.
+For each dot-dot component, if there is a preceding component and it is neither
+root nor dot-dot, the preceding component, all slashes separating the preceding
+component from dot-dot, dot-dot and all slashes separating dot-dot from the
+following component shall be deleted.
+.It c\&.
+An implementation may further simplify \fBcurpath\fP by removing any trailing
+slash characters that are not also leading slashes, replacing multiple
+non-leading consecutive slashes with a single slash, and replacing three or
+more leading slashes with a single slash. If, as a result of this
+canonicalization, the \fBcurpath\fP variable is null, no further
+steps shall be taken.
+.El
+.It 9\&.
+The
+.Nm
+utility shall then perform actions equivalent to the \fIchdir\fP() function
+called with \fBcurpath\fP as the \fIpath\fP argument. If these actions
+failed for any reason, the
+.Nm
+utility shall display an appropriate error message and no further
+steps shall be taken. The \fIPWD\fP environment variable shall be set to
+\fBcurpath\fP.
+.El
+.Pp
+If, during the execution of the above steps, the \fIPWD\fP environment
+variable is changed, the \fIOLDPWD\fP environment variable shall also be
+changed to the value of the old working directory (that is the current working
+directory immediately prior to the call to \fBcd\fP).
+.Sh OPERANDS
+The following operands shall be supported:
+.Pp
+.Bl -tag -width flag
+.It Ar directory
+An absolute or relative pathname of the directory that shall become the new
+working directory. The interpretation of a relative pathname by
+.nm
+depends on the \fB-L\fP option and the \fICDPATH\fP and \fIPWD\fP
+environment variables. If \fIdirectory\fP is an empty string,
+the results are unspecified.
+.It Ar -
+When a hyphen is used as the operand, this shall be equivalent to the command:
+.Pp
+\fBcd "$OLDPWD" && pwd\fP
+.Pp
+which changes to the previous working directory and then writes its name.
+.El
+.Sh STDIN
+Not used.
+.Sh INPUT FILES
+None.
+.Sh ENVIRONMENT VARIABLES
+The following environment variables shall affect the execution of \fBcd\fP:
+.Bl -tag -Width -flag
+.It Ar CDPATH
+A colon-separated list of pathnames that refer to directories. The
+.Nm
+utility shall use this list in its attempt to change the directory, as
+described in the \fBDESCRIPTION\fP. An empty string in place of a directory
+pathname represents the current directory. If \fICDPATH\fP is not set,
+it shall be treated as if it were an empty string.
+.It Ar HOME
+The name of the directory, used when no \fIdirectory\fP operand is specified.
+.It Ar LANG
+Provide a default value for the internationalization variables that are unset or
+null. (See the Base Definitions volume of IEEE Std 1003.1-2001, Section 8.2,
+Internationalization Variables for the precedence of internationalization
+variables used to determine the values of locale categories.)
+.It Ar OLDPWD
+A pathname of the previous working directory, used by \fIcd -\fP.
+.It Ar PWD
+This variable shall be set as specified in the DESCRIPTION. If an application
+sets or unsets the value of \fIPWD\fP , the behavior of cd is unspecified.
+.El
+.Sh ASYNCHRONOUS EVENTS
+Default.
+.Sh STDOUT
+If a non-empty directory name from \fICDPATH\fP is used, or if \fIcd -\fP
+is used, an absolute pathname of the new working directory shall be
+written to the standard output as follows:
+.Pp
+\fB"%s\\n", <new directory>\fP
+.Pp
+Otherwise, there shall be no output.
+.Sh STDERR
+The standard error shall be used only for diagnostic messages.
+.Sh OUTPUT FILES
+None.
+.SH EXTENDED DESCRIPTION
+None.
+.Sh EXIT STATUS
+The following exit values shall be returned:
+.Bl -tag -width flag
+.It 0
+The directory was successfully changed.
+.It >0
+An error occurred.
+.El
+.Sh CONSEQUENCES OF ERRORS
+The working directory shall remain unchanged.
+.Sh APPLICATION USAGE
+Since
+.Nm
+affects the current shell execution environment, it is always provided
+as a shell regular built-in. If it is called in a subshell or separate utility
+execution environment, such as one of the following:
+.Pp
+\fB(cd /tmp) nohup cd find . -exec cd {} \;\fP
+.Pp
+it does not affect the working directory of the caller's environment.
+.Pp
+The user must have execute (search) permission in \fIdirectory\fP
+in order to change to it.
+.Sh Examples
+None.
+.Sh RATIONALE
+The use of the \fICDPATH\fP was introduced in the System V shell.
+Its use is analogous to the use of the \fIPATH\fP variable in the shell.
+The BSD C shell used a shell parameter \fIcdpath\fP for this purpose.
+.Pp
+A common extension when \fIHOME\fP is undefined is to get the login directory
+from the user database for the invoking user. This does not occur on System V
+implementations.
+.Pp
+Some historical shells, such as the KornShell, took special actions when the
+directory name contained a dot-dot component, selecting the logical parent of
+the directory, rather than the actual parent directory; that is, it moved up one
+level toward the '/' in the pathname, remembering what the user typed, rather
+than performing the equivalent of:
+.Pp
+\fBchdir("..");\fP
+.Pp
+In such a shell, the following commands would not necessarily produce equivalent
+output for all directories:
+.Pp
+\fBcd .. && ls ls ..\fP
+.Pp
+This behavior is now the default. It is not consistent with the definition of
+dot-dot in most historical practice; that is, while this behavior has been
+optionally available in the KornShell, other shells have historically not
+supported this functionality. The logical pathname is stored in the \fIPWD\fP
+environment variable when the
+.Nm
+utility completes and this value is used to construct the
+next directory name if
+.Nm
+is invoked with the \fB-L\fP option.
+.Sh FUTURE DIRECTIONS
+None.
+.Sh SEE ALSO
+Shell Execution Environment , pwd(1), chdir(2)
+.Sh COPYRIGHT
+Portions of this text are reprinted and reproduced in electronic form from IEEE
+Std 1003.1, 2003 Edition, Standard for Information Technology -- Portable
+Operating System Interface (POSIX), The Open Group Base Specifications Issue 6,
+Copyright (C) 2001-2003 by the Institute of Electrical and Electronics
+Engineers, Inc and The Open Group. In the event of any discrepancy between this
+version and the original IEEE and The Open Group Standard, the original IEEE and
+The Open Group Standard is the referee document. The original Standard can be
+obtained online at http://www.opengroup.org/unix/online.html .
