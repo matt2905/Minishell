@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 13:16:17 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/27 13:04:18 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/22 10:54:43 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	ft_deleted(t_data *d, t_env *tmp)
 	{
 		new = new->next;
 		d->my_env = new;
+		free(tmp->tab);
 		free(tmp);
 		return ;
 	}

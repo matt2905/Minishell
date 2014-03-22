@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 16:08:09 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/26 19:54:42 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/22 18:01:23 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void			ft_init_term(t_data *d)
 
 	name = ttyname(0);
 	d->tty.fd = open(name, O_WRONLY);
+	free(name);
 	tcgetattr(d->tty.fd, &(d->tty.backup));
 	ft_modify_termios(d);
 	if (tcsetattr(d->tty.fd, TCSANOW, &(d->tty.new_term)) == -1)

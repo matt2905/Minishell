@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2014/03/12 12:46:06 by mmartin          ###   ########.fr        #
+#    Updated: 2014/03/22 11:22:29 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ clean:
 
 fclean:			clean
 	@/bin/rm -f $(NAME)
+	@/bin/rm -rf $(NAME).dSYM
 	@echo "\033[31m"$(NAME) : deleted"\033[0m"
 	@Make fclean -C libft
 	@Make fclean -C printf

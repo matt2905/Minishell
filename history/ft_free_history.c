@@ -1,47 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_signal.c                                        :+:      :+:    :+:   */
+/*   ft_free_history.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/12 14:52:11 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/19 12:09:53 by mmartin          ###   ########.fr       */
+/*   Created: 2014/03/22 17:36:30 by mmartin           #+#    #+#             */
+/*   Updated: 2014/03/22 17:52:20 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/ioctl.h>
-#include <signal.h>
+#include <stdlib.h>
 #include "ft_minishell.h"
 
-static void		ft_handle_signal(int sig)
+void	ft_free_history(t_history **history)
 {
-	extern t_id		g_pid;
+	t_history	*tmp;
 
-	if (g_pid.father != 0 || g_pid.child)
+	tmp = *history;
+	while (tmp->next != *history)
 	{
-		if (g_pid.father)
-			kill(sig, g_pid.father);
-		else
-			kill(sig, g_pid.child);
+		tmp = tmp->next;
+		free(tmp->prev->line);
+		tmp->prev->prev = NULL;
+		tmp->prev->next = NULL;
+		free(tmp->prev);
 	}
-	else
-	{
-		if (sig == SIGINT)
-			ioctl(0, TIOCSTI, "\200");
-		else
-			signal(sig, SIG_DFL);
-	}
-}
-
-void			ft_signal(void)
-{
-	int		i;
-
-	i = 1;
-	while (i < 33)
-	{
-		signal(i, ft_handle_signal);
-		i++;
-	}
+	free(tmp->line);
+	free(tmp);
+	*history = NULL;
 }

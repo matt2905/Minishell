@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 17:15:04 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/12 17:15:27 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/22 10:49:45 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,11 @@
 
 static int		ft_print_echo(char *argv, int el, int eu)
 {
-	int		j;
 	int		ok;
 
 	ok = 1;
-	j = 0;
 	if (eu == 1 && el == 0)
-	{
 		ft_putstr(argv);
-	}
 	else
 	{
 		ft_putstr_echo(argv, &ok);

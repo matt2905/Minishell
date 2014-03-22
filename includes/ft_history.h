@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 17:00:22 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/07 16:34:53 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/22 17:40:36 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ void		ft_create_history(char *ptr, t_history **history);
 void		ft_add_history(t_history **history, char *line);
 t_history	*ft_first_history(t_history *hist);
 t_history	*ft_last_history(t_history *hist);
+void		ft_free_history(t_history **his);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/12 19:47:19 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/19 17:27:11 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_id
 {
 	int				id;
 	int				built;
+	pid_t			child;
 	pid_t			father;
 }					t_id;
 
