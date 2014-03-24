@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/19 17:27:11 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/24 15:13:21 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,24 @@ typedef struct		s_tmp
 
 typedef struct		s_data
 {
+	t_tty			tty;
 	t_env			*my_env;
 	t_history		*history;
 	t_history		*first_hist;
 	t_history		*last_hist;
 	t_tmp			*tmp_hist;
-	t_tty			tty;
 	t_line			*line;
 	t_line			*first;
 	t_line			*last;
 	t_line			*cpy;
-	int				fork;
 	char			*str;
+	char			buff[8];
 	int				len_prompt;
 	int				pipe;
+	int				fork;
 	int				save_fd[3];
-	char			buff[8];
+	char			*save_pwd;
+	char			*save_old;
 }					t_data;
 
 /*

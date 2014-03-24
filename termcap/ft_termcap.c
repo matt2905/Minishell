@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/12 14:56:32 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/24 15:29:44 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static const t_tab	tab_func[20] =
 
 static int		ft_init_line(t_data *d)
 {
+	d->str = NULL;
 	d->line = ft_new_char(' ');
 	d->first = d->line;
 	d->last = d->line;

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:53:48 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/22 18:01:25 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/24 15:30:19 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ int				ft_exit(t_data *d, char **argv)
 {
 	int		n;
 
-	n = ft_atoi(argv[1]);
+	if (argv)
+		n = ft_atoi(argv[1]);
+	else
+		n = 0;
 	ft_destroy_data(d, argv);
 	ft_putendl("exit");
-	if (argv)
-		exit(n);
-	else
-		exit(0);
+	exit(n);
 	return (0);
 }

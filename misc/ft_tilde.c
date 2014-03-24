@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:01:46 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/12 12:59:11 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/24 15:53:09 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,19 @@ static int		ft_check_string(char *str)
 static char		*ft_cd_empty(char *tmp, char *str)
 {
 	char		*ptr;
+	char		*nw;
 
 	if (ft_check_string(tmp) == 0)
 	{
-		free(tmp);
-		tmp = (char *)malloc(sizeof(char) * (3 + ft_strlen(str)));
-		tmp = ft_strdup("cd ");
-		ptr = tmp;
-		tmp = ft_strjoin(tmp, str);
+		nw = (char *)malloc(sizeof(char) * (3 + ft_strlen(str)));
+		nw = ft_strdup("cd ");
+		ptr = nw;
+		nw = ft_strjoin(nw, str);
 		free(ptr);
-		tmp[3 + ft_strlen(str)] = '\0';
+		nw[3 + ft_strlen(str)] = '\0';
+		return (nw);
 	}
-	return (tmp);
+	return (ft_strdup(tmp));
 }
 
 static char		*ft_realloc_tilde(char *str, int i, char *var)
@@ -81,7 +82,11 @@ char			*ft_tilde(char *tab, t_data *d)
 			tmp = ft_realloc_tilde(tmp, i, str);
 	}
 	if (!ft_strncmp(tmp, " cd", 3))
+	{
+		ptr = tmp;
 		tmp = ft_cd_empty(tmp, str);
+		free(ptr);
+	}
 	free(str);
 	return (tmp);
 }

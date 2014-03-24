@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 12:26:44 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/16 16:15:24 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/24 20:14:07 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,31 @@
 #include <libft.h>
 #include "ft_builtin.h"
 
-static void		ft_free(char **old, char **pwd, char **ptr, char ***tab)
+void			ft_modify_pwd(t_data *d, char *path, int opt)
 {
-	free(*old);
-	free(*pwd);
-	free(*ptr);
-	ft_free_tab(tab);
-}
+	char		**tab;
+	char		*tmp;
 
-void			ft_modify_pwd(t_data *d)
-{
-	char	*old;
-	char	*pwd;
-	char	*ptr;
-	char	**tab;
-
-	ptr = ft_getenv_list(d->my_env, "PWD");
-	pwd = getcwd(NULL, 0);
-	if (!ptr)
-		old = ft_strdup(pwd);
+	if (opt)
+		tmp = getcwd(NULL, 0);
 	else
-		old = ft_strdup(ptr + 4);
+		tmp = path;
 	tab = (char **)malloc(sizeof(char *) * 4);
 	tab[0] = ft_strdup("setenv");
 	tab[1] = ft_strdup("PWD");
-	tab[2] = ft_strdup(pwd);
+	tab[2] = ft_strdup(tmp);
 	tab[3] = NULL;
 	ft_setenv(d, tab);
 	free(tab[1]);
 	free(tab[2]);
 	tab[1] = ft_strdup("OLDPWD");
-	tab[2] = ft_strdup(old);
+	tab[2] = ft_strdup(d->save_pwd);
 	ft_setenv(d, tab);
-	ft_free(&old, &pwd, &ptr, &tab);
+	ft_free_tab(&tab);
+	free(d->save_old);
+	d->save_old = ft_strdup(d->save_pwd);
+	free(d->save_pwd);
+	d->save_pwd = ft_strdup(tmp);
 }
 
 static t_env	*ft_new_e(char *str)

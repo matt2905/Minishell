@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/19 17:27:06 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/24 19:16:33 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <unistd.h>
 #include <get_next_line.h>
 #include <libft.h>
-#include <printf.h>
 #include "ft_builtin.h"
 #include "ft_exec.h"
 #include "ft_termcap.h"
@@ -36,7 +35,7 @@ static void		ft_set_manpath(t_data *d)
 
 	tmp = getcwd(NULL, 0);
 	ptr = tmp;
-	tmp = ft_strjoin(tmp, "/man:/usr/share/man");
+	tmp = ft_strjoin(tmp, "/usr/share/man:/usr/local/share/man");
 	free(ptr);
 	tab = (char **)malloc(sizeof(char *) * 4);
 	tab[0] = ft_strdup("setenv");
@@ -45,6 +44,33 @@ static void		ft_set_manpath(t_data *d)
 	tab[3] = NULL;
 	ft_setenv(d, tab);
 	ft_free_tab(&tab);
+}
+
+static void		ft_save(t_data *d)
+{
+	char		*ptr;
+
+	d->save_fd[0] = dup(0);
+	d->save_fd[1] = dup(1);
+	d->save_fd[2] = dup(2);
+	d->save_pwd = ft_getenv_list(d->my_env, "PWD");
+	if (d->save_pwd)
+	{
+		ptr = d->save_pwd;
+		d->save_pwd = ft_strdup(d->save_pwd + 4);
+		free(ptr);
+	}
+	else
+		d->save_pwd = getcwd(NULL, 0);
+	d->save_old = ft_getenv_list(d->my_env, "OLDPWD");
+	if (d->save_old)
+	{
+		ptr = d->save_old;
+		d->save_old = ft_strdup(d->save_old + 7);
+		free(ptr);
+	}
+	else
+		d->save_old = getcwd(NULL, 0);
 }
 
 static void		ft_init_data(t_data *d)
@@ -64,6 +90,7 @@ static void		ft_init_data(t_data *d)
 	ft_levelup_shell(d);
 	ft_set_manpath(d);
 	ft_create_history(ft_getenv_list(d->my_env, "HOME"), &history);
+	ft_save(d);
 	d->history = history;
 	d->first_hist = ft_first_history(d->history);
 	d->last_hist = ft_last_history(d->history);

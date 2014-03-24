@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/25 11:32:30 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/16 18:14:40 by mmartin          ###   ########.fr       */
+/*   Created: 2014/03/23 13:41:11 by mmartin           #+#    #+#             */
+/*   Updated: 2014/03/24 19:43:54 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,95 +16,69 @@
 #include <printf.h>
 #include "ft_builtin.h"
 
-static char		*ft_check_cdpath(char **tmp, char *str)
+static int		ft_get_option(char **str, int *i)
 {
-	char	*ptr;
+	int		flag;
+	int		option;
 
-	ptr = ft_strjoin(*tmp + 7, "/");
-	free(*tmp);
-	*tmp = ft_strjoin(ptr, str);
-	free(ptr);
-	if (access(*tmp, F_OK) == -1)
+	flag = 1;
+	option = 0;
+	while (str && str[*i] && flag)
 	{
-		ft_printf("cd: no such file or directory: %s\n", str);
-		return (NULL);
+		if (!ft_strcmp(str[*i], "-P"))
+			option = 1;
+		if (ft_strcmp(str[*i], "-L") && ft_strcmp(str[*i], "-P"))
+			flag = 0;
+		else
+			*i += 1;
 	}
-	if (access(*tmp, X_OK) == -1)
-	{
-		ft_printf("cd: permission denied: %s\n", str);
-		return (NULL);
-	}
-	ft_printf("%s\n", *tmp);
-	return (*tmp);
+	return (option);
 }
 
-static char		*ft_check_path(t_data *d, char *str)
+static char		*ft_get_old_pwd(t_data *d)
 {
-	char	*tmp;
-
-	if (!ft_strcmp(str, "-"))
-		return (ft_strdup(str));
-	tmp = ft_getenv_list(d->my_env, "CDPATH");
-	if (access(str, F_OK) != -1)
-	{
-		if (access(str, X_OK) != -1)
-			return (ft_strdup(str));
-		else if (!tmp)
-		{
-			ft_printf("cd: permission denied: %s\n", str);
-			return (NULL);
-		}
-	}
-	else if (!tmp)
-	{
-		ft_printf("cd: no such file or directory: %s\n", str);
-		return (NULL);
-	}
-	return (ft_check_cdpath(&tmp, str));
-}
-
-static char		*ft_inverse_pwd(t_data *d)
-{
-	char	*tmp;
-	char	*ptr;
+	char		*tmp;
+	char		*ptr;
 
 	tmp = ft_getenv_list(d->my_env, "OLDPWD");
+	if (!tmp)
+		tmp = ft_strdup(d->save_old);
+	ptr = ft_strdup(tmp + 7);
+	free(tmp);
+	if (access(ptr, F_OK) != -1 && access(ptr, X_OK) != -1)
+		ft_printf("%s\n", ptr);
+	return (ptr);
+}
+
+static char		*ft_check_path(t_data *d, char **argv, int *opt)
+{
+	char		*tmp;
+	char		*ptr;
+	char		*pwd;
+	int			i;
+
+	i = 1;
+	*opt = ft_get_option(argv, &i);
+	if (!ft_strcmp(argv[i], "-"))
+		return (ft_get_old_pwd(d));
+	tmp = ft_getenv_list(d->my_env, "CDPATH");
 	if (tmp)
 	{
 		ptr = tmp;
 		tmp = ft_strdup(tmp + 7);
 		free(ptr);
 	}
-	else
-	{
-		tmp = ft_getenv_list(d->my_env, "PWD");
-		if (!tmp)
-		{
-			ptr = getcwd(NULL, 0);
-			tmp = ft_strdup(ptr + 9);
-			free(ptr);
-		}
-		ptr = tmp;
-		tmp = ft_strdup(tmp + 4);
-		free(ptr);
-	}
-	ft_printf("%s\n", tmp);
-	return (tmp);
+	pwd = ft_strdup(d->save_pwd);
+	return (ft_return_path(&pwd, &tmp, argv[i]));
 }
 
 int				ft_cd(t_data *d, char **argv)
 {
-	char	*path;
-	char	*ptr;
+	char		*path;
+	int			opt;
 
-	if ((path = ft_check_path(d, argv[1])))
+	if ((path = ft_check_path(d, argv, &opt)))
 	{
-		if (!ft_strcmp(path, "-"))
-		{
-			ptr = path;
-			path = ft_inverse_pwd(d);
-			free(ptr);
-		}
 		if (chdir(path) == -1)
 		{
 			ft_printf("cd: not a directory: %s\n", path);
@@ -113,7 +87,7 @@ int				ft_cd(t_data *d, char **argv)
 		}
 		else
 		{
-			ft_modify_pwd(d);
+			ft_modify_pwd(d, path, opt);
 			free(path);
 			return (0);
 		}
