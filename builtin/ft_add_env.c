@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 12:26:44 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/24 20:14:07 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/27 17:41:02 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			ft_modify_pwd(t_data *d, char *path, int opt)
 	if (opt)
 		tmp = getcwd(NULL, 0);
 	else
-		tmp = path;
+		tmp = ft_strdup(path);
 	tab = (char **)malloc(sizeof(char *) * 4);
 	tab[0] = ft_strdup("setenv");
 	tab[1] = ft_strdup("PWD");
@@ -40,6 +40,7 @@ void			ft_modify_pwd(t_data *d, char *path, int opt)
 	d->save_old = ft_strdup(d->save_pwd);
 	free(d->save_pwd);
 	d->save_pwd = ft_strdup(tmp);
+	ft_strdel(&tmp);
 }
 
 static t_env	*ft_new_e(char *str)

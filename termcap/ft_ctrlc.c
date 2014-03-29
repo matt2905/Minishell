@@ -6,11 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 18:31:22 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/15 11:56:12 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 21:03:27 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "ft_history.h"
+#include "ft_minishell.h"
 #include "ft_termcap.h"
 
 int		ft_ctrlc(t_data *d)

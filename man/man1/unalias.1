@@ -1,0 +1,32 @@
+.Dd March 27, 2014
+.Dt unalias 1
+.Os
+.Sh NAME
+.Nm unalias
+.Nd remove alias definitions
+.Sh SYNOPSIS
+.Nm
+.Op Ar name ...
+.Sh DESCRIPTION
+The
+.Nm
+utility shall remove the definition for each alias name specified. See \fI Alias
+Subsitution\fP. The aliases shall be removed form the current shell execution
+environment; \fIsee Shell Execution Environment\fP.
+.Sh OPERANDS
+The following operand shall be supported
+.Bl -tag -width flag
+.It Ar name
+The \fIname\fP of an alias to be removed.
+.El
+.Sh EXIT STATUS
+The following exit values shall be returned:
+.Bl -tag -width flag
+.It 0
+Successfull completion
+.It 1
+One of the \fIname\fP operands specified did not represent a valid alias
+definition, or an error occured.
+.El
+.Sh SEE ALSO
+.Xr 42sh 1 ,

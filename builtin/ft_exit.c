@@ -6,15 +6,14 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:53:48 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/24 15:30:19 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/26 17:49:23 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <libft.h>
 #include "ft_termcap.h"
+#include "ft_history.h"
 
 static void		ft_free_env(t_env **my_env)
 {
@@ -32,6 +31,22 @@ static void		ft_free_env(t_env **my_env)
 	}
 }
 
+static void		ft_free_alias(t_alias *alias)
+{
+	t_alias		*tmp;
+	t_alias		*ptr;
+
+	tmp = alias;
+	while (tmp)
+	{
+		ptr = tmp;
+		tmp = tmp->next;
+		free(ptr->keyword);
+		free(ptr->value);
+		free(ptr);
+	}
+}
+
 void			ft_destroy_data(t_data *d, char **argv)
 {
 	if (d->str)
@@ -41,7 +56,10 @@ void			ft_destroy_data(t_data *d, char **argv)
 	d->first_hist = NULL;
 	d->last_hist = NULL;
 	ft_free_env(&(d->my_env));
+	ft_free_alias(d->alias);
 	ft_free_list(d->line);
+	free(d->save_pwd);
+	free(d->save_old);
 }
 
 int				ft_exit(t_data *d, char **argv)

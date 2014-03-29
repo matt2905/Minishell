@@ -6,12 +6,11 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 18:06:14 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/01 10:51:07 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 20:59:27 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "ft_minishell.h"
 #include "ft_termcap.h"
 
 static t_line	*ft_new_line(char *str)

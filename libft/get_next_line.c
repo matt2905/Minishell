@@ -6,14 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/03 17:18:16 by mmartin           #+#    #+#             */
-/*   Updated: 2013/12/26 12:40:09 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/27 13:53:25 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
-#include <libft.h>
-#include "get_next_line.h"
+#include "libft.h"
 
 static int	ft_realloc(char **line, char *buf, int size, int *len)
 {
@@ -21,20 +20,22 @@ static int	ft_realloc(char **line, char *buf, int size, int *len)
 
 	if (*len == -1)
 	{
-		if ((*line = (char *)malloc(sizeof(char) * size + 1)) == NULL)
+		if ((*line = (char *)malloc(sizeof(char) * (size + 2))) == NULL)
 			return (1);
 		ft_memcpy(*line, buf, size);
 		*len = size;
 		(*line)[size] = '\0';
+		(*line)[size + 1] = '\0';
 	}
 	else
 	{
-		if ((temp = (char *)malloc(sizeof(char) * (*len + size + 1))) == NULL)
+		if ((temp = (char *)malloc(sizeof(char) * (*len + size + 2))) == NULL)
 			return (1);
 		ft_memcpy(temp, *line, *len);
 		ft_memcpy(temp + *len, buf, size);
 		*len = *len + size;
 		temp[*len] = '\0';
+		temp[*len + 1] = '\0';
 		free(*line);
 		*line = temp;
 	}

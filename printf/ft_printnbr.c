@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/21 11:03:32 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 19:49:49 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 18:05:46 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ static int	ft_get_pad(t_printf *fl, char **str, int *j, char *c)
 	ft_get_precision(fl, str, j, c);
 	if (fl->precision < 0)
 		fl->precision = 0;
-	if (fl->width >= 0 && len + fl->precision  + i >= fl->width)
+	if (fl->width >= 0 && len + fl->precision + i >= fl->width)
 		fl->width = 0;
 	else if (fl->width >= 0)
 		fl->width -= (len + fl->precision + i);
-	else if (fl->width < 0 && len + fl->precision  + i >= fl->width * -1)
+	else if (fl->width < 0 && len + fl->precision + i >= fl->width * -1)
 		fl->width = 0;
 	else
 		fl->width += len + fl->precision + i;

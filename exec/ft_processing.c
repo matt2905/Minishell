@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:55:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/12 15:04:40 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/28 19:58:32 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,38 @@
 #include <printf.h>
 #include "ft_builtin.h"
 #include "ft_exec.h"
+#include "ft_lexpars.h"
+#include "ft_minishell.h"
 #include "ft_termcap.h"
 
 void		ft_process(t_data *d, char *str)
 {
-	int		i;
-	char	**tab;
-	char	*tmp;
+	extern t_id		g_pid;
+	int				i;
+	char			**tab;
+	char			*tmp;
 
 	i = 0;
 	tmp = ft_tilde(str, d);
 	tab = ft_strsplit_shell(tmp);
-	free(tmp);
+	ft_strdel(&tmp);
 	if (tab && tab[0])
 	{
+		ft_search_alias(d, &tab);
 		ft_builtin(d, tab, &i);
 		if (i == 0)
 		{
 			if (ft_exec(ft_convert_ltt(d->my_env), tab, d->fork) == 0)
+			{
 				ft_printf("42sh: command not found: %s\n", tab[0]);
+				g_pid.built = 1;
+			}
 		}
-		ft_reset_termcap(d);
 	}
 	ft_free_tab(&tab);
 }
 
-void		ft_processing(t_data *d)
+void		ft_processing(t_data *d, char *str)
 {
 	t_lexer		*lex;
 	t_parser	*parser;
@@ -48,7 +54,10 @@ void		ft_processing(t_data *d)
 	parser = NULL;
 	lex = NULL;
 	d->pipe = 0;
-	ft_lexer(&lex, d->str);
+	if (!str)
+		return ;
+	ft_backup_termcap(d);
+	ft_lexer(&lex, str);
 	if (lex)
 	{
 		ft_parser(&parser, lex, 1);
@@ -57,9 +66,8 @@ void		ft_processing(t_data *d)
 		ft_free_pars(&parser);
 	}
 	else
-		ft_process(d, d->str);
-	if (d->str)
-		free(d->str);
+		ft_process(d, str);
+	ft_reset_termcap(d);
 	if (d->first)
 		ft_free_list(d->first);
 }

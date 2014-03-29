@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 16:08:09 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/22 18:01:23 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/27 18:33:08 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <libft.h>
 #include "ft_builtin.h"
 #include "ft_termcap.h"
 

@@ -6,20 +6,14 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:56:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/11 17:27:55 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/27 11:32:46 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_TERMCAP_H
 # define FT_TERMCAP_H
 
-# include "ft_minishell.h"
-
-typedef struct		s_tab
-{
-	char			*buffer;
-	int				(* func)(t_data *);
-}					t_tab;
+# include "ft_struct.h"
 
 int			ft_alt_down(t_data *d);
 int			ft_alt_left(t_data *d);
@@ -46,6 +40,7 @@ int			ft_check_pos(t_line *line, int len_prompt);
 void		ft_init_term(t_data *d);
 int			ft_int_putchar(int c);
 void		ft_oneshot(t_data *d);
+void		ft_backup_termcap(t_data *d);
 void		ft_reset_termcap(t_data *d);
 void		ft_termcap(t_data *d);
 

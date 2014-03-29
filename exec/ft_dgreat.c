@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:56:51 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/19 16:55:42 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/27 18:06:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <libft.h>
 #include <printf.h>
 #include "ft_exec.h"
+#include "ft_minishell.h"
 
 static int		ft_check_error(char **tab)
 {
@@ -37,12 +38,12 @@ static int		ft_check_error(char **tab)
 	return (0);
 }
 
-void	ft_dgreat(t_parser *parser, t_data *d)
+void			ft_dgreat(t_parser *parser, t_data *d)
 {
 	int				fd;
 	char			**tab;
 
-	tab = ft_strsplit_space(parser->left->str);
+	tab = ft_strsplit_shell(parser->left->str);
 	fd = open(tab[0], O_CREAT | O_APPEND | O_RDWR, 0644);
 	if (ft_check_error(tab))
 		return ;

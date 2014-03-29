@@ -2,38 +2,71 @@
 .SH "NAME"
 42sh
 .SH "OVERVIEW"
-A ecrire
 .PP
 .PD 0
 .TP
 \fI42sh\fP			42sh overview(this section)
 .PD
 .SH "DESCRIPTION"
-Le shel de l ecole 42.
-.SH "AUTHOR"
-Fait par amorfan, bbouabou, mmartin, pberne et ytailor.
-.SH "AVAILABILITY"
-.PP
+This is a projects for school's name 42
+.SH "HOTKEY"
 .PD 0
 .TP
 .PD
-Primary site
-.nf
-none
-.fi
+[\fB<\fP | \fB>\fP]
+cursor motion on current line (char to char)
+.TP
+.PD
+[\fB^\fP | \fBv\fP]
+navigate in history
+.TP
+.PD
+[\fBDELETE\fP]
+delete char on cursor
+.TP
+.PD
+[\fBHOME\fP]
+move cursor to the first char of line
+.TP
+.PD
+[\fBEND\fP]
+move cursor to the last char of line
+.TP
+.PD
+[\fBBACKSPACE\fP]
+delete char left to cursor
+.TP
+.PD
+[\fBOPTION\fP] + [\fB<\fP | \fB>\fP]
+cursor motion on current line (word to word)
+.TP
+.PD
+[\fBOPTION\fP] + [\fB<\fP | \fB>\fP]
+cursor motion on current line (line to line)
+.TP
+.PD
+[\fBCONTROL\fP] + [\fBk\fP]
+cut the line from cursor to the end in a buffer
+.TP
+.PD
+[\fBCONTROL\fP] + [\fBy\fP]
+paste the buffer next to the cursor
+.TP
+.PD
+[\fBCONTROL\fP] + [\fBl\fP]
+clear window
+.TP
+.PD
+[\fBCONTROL\fP] + [\fBd\fP]
+exit shell
+.TP
+.PD
+[\fBCONTROL\fP] + [\fBc\fP]
+ignore actual line and write a carriage return
 .PP
-Up\-to\-date source code
+.SH "AUTHOR"
+amorfan, bbouabou, mmartin, pberne et ytailor.
 .PP
-.SH "MAILING LISTS"
-none
-.SH "THE 42SH FAQ"
-none
-.SH "THE 42SH WEB PAGE"
-none
-.SH "THE 42SH USERGUIDE"
-none
-.SH "THE 42SH WIKI"
-none
 .SH "INVOCATION"
 The following flags are interpreted buy the shell when invoked to determine
 where the shell will read commands form:
@@ -42,15 +75,19 @@ where the shell will read commands form:
 .TP
 .PD
 \fB\-t\fP
-Dissable the termcap mode.
+Dissable termcap mode.
 .PP
-.SH "COMPATIBILITY"
-none
-.SH "RESTRICTED SHELL"
-none
-.SH "STARTUP/SHUTDOWN FILES"
-none
 .SH "FILES"
-none
+.PD 0
+.TP
+\fB$HOME/\&.42shrc
+.PD
 .SH "SEE ALSO"
-none
+\fIalias\fP(1),
+\fIcd\fP(1),
+\fIecho\fP(1),
+\fIenv\fP(1),
+\fIsetenv\fP(1),
+\fIsource\fP(1),
+\fIunalias\fP(1),
+\fIunsetenv\fP(1)

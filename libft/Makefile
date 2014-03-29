@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 11:21:56 by mmartin           #+#    #+#              #
-#    Updated: 2014/02/03 15:02:10 by mmartin          ###   ########.fr        #
+#    Updated: 2014/03/25 21:38:47 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		=	../libft.a
 
 OBJ_LIB		=	$(SRC_LIB:.c=.o)
 
-HEAD		=	includes/libft.h includes/get_next_line.h
+HEAD		=	includes/libft.h includes/ft_struct_lib.h
 
 all:		$(NAME)
 

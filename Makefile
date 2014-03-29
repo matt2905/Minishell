@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2014/03/22 11:22:29 by mmartin          ###   ########.fr        #
+#    Updated: 2014/03/27 16:16:35 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ HEAD		=	includes/ft_builtin.h	\
 				includes/ft_history.h	\
 				includes/ft_lexpars.h	\
 				includes/ft_minishell.h	\
-				includes/ft_termcap.h
+				includes/ft_termcap.h	\
+				includes/ft_struct.h
 
 OBJ			=	$(SRC:.c=.o)
 
@@ -39,9 +40,9 @@ LIB			=	-L./ -lft -lprintf -ltermcap
 
 OBJ_LIB		=	$(libft/SRC_LIB:.c=.o)
 
-HEAD_LIB	=	libft/includes/libft.h libft/includes/get_next_line.h
+HEAD_LIB	=	libft/includes/libft.h libft/includes/ft_struct_lib.h
 
-HEAD_PRINTF	=	printf/includes/printf.h
+HEAD_PRINTF	=	printf/includes/printf.h printf/includes/ft_struct_printf.h
 
 all:			libft.a libprintf.a $(NAME)
 

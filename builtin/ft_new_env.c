@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 10:32:38 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/05 10:35:23 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 20:46:49 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void		ft_add_arg(t_env **new, char **argv, int i)
 		ft_add_env(new, argv[i]);
 }
 
-t_env	*ft_new_env(t_env *my_env, char **argv)
+t_env			*ft_new_env(t_env *my_env, char **argv)
 {
 	t_env	*tmp;
 	t_env	*new;

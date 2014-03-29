@@ -1,0 +1,55 @@
+.Dd March 26, 2014
+.Dt setenv 1
+.Os
+.Sh NAME
+.Nm setenv
+.Nd shell built-in functions to determine the characteristics for environmental
+variables of the current shell and its descendents
+.Sh SYNOPSIS
+.Nm
+.Ar VARNAME
+.Op Ar value
+.Op Ar 1 | 0
+.Sh DESCRIPTION
+If value it's not specified, the
+.Nm
+utility sets the environment variable \fIVARNAME\fP to an empty (null) value.
+.Pp
+Overwise, if last arguments are set to 1 or not set, the
+.Nm
+utility sets \fIVARNAME\fP to \fIvalue\fP, which must be either a single word or
+a quoted string.
+.Pp
+If last arguements are set to 0, the
+.Nm
+utility add to \fIVARNAME\fP, the \fIvalue\fP, which must be either a single
+word or a quoted string.
+.Pp
+The PATH variable can take multiple \fIvalue\fP arguments,
+sperated by colons (see EXAMPLES).
+.Pp
+The most commonly used environment variables,
+USER, TERM, and PATH, are automatically imported to and exported forem the zsh
+variable user, term and path.
+.Pp
+Use
+.Nm
+if you nedd to change these variables. In addition, the shell sets the PWD
+environment variable form the zsh variable pwd whenever the latter changes.
+.Sh EXAMPLES
+The following example sets the PATH varaible to search for files in the /bin,
+/usr/bin, /usr/sbin and /usr/ucb/bin directorues, in that order.
+.Pp
+setenv PATH "/bin:/usr/bin:/usr/sbin:/usr/ucb/bin"
+.Sh EXIT STATUS
+The following exit values shall be returned:
+.Bl -tag -width flag
+.It 0
+Successfull completion
+.It 1
+An error occured.
+.El
+.Sh SEE ALSO
+.Xr 42sh 1 ,
+.Xr unsetevn 1 ,
+.Xr environ 7

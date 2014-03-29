@@ -1,0 +1,24 @@
+.Dt March 26, 2014
+.Dd source 1
+.Os
+.Sh NAME
+.Nm source
+.Nd Read and execute commands from the filename argument in the current shell
+context.
+.Sh SYNOPSIS
+.Nm
+.Ar fileName
+.Sh DESCRIPTION
+If \fIfileName\fP exist, the
+.Nm
+utility read \fIfileName\fP and execute each line in the current shell.
+.Sh EXIT STATUS
+The following exit values shall be returned:
+.Bl -tag -width flag
+.It 0
+Successfull completion
+.It 1
+An error occured or file cannot be openned
+.El
+.Sh SEE ALSO
+.Xr 42sh 1

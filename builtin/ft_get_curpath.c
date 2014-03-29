@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/23 15:33:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/24 20:31:22 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/27 17:50:58 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,19 @@ static char		*ft_modify_path(char *dst, char *src, int len)
 	return (ft_strdup(dst));
 }
 
-static char		*ft_get_curpath(char **env, char *str)
+static char		*ft_get_curpath(char *env, char *str)
 {
 	char	*ptr;
 	char	*tmp;
-	int		i;
 	int		save;
+	int		i;
 
 	i = -1;
 	save = 0;
-	ptr = ft_strdup(*env + i + 1);
-	free(*env);
+	ptr = ft_strdup(env);
 	if (str[0] == '/')
 	{
-		free(ptr);
+		ft_strdel(&ptr);
 		return (ft_strdup(str));
 	}
 	while (str[++i])
@@ -81,7 +80,7 @@ static char		*ft_get_curpath(char **env, char *str)
 		{
 			tmp = ptr;
 			ptr = ft_modify_path(ptr, str + save, i - save + 1);
-			free(tmp);
+			ft_strdel(&tmp);
 			save = i + 1;
 		}
 	}
@@ -101,28 +100,31 @@ static void		ft_is_valid_path(char **path, char *str, char *tmp)
 	}
 	else if (!tmp)
 		ft_printf("cd: no such file or directory: %s\n", str);
-	free(*path);
-	*path = NULL;
+	ft_strdel(path);
 }
 
-char			*ft_return_path(char **pwd, char **tmp, char *str)
+char			*ft_return_path(t_data *d, char *pwd, char *tmp, char *str)
 {
 	char	*path;
+	char	*ptr;
 
-	path = ft_get_curpath(pwd, str);
-	ft_is_valid_path(&path, str, *tmp);
-	if (path)
+	if (!str)
 	{
-		if (*tmp)
-			free(*tmp);
-		return (path);
+		if ((ptr = ft_getenv_list(d->my_env, "HOME")) == NULL)
+			return (NULL);
+		path = ft_strdup(ptr + 5);
+		free(ptr);
 	}
-	else if (*tmp)
+	else
+		path = ft_get_curpath(pwd, str);
+	ft_is_valid_path(&path, str, tmp);
+	if (path)
+		return (path);
+	else if (tmp)
 	{
 		path = ft_get_curpath(tmp, str);
 		ft_is_valid_path(&path, str, NULL);
-		if (path)
-			return (path);
+		return (path);
 	}
 	return (NULL);
 }

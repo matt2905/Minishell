@@ -6,25 +6,31 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/24 19:16:33 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/27 13:37:41 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
-#include <get_next_line.h>
 #include <libft.h>
 #include "ft_builtin.h"
 #include "ft_exec.h"
+#include "ft_history.h"
+#include "ft_minishell.h"
 #include "ft_termcap.h"
 
 t_id			g_pid;
 
 static void		ft_term(t_data *d)
 {
+	char		*line;
+
 	d->first = NULL;
-	while (ft_prompt(d) && get_next_line(0, &d->str))
-		ft_processing(d);
+	while (ft_prompt(d) && get_next_line(0, &line))
+	{
+		ft_processing(d, line);
+		free(line);
+	}
 }
 
 static void		ft_set_manpath(t_data *d)
@@ -35,7 +41,7 @@ static void		ft_set_manpath(t_data *d)
 
 	tmp = getcwd(NULL, 0);
 	ptr = tmp;
-	tmp = ft_strjoin(tmp, "/usr/share/man:/usr/local/share/man");
+	tmp = ft_strjoin(tmp, "/man:/usr/local/share/man:/usr/share/man");
 	free(ptr);
 	tab = (char **)malloc(sizeof(char *) * 4);
 	tab[0] = ft_strdup("setenv");
@@ -101,10 +107,12 @@ int				main(int argc, char **argv)
 	t_data		d;
 
 	d.fork = 0;
+	d.alias = NULL;
 	g_pid.father = 0;
 	g_pid.id = 0;
 	g_pid.built = -1;
 	ft_init_data(&d);
+	ft_init_source(&d);
 	ft_signal();
 	if (d.last_hist)
 		d.last_hist->prev = d.first_hist;

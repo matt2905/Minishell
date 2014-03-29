@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 16:33:36 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/07 16:37:13 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 20:58:50 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void		ft_free_tmp(t_tmp **save, t_data *d)
 	}
 }
 
-void		ft_reset_history(t_data *d)
+void			ft_reset_history(t_data *d)
 {
 	t_history	*tmp;
 	t_tmp		*save;

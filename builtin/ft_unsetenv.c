@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 13:16:17 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/22 10:54:43 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/27 16:29:05 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,28 @@ static int	ft_error(char **argv)
 	return (0);
 }
 
-static void	ft_deleted(t_data *d, t_env *tmp)
+static void	ft_deleted(t_data *d, t_env **tmp)
 {
 	t_env	*ptr;
 	t_env	*new;
 
 	new = d->my_env;
-	if (new == tmp)
+	if (new == *tmp)
 	{
 		new = new->next;
 		d->my_env = new;
-		free(tmp->tab);
-		free(tmp);
+		free((*tmp)->tab);
+		free(*tmp);
 		return ;
 	}
 	ptr = new;
-	while (ptr->next != tmp)
+	while (ptr->next != *tmp)
 		ptr = ptr->next;
-	ptr->next = tmp->next;
+	ptr->next = (*tmp)->next;
 	d->my_env = new;
-	free(tmp->tab);
-	free(tmp);
+	free((*tmp)->tab);
+	free(*tmp);
+	*tmp = ptr->next;
 }
 
 int			ft_unsetenv(t_data *d, char **argv)
@@ -64,8 +65,9 @@ int			ft_unsetenv(t_data *d, char **argv)
 		while (tmp)
 		{
 			if (ft_strncmp(tmp->tab, argv[i], ft_strlen(argv[i])) == 0)
-				ft_deleted(d, tmp);
-			tmp = tmp->next;
+				ft_deleted(d, &tmp);
+			if (tmp)
+				tmp = tmp->next;
 		}
 		i++;
 	}

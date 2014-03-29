@@ -6,15 +6,15 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 12:11:50 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/12 17:20:22 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/27 11:49:55 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <printf.h>
-#include "ft_builtin.h"
+#include "ft_minishell.h"
 
-static const t_echo		escape[12] =
+static const t_echo		g_escape[12] =
 {
 	{'\\', 0, 0, 1},
 	{'a', 1, '\a', 0},
@@ -32,9 +32,9 @@ static const t_echo		escape[12] =
 
 static void				ft_print(int *back, int j, int *print, int *ok)
 {
-	*back = escape[j].newback;
-	if (j != 0)
-		ft_putchar(escape[j].val);
+	*back = g_escape[j].newback;
+	if (j != 0 && j != 12)
+		ft_putchar(g_escape[j].val);
 	if (j == 3)
 		*ok = 0;
 	*print = 1;
@@ -76,7 +76,7 @@ void					ft_putstr_echo(char *str, int *ok)
 		j = -1;
 		while (++j < 12 && print == 0)
 		{
-			if (str[i] == escape[j].c && back == escape[j].back)
+			if (str[i] == g_escape[j].c && back == g_escape[j].back)
 				ft_print(&back, j, &print, ok);
 		}
 		if (j == 12)

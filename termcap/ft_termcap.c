@@ -6,33 +6,32 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/24 15:29:44 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/27 18:50:30 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include <libft.h>
-#include <printf.h>
-#include "ft_builtin.h"
 #include "ft_termcap.h"
 #include "ft_exec.h"
+#include "ft_minishell.h"
 
-static const t_tab	tab_func[20] =
+static const t_tab	g_tab_func[20] =
 {
-	{"\E[A", ft_go_up},
-	{"\E\E[A", ft_alt_up},
-	{"\E[B", ft_go_down},
-	{"\E\E[B", ft_alt_down},
-	{"\E[C", ft_go_right},
-	{"\E\E[C", ft_alt_right},
-	{"\E[D", ft_go_left},
-	{"\E\E[D", ft_alt_left},
-	{"\E[H", ft_home},
-	{"\E[F", ft_end},
+	{"\033[A", ft_go_up},
+	{"\033\033[A", ft_alt_up},
+	{"\033[B", ft_go_down},
+	{"\033\033[B", ft_alt_down},
+	{"\033[C", ft_go_right},
+	{"\033\033[C", ft_alt_right},
+	{"\033[D", ft_go_left},
+	{"\033\033[D", ft_alt_left},
+	{"\033[H", ft_home},
+	{"\033[F", ft_end},
 	{"\012", ft_return},
 	{"\011", ft_tab},
-	{"\E[3~", ft_delete},
+	{"\033[3~", ft_delete},
 	{"\177", ft_backspace},
 	{"\004", ft_exit_term},
 	{"\200", ft_ctrlc},
@@ -53,7 +52,6 @@ static int		ft_init_line(t_data *d)
 
 void			ft_termcap(t_data *d)
 {
-	int		ret;
 	int		i;
 	int		y;
 
@@ -65,16 +63,17 @@ void			ft_termcap(t_data *d)
 		{
 			y = 0;
 			i = -1;
-			ret = read(0, d->buff, 8);
-			d->buff[ret] = '\0';
-			while (tab_func[++i].buffer != NULL && y == 0)
+			ft_bzero(d->buff, 8);
+			read(0, d->buff, 8);
+			while (g_tab_func[++i].buffer != NULL && y == 0)
 			{
-				if (!ft_strcmp(d->buff, tab_func[i].buffer))
-					y = tab_func[i].func(d);
+				if (!ft_strcmp(d->buff, g_tab_func[i].buffer))
+					y = g_tab_func[i].func(d);
 			}
-			if (tab_func[i].buffer == NULL)
-				y = tab_func[i].func(d);
+			if (g_tab_func[i].buffer == NULL)
+				y = g_tab_func[i].func(d);
 		}
-		ft_processing(d);
+		ft_processing(d, d->str);
+		free(d->str);
 	}
 }

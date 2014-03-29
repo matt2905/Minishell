@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/23 13:41:11 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/24 19:43:54 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/27 17:46:02 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ static char		*ft_check_path(t_data *d, char **argv, int *opt)
 		free(ptr);
 	}
 	pwd = ft_strdup(d->save_pwd);
-	return (ft_return_path(&pwd, &tmp, argv[i]));
+	ptr = ft_return_path(d, pwd, tmp, argv[i]);
+	ft_strdel(&pwd);
+	ft_strdel(&tmp);
+	return (ptr);
 }
 
 int				ft_cd(t_data *d, char **argv)
@@ -82,13 +85,13 @@ int				ft_cd(t_data *d, char **argv)
 		if (chdir(path) == -1)
 		{
 			ft_printf("cd: not a directory: %s\n", path);
-			free(path);
+			ft_strdel(&path);
 			return (1);
 		}
 		else
 		{
 			ft_modify_pwd(d, path, opt);
-			free(path);
+			ft_strdel(&path);
 			return (0);
 		}
 	}

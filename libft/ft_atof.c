@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 10:05:46 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/12 12:10:31 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 21:38:27 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static double		ft_convert(const char *str, t_atof res)
 		str++;
 	}
 	return (res.sign * (res.ip + res.fp / res.div));
-
 }
 
 double				ft_atof(const char *str)

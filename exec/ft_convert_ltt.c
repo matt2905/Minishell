@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 13:27:08 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/25 16:51:09 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 20:49:09 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <libft.h>
-#include "ft_minishell.h"
+#include "ft_struct.h"
 
 char	**ft_convert_ltt(t_env *my_env)
 {

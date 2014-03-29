@@ -6,11 +6,11 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 13:30:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/03 11:49:08 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 21:04:29 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <string.h>
 #include <termcap.h>
 #include "ft_termcap.h"
 

@@ -6,21 +6,14 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:48:33 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/12 20:09:09 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 20:25:16 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_EXEC_H
 # define FT_EXEC_H
 
-# include "ft_minishell.h"
-# include "ft_lexpars.h"
-
-typedef struct		s_exec
-{
-	int				type;
-	void			(*func)(t_parser *, t_data *);
-}					t_exec;
+# include "ft_struct.h"
 
 void		ft_amp(t_parser *parser, t_data *d);
 void		ft_or(t_parser *parser, t_data *d);
@@ -42,7 +35,7 @@ void		ft_process_tree(t_parser *parser, t_data *d);
 **		ft_processing.c
 */
 
-void		ft_processing(t_data *d);
+void		ft_processing(t_data *d, char *str);
 void		ft_process(t_data *d, char *str);
 
 #endif

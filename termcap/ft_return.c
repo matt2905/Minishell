@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:56 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/22 17:33:19 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 21:08:37 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
-#include <libft.h>
+#include "ft_history.h"
 #include "ft_termcap.h"
 
 static void		ft_print_error(t_line *first)
@@ -22,7 +22,7 @@ static void		ft_print_error(t_line *first)
 	tmp = first;
 	while (tmp)
 	{
-		ft_putchar(tmp->c);
+		write(1, &tmp->c, 1);
 		tmp = tmp->next;
 	}
 }

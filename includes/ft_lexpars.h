@@ -6,38 +6,14 @@
 /*   By: amorfan <amorfan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 14:16:48 by amorfan           #+#    #+#             */
-/*   Updated: 2014/03/07 13:09:15 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 20:25:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LEXPARS_H
 # define FT_LEXPARS_H
 
-typedef struct			s_lexer
-{
-	char				*str;
-	int					type;
-	int					rank;
-	int					flag;
-	struct s_lexer		*prev;
-	struct s_lexer		*next;
-}						t_lexer;
-
-typedef struct			s_parser
-{
-	char				*str;
-	int					type;
-	int					rank;
-	struct s_parser		*left;
-	struct s_parser		*right;
-}						t_parser;
-
-typedef struct			s_token
-{
-	char				c;
-	int					type;
-	int					rank;
-}						t_token;
+# include "ft_struct.h"
 
 void	ft_add_lexer(t_lexer **root, char *str, int type, int rank);
 void	ft_add_tree(t_parser **tree, t_lexer *tmp, t_lexer *list, int check);

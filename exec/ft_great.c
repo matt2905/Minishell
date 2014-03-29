@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/19 16:54:13 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 20:52:22 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <libft.h>
 #include <printf.h>
 #include "ft_exec.h"
+#include "ft_minishell.h"
 
 static int		ft_check_error(char **tab)
 {

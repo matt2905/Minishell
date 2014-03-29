@@ -6,14 +6,12 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:39 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/19 17:28:15 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 20:53:08 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <libft.h>
 #include "ft_exec.h"
 
 static void		ft_left(t_parser *parser, t_data *d, int *fd_pipe)

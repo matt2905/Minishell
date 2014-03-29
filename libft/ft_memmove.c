@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 19:09:53 by mmartin           #+#    #+#             */
-/*   Updated: 2013/12/06 17:25:06 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/26 13:18:40 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	*ft_memmove(void *s1, const void *s2, size_t n)
 	ft_memcpy(save, s2, n);
 	while (++i < n)
 		dst[i] = save[i];
-	free (save);
+	free(save);
 	return (dst);
 }

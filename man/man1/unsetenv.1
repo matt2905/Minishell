@@ -1,0 +1,28 @@
+.Dd March 26, 2014
+.Dt unsetenv 1
+.Os
+.Sh NAME
+.Nm unsetenv
+.Nd shell built-in functions to determine the characteristics for environmental
+variables of the current shell and its descendents
+.Sh SYNOPSIS
+.Nm
+.Ar variable...
+.Sh DESCRIPTION
+The
+.Nm
+utility removes \fIvariable\fP from the environment.
+If \fIvariable\fP pattern doesn't found, environment isn't modified and
+utility exit normally.
+.Sh EXIT STATUS
+The following exit values shall be returned:
+.Bl -tag -width flag
+.It 0
+Successfull completion
+.It 1
+No arguments.
+.El
+.Sh SEE ALSO
+.Xr 42sh 1 ,
+.Xr setenv 1 ,
+.Xr environ 7

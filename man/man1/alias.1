@@ -1,0 +1,32 @@
+.Dd March 27, 2014
+.Dt alias 1
+.Os
+.Sh NAME
+.Nm alias
+.Nd Define or display aliases.
+.Sh SYNOPSIS
+.Nm
+.Op Ar name=value
+.Nm
+.Op Ar name
+.Sh DESCRIPTION
+Define or display aliases.
+.Pp
+Without arguments,
+.Nm
+prints the list of aliases in the reusable form \fIalias NAME=VALUE\fP one
+standard output.
+.Pp
+Otherwise, an alias is defined for each NAME whose VALUE is given.
+.Pp
+If Value isn't given, print defined aliasesin a reusable format of NAME
+.Sh EXIT STATUS
+The following exit values shall be returned:
+.Bl -tag -width flag
+.It 0
+Successfull completion
+.It 1
+alias asked not found to print
+.El
+.Sh SEE ALSO
+.Xr 42sh 1 ,

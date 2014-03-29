@@ -6,15 +6,15 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 15:25:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/03 11:49:30 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 21:06:35 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <termcap.h>
-#include <unistd.h>
 #include <libft.h>
 #include "ft_termcap.h"
+#include "ft_history.h"
 
 static void		ft_print_hist(t_data *d)
 {

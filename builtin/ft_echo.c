@@ -6,21 +6,12 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 17:15:04 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/22 10:49:45 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 20:44:52 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <termcap.h>
 #include <libft.h>
-#include <printf.h>
-#include "ft_termcap.h"
 #include "ft_builtin.h"
-
-/*
-**					Too do
-**		Globing: example echo Mak* = Makefile
-**		Color:	echo "\033[33m"test"" = test in yellow color
-*/
 
 static int		ft_print_echo(char *argv, int el, int eu)
 {

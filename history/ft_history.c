@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 18:06:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/27 11:55:13 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/27 16:13:53 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <libft.h>
+#include "ft_history.h"
 #include "ft_builtin.h"
 
 t_history		*ft_last_history(t_history *hist)
@@ -54,6 +55,8 @@ static int		ft_open_hist(t_data *d)
 	char	*ptr;
 
 	str = ft_getenv_list(d->my_env, "HOME");
+	if (!str)
+		return (-1);
 	ptr = str;
 	str = ft_strjoin(str + 5, "/.42sh_history");
 	free(ptr);

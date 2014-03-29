@@ -6,12 +6,13 @@
 /*   By: bbouabou <bbouabou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/02 16:26:10 by bbouabou          #+#    #+#             */
-/*   Updated: 2014/03/02 16:33:15 by bbouabou         ###   ########.fr       */
+/*   Updated: 2014/03/25 21:03:41 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <termcap.h>
+#include "ft_minishell.h"
 #include "ft_termcap.h"
 
 int		ft_ctrll(t_data *d)

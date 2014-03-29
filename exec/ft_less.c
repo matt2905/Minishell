@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:24 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/19 16:56:07 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 20:52:34 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <libft.h>
 #include <printf.h>
 #include "ft_exec.h"
+#include "ft_minishell.h"
 
 static int		ft_check_error(char **tab)
 {
@@ -42,7 +43,7 @@ void			ft_less(t_parser *parser, t_data *d)
 	int				fd;
 	char			**tab;
 
-	tab = ft_strsplit_space(parser->left->str);
+	tab = ft_strsplit_shell(parser->left->str);
 	if (ft_check_error(tab))
 		return ;
 	if ((fd = open(tab[0], O_RDONLY)) == -1)

@@ -6,12 +6,11 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:57:21 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/12 20:08:56 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/27 17:58:08 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <sys/wait.h>
 #include <unistd.h>
 #include <libft.h>
 #include "ft_exec.h"
@@ -29,7 +28,10 @@ static int		ft_launch(char **my_env, char **argv, char *path)
 		return (1);
 	}
 	else
-		execve(path, argv, my_env);
+	{
+		if (execve(path, argv, my_env) == -1)
+			exit(EXIT_FAILURE);
+	}
 	return (0);
 }
 
@@ -51,11 +53,11 @@ int				ft_exec(char **my_env, char **argv, int ok)
 		}
 		else
 		{
-			execve(path, argv, my_env);
-			ft_putendl("test\n");
+			if (execve(path, argv, my_env) == -1)
+				exit(EXIT_FAILURE);
 		}
 	}
-	free(path);
+	ft_strdel(&path);
 	ft_free_tab(&my_env);
 	return (i);
 }

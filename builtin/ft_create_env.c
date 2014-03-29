@@ -6,13 +6,12 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 13:24:12 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/16 15:25:38 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 21:39:23 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdlib.h>
-#include <get_next_line.h>
 #include <libft.h>
 #include "ft_builtin.h"
 

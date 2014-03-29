@@ -6,36 +6,16 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 14:24:37 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/14 11:20:02 by mmartin          ###   ########.fr       */
+/*   Updated: 2014/03/25 21:36:54 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFF_SIZE 512
+
 # include <string.h>
-
-typedef struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
-
-typedef struct		s_btree
-{
-	struct s_btree	*left;
-	struct s_btree	*right;
-	char			*item;
-}					t_btree;
-
-typedef struct		s_atof
-{
-	double			ip;
-	double			fp;
-	int				div;
-	int				sign;
-	int				flag;
-}					t_atof;
+# include "ft_struct_lib.h"
 
 double			ft_atof(const char *str);
 unsigned int	ft_atoh(const char *str);
@@ -105,5 +85,6 @@ size_t			ft_tablen(char **tab);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 char			*ft_uitoa(long unsigned int n, unsigned sys);
+int				get_next_line(int const fd, char **line);
 
 #endif
