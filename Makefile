@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2015/01/27 11:57:29 by mmartin          ###   ########.fr        #
+#    Updated: 2015/01/27 13:01:22 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,29 +20,27 @@ export	CC		=	gcc
 
 export	INC		=	-I $(PWD)/libft/includes -I $(PWD)/printf/includes
 
+DOBJ		=	obj/
+
 NAME		=	42sh
 
 INC			+=	-I includes
 
-HEAD		=	includes/ft_builtin.h	\
-				includes/ft_exec.h		\
-				includes/ft_history.h	\
-				includes/ft_lexpars.h	\
-				includes/ft_minishell.h	\
-				includes/ft_termcap.h	\
-				includes/ft_struct.h
+OBJ			=	$(patsubst %.c, $(DOBJ)%.o, $(SRC))
 
-OBJ			=	$(SRC:.c=.o)
+DEPS		=	$(patsubst %.c, $(DOBJ)%.d, $(SRC))
 
 LIB			=	-L libft -lft -ltermcap
+
+DEPENDS		=	-MT $@ -MD -MP -MF $(subst .o,.d,$@)
 
 OBJ_LIB		=	$(libft/SRC_LIB:.c=.o)
 
 HEAD_LIB	=	libft/includes/libft.h libft/includes/ft_struct_lib.h
 
-all:			libft.a $(NAME)
+all:			./libft/libft.a $(NAME)
 
-libft.a:		libft/$(OBJ_LIB) $(HEAD_LIB)
+libft/libft.a:	libft/$(OBJ_LIB) $(HEAD_LIB)
 	@Make -C libft
 
 $(NAME):		$(OBJ)
@@ -50,14 +48,21 @@ $(NAME):		$(OBJ)
 	@echo ""
 	@echo "\033[33m"Compilation of $(NAME) : "\033[32m"Success"\033[0m"
 
-$(OBJ):			$(HEAD) libft.a
+-include		$(OBJ:.o=.d)
 
-%.o:			%.c $(HEAD)
+$(DOBJ)%.o:		%.c
+	@mkdir -p $(DOBJ)
+	@mkdir -p $(DOBJ)builtin
+	@mkdir -p $(DOBJ)exec
+	@mkdir -p $(DOBJ)history
+	@mkdir -p $(DOBJ)lex_pars
+	@mkdir -p $(DOBJ)misc
+	@mkdir -p $(DOBJ)termcap
 	@echo -n .
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+	@$(CC) $(CFLAGS) $(DEPENDS) -c $< -o $@ $(INC)
 
 clean:
-	@/bin/rm -f $(OBJ)
+	@/bin/rm -rf $(DOBJ)
 	@echo "\033[31m"Objects of $(NAME) : deleted"\033[0m"
 
 fclean:			clean

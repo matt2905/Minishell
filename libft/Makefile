@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 11:21:56 by mmartin           #+#    #+#              #
-#    Updated: 2015/01/27 11:58:46 by mmartin          ###   ########.fr        #
+#    Updated: 2015/01/27 13:04:10 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,17 @@ CC			=	gcc
 
 CFLAGS		=	-Wall -Werror -Wextra
 
+DOBJ		=	obj/
+
 INC			=	-I includes
 
 NAME		=	libft.a
 
-OBJ_LIB		=	$(SRC_LIB:.c=.o)
+OBJ_LIB		=	$(patsubst %.c, $(DOBJ)%.o, $(SRC_LIB))
 
-HEAD		=	includes/libft.h includes/ft_struct_lib.h
+DEPS		=	$(patsubst %.c, $(DOBJ)%.d, $(SRC_LIB))
+
+DEPENDS		=	-MT $@ -MD -MP -MF $(subst .o,.d,$@)
 
 all:		$(NAME)
 
@@ -33,11 +37,24 @@ $(NAME):	$(OBJ_LIB)
 	@ranlib $(NAME)
 	@echo "\033[33mCompilation of libft.a : \033[32mSuccess\033[0m"
 
-$(OBJ_LIB):		$(HEAD)
+-include	$(OBJ:.o=.d)
 
-%.o:		%.c
-	@echo "\033[32m$(CC) \033[33m$(CFLAGS) \033[36m-c $< -o $@ $(INC)\033[0m"
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+$(DOBJ)%.o:	%.c
+	@mkdir -p $(DOBJ)
+	@mkdir -p $(DOBJ)array
+	@mkdir -p $(DOBJ)convert
+	@mkdir -p $(DOBJ)divers
+	@mkdir -p $(DOBJ)general
+	@mkdir -p $(DOBJ)list
+	@mkdir -p $(DOBJ)math
+	@mkdir -p $(DOBJ)printf
+	@mkdir -p $(DOBJ)regex
+	@mkdir -p $(DOBJ)share
+	@mkdir -p $(DOBJ)string
+	@mkdir -p $(DOBJ)test
+	@mkdir -p $(DOBJ)write
+	@echo "\033[32m$(CC) \033[33m$(CFLAGS) \033[35m$(DEPENDS) \033[36m-c $< -o $@ $(INC)\033[0m"
+	@$(CC) $(CFLAGS) $(DEPENDS) -c $< -o $@ $(INC)
 
 clean:
 	@echo "\033[31mObjects of libft.a : deleted\033[0m"
