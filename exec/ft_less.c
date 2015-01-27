@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:24 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 20:52:34 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/01/27 12:04:16 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void			ft_less(t_parser *parser, t_data *d)
 		ft_printf("42sh: no such file or director: %s\n", tab[0]);
 		return ;
 	}
-	ft_free_tab(&tab);
+	ft_tabdel(&tab);
 	dup2(fd, 0);
 	ft_process_tree(parser->right, d);
 	dup2(d->save_fd[0], 0);

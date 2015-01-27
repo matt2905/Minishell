@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_semsetvalue.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/17 09:43:29 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 15:16:47 by mmartin          ###   ########.fr       */
+/*   Created: 2014/06/01 16:25:24 by mmartin           #+#    #+#             */
+/*   Updated: 2014/06/01 16:27:29 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include <stdlib.h>
+#include <sys/sem.h>
+#include <libft.h>
 
-# include <string.h>
-# include <stdarg.h>
-# include "ft_struct_printf.h"
+void		ft_semsetvalue(int semid, int semnum, int val)
+{
+	union semun		u_sem;
 
-int		ft_printf(const char *str, ...);
-int		ft_get_flags(const char *str, t_printf *flags, va_list ap);
-void	ft_printchar(char c, int *i);
-void	ft_printstr(char *str, t_printf *flags, int *i);
-void	ft_printnbr(char *str, t_printf *flags, char *c, int *i);
-
-#endif
+	u_sem.val = val;
+	if (semctl(semid, semnum, SETVAL, u_sem) == -1)
+	{
+		ft_putendl_fd("semctl: SETVAL Failed", 2);
+		exit(1);
+	}
+}

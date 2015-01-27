@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 13:37:41 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/01/27 12:00:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void		ft_set_manpath(t_data *d)
 	tab[2] = tmp;
 	tab[3] = NULL;
 	ft_setenv(d, tab);
-	ft_free_tab(&tab);
+	ft_tabdel(&tab);
 }
 
 static void		ft_save(t_data *d)

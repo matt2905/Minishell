@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/26 16:26:51 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 12:57:51 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/01/27 12:03:32 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		ft_realloc_alias(char *value, char ***tab)
 	int			j;
 
 	tmp = ft_tabdup(*tab);
-	ft_free_tab(tab);
+	ft_tabdel(tab);
 	cmd = ft_strsplit_space(value);
 	i = ft_tablen(tmp) - 1;
 	j = ft_tablen(cmd);
@@ -47,8 +47,8 @@ static void		ft_realloc_alias(char *value, char ***tab)
 		else
 			(*tab)[len] = ft_strdup(cmd[--j]);
 	}
-	ft_free_tab(&cmd);
-	ft_free_tab(&tmp);
+	ft_tabdel(&cmd);
+	ft_tabdel(&tmp);
 }
 
 void			ft_search_alias(t_data *d, char ***tab)

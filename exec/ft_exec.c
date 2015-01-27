@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:57:21 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 17:58:08 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/01/27 12:03:58 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		ft_launch(char **my_env, char **argv, char *path)
 	if (g_pid.father > 0)
 	{
 		wait(&g_pid.id);
-		ft_free_tab(&my_env);
+		ft_tabdel(&my_env);
 		free(path);
 		return (1);
 	}
@@ -58,6 +58,6 @@ int				ft_exec(char **my_env, char **argv, int ok)
 		}
 	}
 	ft_strdel(&path);
-	ft_free_tab(&my_env);
+	ft_tabdel(&my_env);
 	return (i);
 }

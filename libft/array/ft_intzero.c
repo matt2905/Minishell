@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_struct_printf.h                                 :+:      :+:    :+:   */
+/*   ft_intzero.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/25 21:41:09 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 21:41:43 by mmartin          ###   ########.fr       */
+/*   Created: 2014/06/04 11:32:25 by mmartin           #+#    #+#             */
+/*   Updated: 2014/06/04 11:44:38 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STRUCT_PRINTF_H
-# define FT_STRUCT_PRINTF_H
+#include <string.h>
 
-typedef struct	s_printf
+void		ft_intzero(int *tab, size_t size)
 {
-	char		*sign;
-	char		*sharp;
-	int			width;
-	int			pad;
-	int			precision;
-	char		*dot;
-	char		*length;
-}				t_printf;
+	size_t		i;
 
-#endif
+	i = 0;
+	if (!tab)
+		return ;
+	while (i < size)
+	{
+		tab[i] = 0;
+		i++;
+	}
+}

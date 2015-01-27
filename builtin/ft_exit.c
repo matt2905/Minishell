@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:53:48 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/26 17:49:23 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/01/27 12:03:14 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void			ft_destroy_data(t_data *d, char **argv)
 {
 	if (d->str)
 		free(d->str);
-	ft_free_tab(&argv);
+	ft_tabdel(&argv);
 	ft_free_history(&(d->history));
 	d->first_hist = NULL;
 	d->last_hist = NULL;

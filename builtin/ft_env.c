@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:47:38 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 20:45:31 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/01/27 12:03:00 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ static int		ft_exec_env(t_data *d, char **argv, int i, t_env *new_env)
 			if (ft_exec(ft_convert_ltt(new_env), tab, d->fork) == 0)
 			{
 				ft_error(tab[0]);
-				ft_free_tab(&tab);
+				ft_tabdel(&tab);
 				return (1);
 			}
 		}
 	}
-	ft_free_tab(&tab);
+	ft_tabdel(&tab);
 	return (-1);
 }
 

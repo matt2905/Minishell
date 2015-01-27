@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/26 15:52:16 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 13:26:53 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/01/27 12:00:41 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int				ft_alias(t_data *d, char **argv)
 		tmp = d->alias;
 		ft_add_alias(&tmp, tab[0], tab[1]);
 		d->alias = tmp;
-		ft_free_tab(&tab);
+		ft_tabdel(&tab);
 	}
 	return (0);
 }

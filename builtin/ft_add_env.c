@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 12:26:44 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 17:41:02 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/01/27 12:00:32 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void			ft_modify_pwd(t_data *d, char *path, int opt)
 	tab[1] = ft_strdup("OLDPWD");
 	tab[2] = ft_strdup(d->save_pwd);
 	ft_setenv(d, tab);
-	ft_free_tab(&tab);
+	ft_tabdel(&tab);
 	free(d->save_old);
 	d->save_old = ft_strdup(d->save_pwd);
 	free(d->save_pwd);

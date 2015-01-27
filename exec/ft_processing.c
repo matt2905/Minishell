@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:55:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/28 19:58:32 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/01/27 12:04:26 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		ft_process(t_data *d, char *str)
 			}
 		}
 	}
-	ft_free_tab(&tab);
+	ft_tabdel(&tab);
 }
 
 void		ft_processing(t_data *d, char *str)

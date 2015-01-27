@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/20 17:34:21 by mmartin           #+#    #+#             */
-/*   Updated: 2014/02/04 19:49:34 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/01/27 12:01:56 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,31 @@ static void	ft_check_specbis(va_list ap, const char *str, t_printf *fl, int *i)
 
 static void	ft_check_spec(va_list ap, const char *str, t_printf *fl, int *i)
 {
+	char	*ptr;
+	char	*msg;
+
+	ptr = NULL;
+	msg = NULL;
 	if (*str == 's')
 		ft_printstr(va_arg(ap, char *), fl, i);
-	else if (*str == 'd' || *str == 'i')
-		ft_printnbr(ft_itoa(va_arg(ap, int), 10), fl, fl->sign, i);
-	else if (*str == 'x')
-		ft_printnbr(ft_uitoa(va_arg(ap, unsigned int), 16), fl, fl->sharp, i);
-	else if (*str == 'o')
-		ft_printnbr(ft_uitoa(va_arg(ap, unsigned int), 8), fl, fl->sharp, i);
-	else if (*str == 'u')
-		ft_printnbr(ft_uitoa(va_arg(ap, unsigned int), 10), fl, "\0", i);
+	else if ((*str == 'd' || *str == 'i') && (msg = fl->sign))
+		ptr = ft_itoa(va_arg(ap, int), 10);
+	else if (*str == 'x' && (msg = fl->sharp))
+		ptr = ft_uitoa(va_arg(ap, unsigned int), 16);
+	else if (*str == 'o' && (msg = fl->sharp))
+		ptr = ft_uitoa(va_arg(ap, unsigned int), 8);
+	else if (*str == 'u' && (msg = "\0"))
+		ptr = ft_uitoa(va_arg(ap, unsigned int), 10);
 	else if (*str == 'p')
 	{
 		*i = *i + 2;
 		write(1, "0x", 2);
-		ft_printstr(ft_uitoa(va_arg(ap, unsigned long int), 16), fl, i);
+		ptr = ft_uitoa(va_arg(ap, unsigned long int), 16);
+		ft_printstr(ptr, fl, i);
 	}
+	if (ptr && msg)
+		ft_printnbr(ptr, fl, msg, i);
+	ft_strdel(&ptr);
 }
 
 static void	ft_redirect(va_list ap, const char *str, int *i)

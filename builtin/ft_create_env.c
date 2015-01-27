@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 13:24:12 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 21:39:23 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/01/27 12:02:46 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		ft_levelup_shell(t_data *d)
 	tab[2] = ft_itoa(i, 10);
 	tab[3] = NULL;
 	ft_setenv(d, tab);
-	ft_free_tab(&tab);
+	ft_tabdel(&tab);
 	free(tmp);
 }
 

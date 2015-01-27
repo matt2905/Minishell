@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 20:52:22 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/01/27 12:04:08 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void			ft_great(t_parser *parser, t_data *d)
 	fd = open(tab[0], O_CREAT | O_TRUNC | O_RDWR, 0644);
 	if (ft_check_error(tab))
 		return ;
-	ft_free_tab(&tab);
+	ft_tabdel(&tab);
 	if (d->pipe == 0)
 		dup2(fd, 1);
 	ft_process_tree(parser->right, d);

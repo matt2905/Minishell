@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_struct_lib.h                                    :+:      :+:    :+:   */
+/*   ft_struct.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 21:34:09 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 21:35:17 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/01/27 11:59:23 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_STRUCT_LIB_H
 # define FT_STRUCT_LIB_H
+
+# include <string.h>
+
+/*
+**		LIST_GENERAL
+*/
 
 typedef struct		s_list
 {
@@ -20,12 +26,20 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+/*
+**		TRE_GENERAL
+*/
+
 typedef struct		s_btree
 {
 	struct s_btree	*left;
 	struct s_btree	*right;
 	char			*item;
 }					t_btree;
+
+/*
+**		ATOF
+*/
 
 typedef struct		s_atof
 {
@@ -36,6 +50,10 @@ typedef struct		s_atof
 	int				flag;
 }					t_atof;
 
+/*
+**		GET_NEXT_LINE
+*/
+
 typedef struct		s_info
 {
 	char			*start;
@@ -44,5 +62,20 @@ typedef struct		s_info
 	int				offset;
 	struct s_info	*next;
 }					t_info;
+
+/*
+**		PRINTF
+*/
+
+typedef struct		s_printf
+{
+	char			*sign;
+	char			*sharp;
+	int				width;
+	int				pad;
+	int				precision;
+	char			*dot;
+	char			*length;
+}					t_printf;
 
 #endif
