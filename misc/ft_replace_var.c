@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/01 14:49:05 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 16:57:05 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 20:52:58 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char		*ft_replace_var(t_data *d, char *str)
 		var = ft_getenv_list(d->my_env, tmp);
 		if (var)
 			ft_realloc_var(&save, var, ptr - save);
+		ft_strdel(&tmp);
 	}
 	return (save);
 }

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/10 11:21:35 by mmartin           #+#    #+#             */
-/*   Updated: 2015/01/27 12:02:35 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 20:23:09 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ static void		ft_copy_str(char **dst, int *i, char *str)
 	int		k;
 
 	k = -1;
+	if (!str)
+	{
+		(*dst)[*i] = '\0';
+		*i += 1;
+	}
 	while (str && str[++k])
 	{
 		(*dst)[*i] = str[k];

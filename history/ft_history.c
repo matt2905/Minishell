@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 18:06:15 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 16:13:53 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 20:42:52 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,10 @@ void			ft_history(t_data *d)
 	t_history	*hist;
 
 	tmp = d->first;
-	if ((fd = ft_open_hist(d)) == -1)
+	if ((fd = ft_open_hist(d)) == -1 || !d->last->prev)
 		return ;
-	if (!d->last->prev)
+	if (!(ptr = (char *)malloc(sizeof(char) * (d->last->prev->pos + 2))))
 		return ;
-	ptr = (char *)malloc(sizeof(char) * (d->last->prev->pos + 2));
 	i = 0;
 	while ((tmp = tmp->next))
 	{
@@ -95,4 +94,5 @@ void			ft_history(t_data *d)
 	ft_init_history(d);
 	write(fd, "\n", 1);
 	close(fd);
+	ft_strdel(&ptr);
 }

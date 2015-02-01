@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 15:17:21 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 20:20:31 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int				main(int argc, char **argv)
 {
 	t_data		d;
 
+	d.tty.flag = 0;
 	d.fork = 0;
 	d.alias = NULL;
 	g_pid.father = 0;
@@ -126,7 +127,7 @@ int				main(int argc, char **argv)
 	if (d.first_hist)
 		d.first_hist->next = d.last_hist;
 	ft_check_option(argc, argv, &d);
-	if (d.tty.flag == 1)
+	if (d.tty.flag)
 		ft_termcap(&d);
 	else
 		ft_term(&d);

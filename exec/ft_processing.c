@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:55:15 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 18:00:37 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 20:30:40 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void		ft_processing(t_data *d, char *str)
 	d->pipe = 0;
 	if (!str)
 		return ;
-	ft_backup_termcap(d);
+	if (d->tty.flag)
+		ft_backup_termcap(d);
 	ft_lexer(&lex, str);
 	if (lex)
 	{
@@ -81,7 +82,8 @@ void		ft_processing(t_data *d, char *str)
 	}
 	else
 		ft_process(d, str);
-	ft_reset_termcap(d);
+	if (d->tty.flag)
+		ft_reset_termcap(d);
 	if (d->first)
 		ft_free_list(d->first);
 }

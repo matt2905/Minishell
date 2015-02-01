@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:55:29 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 18:04:44 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 20:50:51 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,6 @@ static int		ft_error(char **argv)
 	return (0);
 }
 
-static char		*x_ft_strjoin(char *s1, char *s2, char *s3)
-{
-	int		len;
-	char	*tmp;
-	int		i;
-
-	i = 0;
-	len = ft_strlen(s1) + ft_strlen(s2) + ft_strlen(s3);
-	tmp = (char *)malloc(sizeof(*tmp) * (len + 1));
-	while (*s1)
-		tmp[i++] = *s1++;
-	while (*s2)
-		tmp[i++] = *s2++;
-	while (*s3)
-		tmp[i++] = *s3++;
-	tmp[i] = '\0';
-	return (tmp);
-}
-
 static char		*ft_search_tmp(char *env, char **argv)
 {
 	int		i;
@@ -60,9 +41,9 @@ static char		*ft_search_tmp(char *env, char **argv)
 
 	i = ft_tablen(argv);
 	if (i == 4 && ft_atoi(argv[3]) == 0 && env)
-		tmp = x_ft_strjoin(env, ":", argv[2]);
+		tmp = ft_xstrjoin("%s:%s", env, argv[2]);
 	else if (i == 3 || ((i == 4) && ft_atoi(argv[3]) != 0))
-		tmp = x_ft_strjoin(argv[1], "=", argv[2]);
+		tmp = ft_xstrjoin("%s=%s", argv[1], argv[2]);
 	else
 		tmp = ft_strjoin(argv[1], "=");
 	return (tmp);

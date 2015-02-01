@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 19:24:19 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/12 20:15:44 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 20:03:28 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		ft_get_len(char *str)
 	i = -1;
 	ok = 0;
 	len = 0;
-	while (str[++i] && !ft_isspace(str[i]))
+	while (str && str[++i] && !ft_isspace(str[i]))
 	{
 		if (str[i] && (str[i] == '\'' || str[i] == '\"') && str[i - 1] != '\\')
 		{
