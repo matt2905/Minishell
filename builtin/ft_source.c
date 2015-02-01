@@ -6,7 +6,7 @@
 /*   By: bbouabou <bbouabou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 17:34:42 by bbouabou          #+#    #+#             */
-/*   Updated: 2014/03/27 18:11:03 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 13:26:57 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ static int		ft_error(t_data *d, char **argv, t_line *tmp, int flag)
 	return (1);
 }
 
+static void		ft_ignore_com(char **str)
+{
+	char	*tmp;
+
+	tmp = ft_strchr(*str, '#');
+	if (tmp)
+		tmp[0] = '\0';
+}
+
 int				ft_source(t_data *d, char **argv)
 {
 	char	*str;
@@ -48,6 +57,7 @@ int				ft_source(t_data *d, char **argv)
 		return (ft_error(d, argv, tmp, 1));
 	while ((ret = get_next_line(fd, &str)) == 1)
 	{
+		ft_ignore_com(&str);
 		ft_processing(d, str);
 		ft_strdel(&str);
 	}
