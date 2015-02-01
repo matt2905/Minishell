@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/01 18:02:33 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/01 19:40:46 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ export	CFLAGS	=	-Wall -Wextra -Werror -g
 
 export	CC		=	gcc
 
-export	INC		=	-I $(PWD)/libft/includes -I $(PWD)/printf/includes
+export	INC		=	-I $(PWD)/libft/includes
 
 DOBJ		=	obj/
 

@@ -6,19 +6,13 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 11:21:56 by mmartin           #+#    #+#              #
-#    Updated: 2015/01/27 13:04:10 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/01 18:47:46 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 include		Makefile.source
 
-CC			=	gcc
-
-CFLAGS		=	-Wall -Werror -Wextra
-
 DOBJ		=	obj/
-
-INC			=	-I includes
 
 NAME		=	libft.a
 
