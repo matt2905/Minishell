@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:55:15 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 16:42:51 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 18:00:37 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void		ft_process(t_data *d, char *str)
 		{
 			if (ft_exec(ft_convert_ltt(d->my_env), tab, d->fork) == 0)
 			{
-				ft_printf("42sh: command not found: %s\n", tab[0]);
+				ft_putstr_fd("42sh: command not found: ", 2);
+				ft_putendl_fd(tab[0], 2);
 				g_pid.built = 1;
 			}
 		}
