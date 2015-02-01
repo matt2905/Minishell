@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:48:33 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 20:25:16 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 16:32:50 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char		*ft_search_path(char **my_env, char *argv, int *flags);
 char		*ft_getenv(char **my_env, char *var);
 char		**ft_convert_ltt(t_env *my_env);
 void		ft_process_tree(t_parser *parser, t_data *d);
+char		*ft_bquote(t_data *d, char *str);
 
 /*
 **		ft_processing.c

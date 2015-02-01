@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 14:41:49 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 13:15:01 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 13:30:29 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ static char		*ft_get_prompt(t_data *d)
 		tmp = ft_getenv_list(d->my_env, "USER");
 	if (!tmp)
 		tmp = ft_strdup("=$42sh");
-
 	prompt = ft_xstrjoin("\033[32m%s: \033[0m", ft_strchr(tmp, '=') + 1);
 	ft_strdel(&tmp);
-
 	return (prompt);
 }
 

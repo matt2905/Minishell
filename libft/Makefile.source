@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 14:00:31 by mmartin           #+#    #+#              #
-#    Updated: 2015/01/23 16:52:19 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/01 16:25:07 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ SRC_STR		=	string/ft_strcat.c				\
 				string/ft_strlen.c				\
 				string/ft_strmap.c				\
 				string/ft_strmapi.c				\
+				string/ft_strncasecmp.c			\
 				string/ft_strncat.c				\
 				string/ft_strncmp.c				\
 				string/ft_strncpy.c				\
@@ -99,6 +100,7 @@ SRC_TEST	=	test/ft_isalnum.c				\
 				test/ft_isascii.c				\
 				test/ft_isdigit.c				\
 				test/ft_ishexa.c				\
+				test/ft_islower.c				\
 				test/ft_isoctale.c				\
 				test/ft_isprint.c				\
 				test/ft_isspace.c				\

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:55:15 by mmartin           #+#    #+#             */
-/*   Updated: 2015/01/27 12:04:26 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 16:42:51 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,19 @@
 #include "ft_minishell.h"
 #include "ft_termcap.h"
 
+static char	*ft_clean_line(t_data *d, char *str)
+{
+	char	*tmp;
+	char	*ptr;
+
+	tmp = ft_replace_var(d, str);
+	ptr = ft_bquote(d, tmp);
+	ft_strdel(&tmp);
+	tmp = ft_tilde(ptr, d);
+	ft_strdel(&ptr);
+	return (tmp);
+}
+
 void		ft_process(t_data *d, char *str)
 {
 	extern t_id		g_pid;
@@ -27,7 +40,7 @@ void		ft_process(t_data *d, char *str)
 	char			*tmp;
 
 	i = 0;
-	tmp = ft_tilde(str, d);
+	tmp = ft_clean_line(d, str);
 	tab = ft_strsplit_shell(tmp);
 	ft_strdel(&tmp);
 	if (tab && tab[0])

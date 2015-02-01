@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/25 16:41:52 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/01 13:11:16 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/01 14:59:10 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC			=	main.c						\
 				builtin/ft_unsetenv.c		\
 				exec/ft_amp.c				\
 				exec/ft_and.c				\
+				exec/ft_bquote.c			\
 				exec/ft_convert_ltt.c		\
 				exec/ft_dgreat.c			\
 				exec/ft_dless.c				\
@@ -62,6 +63,7 @@ SRC			=	main.c						\
 				misc/ft_get_word.c			\
 				misc/ft_print.c				\
 				misc/ft_prompt.c			\
+				misc/ft_replace_var.c		\
 				misc/ft_signal.c			\
 				misc/ft_init_source.c		\
 				misc/ft_strsplit_shell.c	\

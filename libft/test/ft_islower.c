@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getenv_list.c                                   :+:      :+:    :+:   */
+/*   ft_islower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/25 13:34:44 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 15:25:59 by mmartin          ###   ########.fr       */
+/*   Created: 2015/02/01 16:26:49 by mmartin           #+#    #+#             */
+/*   Updated: 2015/02/01 16:27:00 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include "ft_minishell.h"
-
-char	*ft_getenv_list(t_env *my_env, char *str)
+int		ft_islower(int c)
 {
-	t_env	*tmp;
-
-	tmp = my_env;
-	while (tmp && ft_strncasecmp(tmp->tab, str, ft_strlen(str)))
-		tmp = tmp->next;
-	if (tmp)
-		return (ft_strdup(tmp->tab));
+	if (c >= 'a' && c <= 'z')
+		return (1);
 	else
-		return (NULL);
+		return (0);
 }
