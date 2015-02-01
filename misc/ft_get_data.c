@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctrlc.c                                         :+:      :+:    :+:   */
+/*   ft_get_data.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/06 18:31:22 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 21:03:27 by mmartin          ###   ########.fr       */
+/*   Created: 2015/02/01 12:40:32 by mmartin           #+#    #+#             */
+/*   Updated: 2015/02/01 12:47:16 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft_history.h"
-#include "ft_minishell.h"
-#include "ft_termcap.h"
+#include <string.h>
+#include "ft_struct.h"
 
-int		ft_ctrlc(t_data *d)
+t_data		*ft_get_data(t_data *d)
 {
-	ft_end(d);
-	ft_reset_history(d);
-	ft_free_list(d->first);
-	d->line = ft_new_char(' ');
-	d->first = d->line;
-	d->last = d->line;
-	write(0, "\n", 1);
-	ft_prompt(d);
-	return (1);
+	static	t_data	*data = NULL;
+
+	if (!data && d)
+		data = d;
+	return (data);
 }

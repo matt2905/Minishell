@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/01/28 12:04:07 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 13:11:05 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,19 @@ t_id			g_pid;
 static void		ft_term(t_data *d)
 {
 	char		*line;
+	int			ret;
 
 	d->first = NULL;
 	d->line = NULL;
-	while (ft_prompt(d) && get_next_line(0, &line))
+	while (ft_prompt(0) && (ret = get_next_line(0, &line)) > 0)
 	{
 		ft_processing(d, line);
 		free(line);
 	}
+	if (ret == 0)
+		ft_exit(d, NULL);
+	else
+		ft_putendl_fd("42sh: stdin: Interrupted system call", 2);
 }
 
 static void		ft_set_manpath(t_data *d)
@@ -101,6 +106,7 @@ static void		ft_init_data(t_data *d)
 	d->history = history;
 	d->first_hist = ft_first_history(d->history);
 	d->last_hist = ft_last_history(d->history);
+	ft_get_data(d);
 }
 
 int				main(int argc, char **argv)
@@ -121,8 +127,8 @@ int				main(int argc, char **argv)
 		d.first_hist->next = d.last_hist;
 	ft_check_option(argc, argv, &d);
 	if (d.tty.flag == 1)
-		ft_term(&d);
-	else
 		ft_termcap(&d);
+	else
+		ft_term(&d);
 	return (0);
 }

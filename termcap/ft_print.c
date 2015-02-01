@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:57:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 18:48:41 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 13:11:33 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		ft_print_new(t_data *d)
 	ft_home(d);
 	while (++i <= d->len_prompt)
 		write(1, "\b", 1);
-	ft_prompt(d);
+	ft_prompt(0);
 	while (d->line && d->line->next)
 	{
 		d->line = d->line->next;

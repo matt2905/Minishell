@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2015/01/27 13:01:22 by mmartin          ###   ########.fr        #
+#    Updated: 2015/01/30 20:24:26 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ export	INC		=	-I $(PWD)/libft/includes -I $(PWD)/printf/includes
 
 DOBJ		=	obj/
 
-NAME		=	42sh
+NAME		=	ft_sh1
 
 INC			+=	-I includes
 

@@ -6,7 +6,7 @@
 /*   By: bbouabou <bbouabou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/02 16:26:10 by bbouabou          #+#    #+#             */
-/*   Updated: 2014/03/25 21:03:41 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 13:11:24 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_ctrll(t_data *d)
 	tputs(tgetstr("cl", NULL), 1, ft_int_putchar);
 	pos = d->line->pos;
 	tmp = d->first;
-	ft_prompt(d);
+	ft_prompt(0);
 	while (tmp && tmp->next)
 	{
 		tmp = tmp->next;

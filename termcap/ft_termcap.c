@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 18:50:30 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/01 13:11:41 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "ft_exec.h"
 #include "ft_minishell.h"
 
-static const t_tab	g_tab_func[20] =
+static const t_tab	g_tab_func[] =
 {
 	{"\033[A", ft_go_up},
 	{"\033\033[A", ft_alt_up},
@@ -34,7 +34,6 @@ static const t_tab	g_tab_func[20] =
 	{"\033[3~", ft_delete},
 	{"\177", ft_backspace},
 	{"\004", ft_exit_term},
-	{"\200", ft_ctrlc},
 	{"\013", ft_cut},
 	{"\031", ft_paste},
 	{"\014", ft_ctrll},
@@ -56,7 +55,7 @@ void			ft_termcap(t_data *d)
 	int		y;
 
 	ft_init_term(d);
-	while (ft_prompt(d) && ft_init_line(d))
+	while (ft_prompt(0) && ft_init_line(d))
 	{
 		y = 0;
 		while (y >= 0)
