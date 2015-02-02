@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/22 17:36:30 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 20:47:32 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/02 11:32:37 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "libft.h"
 #include "ft_struct.h"
 
-#include <stdio.h>
 void	ft_free_history(t_history **history)
 {
 	t_history	*tmp;
