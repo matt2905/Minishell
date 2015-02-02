@@ -6,14 +6,14 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:17:28 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 15:41:39 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/02 09:31:50 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include "ft_builtin.h"
 
-static const t_builtin	g_built[11] =
+static const t_builtin	g_built[] =
 {
 	{".", ft_source},
 	{"alias", ft_alias},

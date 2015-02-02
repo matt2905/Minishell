@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:56:51 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 16:32:58 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/02 09:37:41 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ void			ft_dgreat(t_parser *parser, t_data *d)
 {
 	int				fd;
 	char			**tab;
+	char			*tmp;
 
-	tab = ft_strsplit_shell(parser->left->str);
+	tmp = ft_bquote(d, parser->left->str);
+	tab = ft_strsplit_shell(tmp);
+	ft_strdel(&tmp);
 	fd = open(tab[0], O_CREAT | O_APPEND | O_RDWR, 0644);
 	if (ft_check_error(tab))
 		return ;

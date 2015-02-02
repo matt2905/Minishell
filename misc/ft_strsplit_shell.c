@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 12:34:27 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 21:01:29 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/02 09:51:53 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		ft_search_next_word(char *str, int i, char c)
 	int		ok;
 
 	ok = 0;
-	while (str[++i] && ok == 0)
+	while (!ok && str[++i])
 	{
 		while (str[i] && str[i] != c)
 			i++;

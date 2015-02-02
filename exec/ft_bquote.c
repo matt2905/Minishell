@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/01 13:46:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/02 09:23:08 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/02 10:17:03 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ static void	ft_realloc_bquote(int fd, char **save)
 	ptr = ft_strchr(*save, '`');
 	(*save)[ptr - *save] = '\0';
 	str = ft_strchr(++ptr, '`');
+	del = tmp;
+	tmp = ft_strtrim(tmp);
+	ft_strdel(&del);
 	del = *save;
 	*save = ft_xstrjoin("%s%s%s", *save, tmp, *save + (++str - *save));
 	ft_strdel(&del);

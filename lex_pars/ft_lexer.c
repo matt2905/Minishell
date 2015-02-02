@@ -6,7 +6,7 @@
 /*   By: amorfan <amorfan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 15:31:04 by amorfan           #+#    #+#             */
-/*   Updated: 2014/03/27 13:47:44 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/02 09:50:36 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int			ft_get_pos(char *str, int i)
 		if (i == 0 || (i > 0 && str[i - 1] != '\\'))
 		{
 			c = str[i];
-			while (str[++i] && !ok)
+			while (!ok && str[++i])
 			{
 				while (str[i] && str[i] != c)
 					i++;
