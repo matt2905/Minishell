@@ -6,11 +6,17 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 11:21:56 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/01 18:47:46 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/02 09:13:19 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 include		Makefile.source
+
+CC			=	gcc
+
+CFLAGS		=	-Wall -Wextra -Werror
+
+INC			=	-I includes
 
 DOBJ		=	obj/
 

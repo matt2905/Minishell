@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/10 11:21:35 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 20:23:09 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/02 09:16:48 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ static int		ft_get_len(va_list ap, const char *str)
 	{
 		if (str[i] == '%')
 		{
-			++i;
-			if (str[i] == 's')
+			if (str[++i] == 's')
 				len += ft_strlen(va_arg(ap, char *));
 			else
 			{
@@ -47,11 +46,6 @@ static void		ft_copy_str(char **dst, int *i, char *str)
 	int		k;
 
 	k = -1;
-	if (!str)
-	{
-		(*dst)[*i] = '\0';
-		*i += 1;
-	}
 	while (str && str[++k])
 	{
 		(*dst)[*i] = str[k];

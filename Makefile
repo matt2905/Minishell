@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/01 19:40:46 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/02 09:16:46 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ export	CFLAGS	=	-Wall -Wextra -Werror -g
 export	CC		=	gcc
 
 export	INC		=	-I $(PWD)/libft/includes
+
+LIBFT		=	libft/libft.a
 
 DOBJ		=	obj/
 
@@ -36,14 +38,12 @@ DEPENDS		=	-MT $@ -MD -MP -MF $(subst .o,.d,$@)
 
 OBJ_LIB		=	$(libft/SRC_LIB:.c=.o)
 
-HEAD_LIB	=	libft/includes/libft.h libft/includes/ft_struct_lib.h
+all:		$(LIBFT) $(NAME)
 
-all:			./libft/libft.a $(NAME)
-
-libft/libft.a:	libft/$(OBJ_LIB) $(HEAD_LIB)
+$(LIBFT):	libft/$(OBJ_LIB)
 	@Make -C libft
 
-$(NAME):		$(OBJ)
+$(NAME):		$(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB)
 	@echo ""
 	@echo "\033[33m"Compilation of $(NAME) : "\033[32m"Success"\033[0m"

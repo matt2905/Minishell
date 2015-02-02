@@ -6,7 +6,7 @@
 /*   By: bbouabou <bbouabou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 17:34:42 by bbouabou          #+#    #+#             */
-/*   Updated: 2015/02/01 20:30:02 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/02 09:20:31 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,22 @@ static int		ft_error(t_data *d, char **argv, t_line *tmp, int flag)
 	return (1);
 }
 
-static void		ft_ignore_com(char **str)
+static int		ft_ignore_com(char **str)
 {
 	char	*tmp;
+	int		i;
 
 	tmp = ft_strchr(*str, '#');
 	if (tmp)
 		tmp[0] = '\0';
+	i = 0;
+	while ((*str)[i])
+	{
+		if (!ft_isspace((*str)[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 int				ft_source(t_data *d, char **argv)
@@ -57,8 +66,8 @@ int				ft_source(t_data *d, char **argv)
 		return (ft_error(d, argv, tmp, 1));
 	while ((ret = get_next_line(fd, &str)) == 1)
 	{
-		ft_ignore_com(&str);
-		ft_processing(d, str);
+		if (ft_ignore_com(&str))
+			ft_processing(d, str);
 		ft_strdel(&str);
 	}
 	close(fd);
