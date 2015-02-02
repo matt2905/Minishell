@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/01 13:46:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/02 10:27:49 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/02 19:43:44 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static void	ft_execute(t_data *d, char *str, char **save)
 	close(fd_pipe[1]);
 	ft_realloc_bquote(fd_pipe[0], save);
 	close(fd_pipe[0]);
+	g_pid.child = 0;
 }
 
 char		*ft_bquote(t_data *d, char *str)
