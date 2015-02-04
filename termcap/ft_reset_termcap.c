@@ -6,11 +6,12 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 17:26:52 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 12:29:29 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 13:39:16 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_termcap.h"
+#include "ft_minishell.h"
 
 void	ft_reset_termcap(t_data *d)
 {

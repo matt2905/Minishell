@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:55:15 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 20:30:40 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 13:37:57 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,7 @@ void		ft_processing(t_data *d, char *str)
 	}
 	else
 		ft_process(d, str);
-	if (d->tty.flag)
-		ft_reset_termcap(d);
+	ft_reset_termcap(d);
 	if (d->first)
 		ft_free_list(d->first);
 }
