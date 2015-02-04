@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 14:52:11 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 15:34:13 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 16:08:11 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ static void		ft_handle_signal(int sig)
 			ft_putchar('\n');
 			ft_prompt(1);
 		}
-		else if ((sig > 3 && sig < 17) || sig > 19)
-		{
-			signal(sig, SIG_DFL);
-			raise(sig);
-		}
 		else
 			signal(sig, ft_handle_signal);
 	}
@@ -46,12 +41,8 @@ static void		ft_handle_signal(int sig)
 
 void			ft_signal(void)
 {
-	int		i;
-
-	i = 1;
-	while (i < 32)
-	{
-		signal(i, ft_handle_signal);
-		i++;
-	}
+	signal(SIGHUP, ft_handle_signal);
+	signal(SIGINT, ft_handle_signal);
+	signal(SIGQUIT, ft_handle_signal);
+	signal(SIGTSTP, ft_handle_signal);
 }
