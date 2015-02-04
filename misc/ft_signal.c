@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 14:52:11 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 16:08:11 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 17:23:20 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,11 @@
 
 static void		ft_handle_signal(int sig)
 {
-	extern t_id		g_pid;
+	t_data	*d;
 
-	if (g_pid.father || g_pid.child)
-	{
-		if (g_pid.father)
-			kill(g_pid.father, sig);
-		if (g_pid.child)
-			kill(g_pid.child, sig);
-	}
+	d = ft_get_data(NULL);
+	if (d->child->pid)
+		kill(d->child->pid, sig);
 	else
 	{
 		if (sig == SIGINT)

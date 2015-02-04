@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 12:28:31 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 17:39:06 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,8 @@ int				main(int argc, char **argv)
 	d.tty.flag = 0;
 	d.fork = 0;
 	d.alias = NULL;
-	g_pid.father = 0;
-	g_pid.id = 0;
-	g_pid.built = -1;
+	d.nb_process = 0;
+	d.child = ft_create_process(getpid(), d.nb_process, NULL);
 	ft_init_data(&d);
 	ft_init_source(&d);
 	ft_signal();

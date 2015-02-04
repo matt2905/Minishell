@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:53:48 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 20:44:06 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 18:23:41 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <libft.h>
 #include "ft_termcap.h"
 #include "ft_history.h"
+#include "ft_exec.h"
 
 static void		ft_free_env(t_env **my_env)
 {
@@ -60,6 +61,7 @@ void			ft_destroy_data(t_data *d, char **argv)
 	ft_free_list(d->line);
 	free(d->save_pwd);
 	free(d->save_old);
+	ft_delete_all_process(d);
 }
 
 int				ft_exit(t_data *d, char **argv)

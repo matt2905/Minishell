@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:48:33 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 16:32:50 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 18:22:59 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,15 @@ char		*ft_bquote(t_data *d, char *str);
 
 void		ft_processing(t_data *d, char *str);
 void		ft_process(t_data *d, char *str);
+
+/*
+**		ft_process.c
+*/
+
+t_id		*ft_create_process(pid_t pid, int nb, char *cmd);
+void		ft_add_process(t_data *d, int nb, char *cmd, pid_t pid);
+void		ft_delete_process(t_data *d);
+int			ft_check_process(t_data *d);
+void		ft_delete_all_process(t_data *d);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 20:00:20 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/26 17:50:11 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 17:41:04 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ typedef struct			s_env
 typedef struct			s_id
 {
 	int					id;
+	int					nb;
 	int					built;
-	pid_t				child;
-	pid_t				father;
+	char				*cmd;
+	pid_t				pid;
+	struct s_id			*next;
 }						t_id;
 
 /*
@@ -107,9 +109,11 @@ typedef struct			s_data
 	t_line				*last;
 	t_line				*cpy;
 	t_alias				*alias;
+	t_id				*child;
 	char				*str;
 	char				buff[8];
 	int					len_prompt;
+	int					nb_process;
 	int					pipe;
 	int					fork;
 	int					save_fd[3];

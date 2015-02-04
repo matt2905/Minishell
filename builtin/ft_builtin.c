@@ -6,11 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:17:28 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/02 09:31:50 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 17:42:00 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <libft.h>
+#include "ft_exec.h"
 #include "ft_builtin.h"
 
 static const t_builtin	g_built[] =
@@ -30,7 +32,6 @@ static const t_builtin	g_built[] =
 
 void		ft_builtin(t_data *d, char **argv, int *i)
 {
-	extern t_id		g_pid;
 	int				k;
 
 	k = 0;
@@ -38,7 +39,8 @@ void		ft_builtin(t_data *d, char **argv, int *i)
 	{
 		if (ft_strcmp(g_built[k].cmd, argv[0]) == 0)
 		{
-			g_pid.built = g_built[k].func(d, argv);
+			ft_add_process(d, d->nb_process, ft_strimplode(argv), getpid());
+			d->child->built = g_built[k].func(d, argv);
 			*i = 1;
 			return ;
 		}

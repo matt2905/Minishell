@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/25 16:41:52 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/02 09:32:02 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/04 16:34:56 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC			=	main.c						\
 				exec/ft_less.c				\
 				exec/ft_or.c				\
 				exec/ft_pipe.c				\
+				exec/ft_process.c			\
 				exec/ft_process_tree.c		\
 				exec/ft_processing.c		\
 				exec/ft_search_path.c		\

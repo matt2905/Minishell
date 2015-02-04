@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:55:15 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 13:37:57 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 18:18:50 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static char	*ft_clean_line(t_data *d, char *str)
 
 void		ft_process(t_data *d, char *str)
 {
-	extern t_id		g_pid;
 	int				i;
 	char			**tab;
 	char			*tmp;
@@ -53,7 +52,7 @@ void		ft_process(t_data *d, char *str)
 			{
 				ft_putstr_fd("42sh: command not found: ", 2);
 				ft_putendl_fd(tab[0], 2);
-				g_pid.built = 1;
+				d->child->built = 1;
 			}
 		}
 	}
@@ -70,8 +69,7 @@ void		ft_processing(t_data *d, char *str)
 	d->pipe = 0;
 	if (!str)
 		return ;
-	if (d->tty.flag)
-		ft_backup_termcap(d);
+	ft_backup_termcap(d);
 	ft_lexer(&lex, str);
 	if (lex)
 	{
