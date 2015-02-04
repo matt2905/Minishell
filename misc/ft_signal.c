@@ -6,13 +6,14 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 14:52:11 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 13:38:26 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 15:34:13 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/ioctl.h>
 #include <signal.h>
 #include "libft.h"
+#include "printf.h"
 #include "ft_minishell.h"
 
 static void		ft_handle_signal(int sig)
@@ -33,7 +34,7 @@ static void		ft_handle_signal(int sig)
 			ft_putchar('\n');
 			ft_prompt(1);
 		}
-		else if ((sig > 2 && sig < 17) || sig > 20)
+		else if ((sig > 3 && sig < 17) || sig > 19)
 		{
 			signal(sig, SIG_DFL);
 			raise(sig);
@@ -48,7 +49,7 @@ void			ft_signal(void)
 	int		i;
 
 	i = 1;
-	while (i < 33)
+	while (i < 32)
 	{
 		signal(i, ft_handle_signal);
 		i++;

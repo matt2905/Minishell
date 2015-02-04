@@ -6,23 +6,32 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:57:21 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 13:17:41 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 15:45:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include <libft.h>
+#include "printf.h"
 #include "ft_exec.h"
 
 static int		ft_launch(char **my_env, char **argv, char *path)
 {
-	extern t_id		g_pid;
+	extern const char	*sys_siglist[];
+	extern t_id			g_pid;
+	char				*cmd;
 
 	g_pid.father = fork();
 	if (g_pid.father > 0)
 	{
-		wait(&g_pid.id);
+		waitpid(g_pid.father, &g_pid.id, WUNTRACED);
+		if (WIFSIGNALED(g_pid.id))
+		{
+			cmd = ft_strimplode(argv);
+			ft_printf("42sh: %s\t%s\n", sys_siglist[WTERMSIG(g_pid.id)], cmd);
+			ft_strdel(&cmd);
+		}
 		ft_tabdel(&my_env);
 		free(path);
 		return (1);
