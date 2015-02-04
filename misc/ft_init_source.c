@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/27 13:37:47 by mmartin           #+#    #+#             */
-/*   Updated: 2015/01/27 12:04:38 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/03 14:15:05 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void		ft_init_source(t_data *d)
 		tab[2] = NULL;
 		ft_source(d, tab);
 		ft_tabdel(&tab);
+		close(fd);
 	}
 	ft_strdel(&tmp);
 	ft_strdel(&ptr);
-	close(fd);
 }

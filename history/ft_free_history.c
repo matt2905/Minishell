@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/22 17:36:30 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/02 11:32:37 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 11:39:25 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_free_history(t_history **history)
 	t_history	*ptr;
 
 	tmp = *history;
+	if (!tmp)
+		return ;
 	while (tmp->next != *history)
 	{
 		ptr = tmp;

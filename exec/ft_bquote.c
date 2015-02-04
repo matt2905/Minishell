@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/01 13:46:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/02 19:43:44 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/03 14:19:11 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,18 @@ static void	ft_realloc_bquote(int fd, char **save)
 
 static void	ft_execute(t_data *d, char *str, char **save)
 {
-	extern t_id		g_pid;
 	int				fd_pipe[2];
 	int				id;
+	pid_t			pid;
 
 	pipe(fd_pipe);
-	g_pid.child = fork();
-	if (!g_pid.child)
+	pid = fork();
+	if (!pid)
 		ft_child(d, str, fd_pipe);
-	waitpid(g_pid.child, &id, 0);
+	waitpid(pid, &id, 0);
 	close(fd_pipe[1]);
 	ft_realloc_bquote(fd_pipe[0], save);
 	close(fd_pipe[0]);
-	g_pid.child = 0;
 }
 
 char		*ft_bquote(t_data *d, char *str)

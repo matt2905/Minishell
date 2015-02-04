@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/02 20:18:00 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/04 12:28:31 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void		ft_term(t_data *d)
 
 	d->first = NULL;
 	d->line = NULL;
+	d->str = NULL;
 	while (ft_prompt(0) && (ret = get_next_line(0, &line)) > 0)
 	{
 		ft_processing(d, line);
