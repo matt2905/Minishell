@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/04 16:24:16 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 18:23:38 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/07 18:17:44 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
-#include "ft_struct.h"
+#include "ft_minishell.h"
 
 t_id	*ft_create_process(pid_t pid, int nb, char *cmd)
 {
@@ -22,6 +22,8 @@ t_id	*ft_create_process(pid_t pid, int nb, char *cmd)
 	new->id = 0;
 	new->nb = nb;
 	new->built = -1;
+	new->jobs = 0;
+	new->run = 0;
 	new->cmd = cmd;
 	new->pid = pid;
 	new->next = NULL;
@@ -32,6 +34,8 @@ void	ft_add_process(t_data *d, int nb, char *cmd, pid_t pid)
 {
 	t_id	*tmp;
 
+	if (pid == -1)
+		ft_puterror("fork() failed\n");
 	if (pid)
 	{
 		tmp = ft_create_process(pid, nb, cmd);
@@ -48,13 +52,21 @@ void	ft_delete_process(t_data *d)
 	tmp = d->child;
 	while (tmp)
 	{
-		ptr = tmp;
-		tmp = tmp->next;
-		if (ptr->nb == d->nb_process)
+		ptr = NULL;
+		if (!tmp->jobs && tmp->nb)
 		{
-			d->child = ptr->next;
+			ptr = tmp;
+			d->child = tmp->next;
+		}
+		else if (tmp->next && !tmp->next->jobs && tmp->next->nb)
+		{
+			ptr = tmp->next;
+			tmp->next = ptr->next;
+		}
+		tmp = tmp->next;
+		if (ptr)
+		{
 			ft_strdel(&ptr->cmd);
-			ptr->next = NULL;
 			free(ptr);
 		}
 	}
@@ -94,4 +106,5 @@ void	ft_delete_all_process(t_data *d)
 		ft_strdel(&ptr->cmd);
 		free(ptr);
 	}
+	d->child = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 17:39:06 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/07 15:25:03 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,14 @@
 #include "ft_minishell.h"
 #include "ft_termcap.h"
 
-t_id			g_pid;
-
 static void		ft_term(t_data *d)
 {
 	char		*line;
 	int			ret;
 
-	d->first = NULL;
-	d->line = NULL;
-	d->str = NULL;
+	d->tty.fd = STDIN_FILENO;
+	setpgid(0, 0);
+	tcsetpgrp(d->tty.fd, getpgrp());
 	while (ft_prompt(0) && (ret = get_next_line(0, &line)) > 0)
 	{
 		ft_processing(d, line);
@@ -95,6 +93,10 @@ static void		ft_init_data(t_data *d)
 	history = NULL;
 	d->tmp_hist = NULL;
 	d->cpy = NULL;
+	d->first = NULL;
+	d->last = NULL;
+	d->line = NULL;
+	d->str = NULL;
 	d->save_fd[0] = dup(0);
 	d->save_fd[1] = dup(1);
 	d->save_fd[2] = dup(2);

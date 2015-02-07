@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:45:51 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/02 09:31:56 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/07 18:24:20 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@
 # include "ft_struct.h"
 
 int			ft_alias(t_data *d, char **arg);
+int			ft_bg(t_data *d, char **arg);
 int			ft_cd(t_data *d, char **arg);
 int			ft_echo(t_data *d, char **arg);
 int			ft_env(t_data *d, char **arg);
 int			ft_exit(t_data *d, char **arg);
+int			ft_fg(t_data *d, char **arg);
+int			ft_jobs(t_data *d, char **arg);
 int			ft_setenv(t_data *d, char **arg);
 int			ft_source(t_data *d, char **arg);
 int			ft_unalias(t_data *d, char **arg);

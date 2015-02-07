@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reset_termcap.c                                 :+:      :+:    :+:   */
+/*   ft_puterror.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/11 17:26:52 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/06 12:01:58 by mmartin          ###   ########.fr       */
+/*   Created: 2015/02/07 12:29:25 by mmartin           #+#    #+#             */
+/*   Updated: 2015/02/07 21:01:21 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_termcap.h"
-#include "ft_exec.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include "libft.h"
+#include "ft_builtin.h"
+#include "ft_minishell.h"
 
-void	ft_reset_termcap(t_data *d)
+void		ft_puterror(char const *str)
 {
-	t_id		*tmp;
+	int		len;
+	char	**argv;
+	t_data	*d;
 
-	tmp = d->child;
-	if (d->tty.flag)
-		tcsetattr(d->tty.fd, TCSANOW, &(d->tty.new_term));
-	ft_delete_process(d);
-	if (d->child->nb == 0)
-		d->child->built = -1;
-	if (d->child != tmp)
-		d->nb_process = d->child->nb;
+	argv = (char **)malloc(sizeof(*argv) * 2);
+	d = ft_get_data(NULL);
+	argv[0] = ft_strdup("1");
+	argv[1] = NULL;
+	len = ft_strlen(str);
+	write(2, str, len);
+	ft_exit(d, argv);
 }

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 20:00:20 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 17:41:04 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/07 18:17:31 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ typedef struct			s_env
 
 typedef struct			s_id
 {
-	int					id;
 	int					nb;
 	int					built;
+	int					id;
+	int					jobs;
+	int					run;
 	char				*cmd;
 	pid_t				pid;
 	struct s_id			*next;

@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reset_termcap.c                                 :+:      :+:    :+:   */
+/*   ft_print_process.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/11 17:26:52 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/06 12:01:58 by mmartin          ###   ########.fr       */
+/*   Created: 2015/02/06 12:15:21 by mmartin           #+#    #+#             */
+/*   Updated: 2015/02/06 12:20:10 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_termcap.h"
-#include "ft_exec.h"
+#include <sys/wait.h>
+#include "printf.h"
 
-void	ft_reset_termcap(t_data *d)
+int		ft_print_process(int id, char *cmd)
 {
-	t_id		*tmp;
+	extern const char	*sys_siglist[];
 
-	tmp = d->child;
-	if (d->tty.flag)
-		tcsetattr(d->tty.fd, TCSANOW, &(d->tty.new_term));
-	ft_delete_process(d);
-	if (d->child->nb == 0)
-		d->child->built = -1;
-	if (d->child != tmp)
-		d->nb_process = d->child->nb;
+	if (WIFSIGNALED(id))
+	{
+		ft_printf("42sh: %s\t%s\n", sys_siglist[WTERMSIG(id)], cmd);
+		return (1);
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:39 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 18:12:19 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/06 12:21:11 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include "printf.h"
 #include "ft_exec.h"
+#include "ft_minishell.h"
 
 static void		ft_left(t_parser *parser, t_data *d, int *fd_pipe)
 {
@@ -37,21 +38,12 @@ static void		ft_right(t_parser *parser, t_data *d, int *fd_pipe)
 
 static void		ft_check_process_pipe(t_id *first, t_id *second)
 {
-	extern const char	*sys_siglist[];
-	char				*cmd;
-
 	if (!WIFEXITED(first->id) || !WIFEXITED(second->id))
 	{
-		cmd = first->cmd;
-		if (WIFSIGNALED(first->id))
-			ft_printf("42sh: %s\t%s\n", sys_siglist[WTERMSIG(first->id)], cmd);
-		else
-			ft_printf("42sh: done\t\t\t%s\n", cmd);
-		cmd = second->cmd;
-		if (WIFSIGNALED(second->id))
-			ft_printf("42sh: %s\t%s\n", sys_siglist[WTERMSIG(second->id)], cmd);
-		else
-			ft_printf("42sh: done\t\t\t%s\n", cmd);
+		if (!ft_print_process(first->id, first->cmd))
+			ft_printf("42sh: done\t\t\t%s\n", first->cmd);
+		if (!ft_print_process(second->id, second->cmd))
+			ft_printf("42sh: done\t\t\t%s\n", second->cmd);
 	}
 }
 

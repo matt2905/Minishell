@@ -6,13 +6,14 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/25 16:41:52 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/04 16:34:56 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/07 18:24:46 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC			=	main.c						\
 				builtin/ft_add_env.c		\
 				builtin/ft_alias.c			\
+				builtin/ft_bg.c				\
 				builtin/ft_builtin.c		\
 				builtin/ft_cd.c				\
 				builtin/ft_create_env.c		\
@@ -20,8 +21,10 @@ SRC			=	main.c						\
 				builtin/ft_echo_escape.c	\
 				builtin/ft_env.c			\
 				builtin/ft_exit.c			\
+				builtin/ft_fg.c				\
 				builtin/ft_get_curpath.c	\
 				builtin/ft_getenv_list.c	\
+				builtin/ft_jobs.c			\
 				builtin/ft_modify_env.c		\
 				builtin/ft_new_env.c		\
 				builtin/ft_search_alias.c	\
@@ -63,7 +66,9 @@ SRC			=	main.c						\
 				misc/ft_get_data.c			\
 				misc/ft_get_word.c			\
 				misc/ft_print.c				\
+				misc/ft_print_process.c		\
 				misc/ft_prompt.c			\
+				misc/ft_puterror.c			\
 				misc/ft_replace_var.c		\
 				misc/ft_signal.c			\
 				misc/ft_init_source.c		\

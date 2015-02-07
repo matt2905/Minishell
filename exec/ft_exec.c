@@ -6,42 +6,72 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:57:21 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 18:10:46 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/07 15:11:36 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <libft.h>
+#include "libft.h"
 #include "printf.h"
 #include "ft_exec.h"
 #include "ft_minishell.h"
 
+static void		ft_child(t_data *d)
+{
+	signal(SIGHUP, SIG_DFL);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGTSTP, SIG_DFL);
+	signal(SIGTTIN, SIG_DFL);
+	signal(SIGTTOU, SIG_DFL);
+	signal(SIGCHLD, SIG_DFL);
+	if (setpgid(0, 0) < 0)
+		ft_puterror("setpgid in exec/ft_exec.c => line 30 failed\n");
+	if (tcsetpgrp(d->tty.fd, getpgrp()) < 0)
+		ft_puterror("tcsetpgrp in exec/ft_exec.c => line 32 failed\n");
+}
+
+static void		ft_father(t_data *d)
+{
+	if (setpgid(d->child->pid, d->child->pid) < 0)
+		ft_puterror("setpgid in exec/ft_exec.c => line 38 failed\n");
+	if (tcsetpgrp(d->tty.fd, getpgid(d->child->pid)) < 0)
+		ft_puterror("tcsetpgrp in exec/ft_exec.c => line 40 failed\n");
+	if (killpg(getpgid(d->child->pid), SIGCONT) < 0)
+		ft_puterror("kill in exec/ft_exec.c => line 42 failed\n");
+	waitpid(d->child->pid, &d->child->id, WUNTRACED);
+	if (WIFSTOPPED(d->child->id))
+	{
+		ft_printf("42sh: suspended\t%s\n", d->child->cmd);
+		d->child->jobs = 1;
+	}
+	if (tcsetpgrp(d->tty.fd, getpgrp()) < 0)
+		ft_puterror("tcsetpgrp in exec/ft_exec.c => line 50 failed\n");
+	ft_print_process(d->child->id, d->child->cmd);
+}
+
 static int		ft_launch(char **my_env, char **argv, char *path)
 {
-	extern const char	*sys_siglist[];
 	t_data				*d;
 	t_id				*tmp;
 
 	d = ft_get_data(NULL);
 	tmp = d->child;
 	ft_add_process(d, d->nb_process, ft_strimplode(argv), fork());
-	if (d->child != tmp)
+	if (d->child == tmp)
 	{
-		waitpid(d->child->pid, &d->child->id, WUNTRACED);
-		if (WIFSIGNALED(d->child->id))
-		{
-			ft_printf("42sh: %s\t%s\n",
-					sys_siglist[WTERMSIG(d->child->id)], d->child->cmd);
-		}
-		ft_tabdel(&my_env);
-		free(path);
-		return (1);
+		ft_child(d);
+		execve(path, argv, my_env);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
-		execve(path, argv, my_env);
-		exit(EXIT_FAILURE);
+		ft_father(d);
+		ft_tabdel(&my_env);
+		free(path);
+		return (1);
 	}
 	return (0);
 }

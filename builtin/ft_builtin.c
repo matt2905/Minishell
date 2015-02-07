@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:17:28 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 17:42:00 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/07 21:03:45 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ static const t_builtin	g_built[] =
 {
 	{".", ft_source},
 	{"alias", ft_alias},
+//	{"bg", ft_bg},
 	{"cd", ft_cd},
 	{"echo", ft_echo},
 	{"env", ft_env},
 	{"exit", ft_exit},
+	{"fg", ft_fg},
+	{"jobs", ft_jobs},
 	{"setenv", ft_setenv},
 	{"source", ft_source},
 	{"unalias", ft_unalias},
