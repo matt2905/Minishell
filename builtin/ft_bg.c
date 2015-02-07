@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/07 18:16:24 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/07 21:03:59 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/07 21:06:02 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int				ft_bg(t_data *d, char **arg)
 
 	i = 1;
 	if (ft_tablen(arg) <= 1)
-		ft_continue(d, d->nb_process -1);
+		ft_continue(d, d->nb_process - 1);
 	else
 	{
 		while (arg[i])
