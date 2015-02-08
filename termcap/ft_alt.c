@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 15:27:05 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/08 11:26:07 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 21:04:57 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int				ft_alt_left(t_data *d)
 		while (d->line->str[d->line->index] != ' ' && d->line->index > 0)
 		{
 			tputs(tgetstr("le", NULL), 1, ft_int_putchar);
-			d->line->index--;;
+			d->line->index--;
 		}
 	}
 	return (1);
