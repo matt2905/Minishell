@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 11:21:56 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/08 13:55:34 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/08 15:23:34 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ DOBJ		=	obj/
 NAME		=	libft.a
 
 DEPS		=	$(patsubst %.c, $(DOBJ)%.d, $(SRC_LIB))
+
+OBJ_LIB		=	$(patsubst %.c, $(DOBJ)%.o, $(SRC_LIB))
 
 DEPENDS		=	-MT $@ -MD -MP -MF $(subst .o,.d,$@)
 

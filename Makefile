@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/08 13:57:26 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/08 15:23:22 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ DEPENDS		=	-MT $@ -MD -MP -MF $(subst .o,.d,$@)
 
 all:		$(LIBFT) $(NAME)
 
-$(LIBFT):	$(libft/OBJ_LIB)
+$(LIBFT):
 	@Make -C libft
 
 $(NAME):		$(OBJ) $(LIBFT)
