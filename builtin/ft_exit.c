@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:53:48 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/08 14:07:28 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 21:03:33 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int				ft_exit(t_data *d, char **argv)
 		n = ft_atoi(argv[1]);
 	else
 		n = 0;
+	if (d->tty.flag)
+		tcsetattr(d->tty.fd, TCSANOW, &(d->tty.backup));
 	ft_destroy_data(d, argv);
 	ft_putendl("exit");
 	exit(n);
