@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 17:26:52 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/06 12:01:58 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 20:58:37 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void	ft_reset_termcap(t_data *d)
 	ft_delete_process(d);
 	if (d->child->nb == 0)
 		d->child->built = -1;
-	if (d->child != tmp)
+	if (d->child != tmp || d->child->nb == 0)
 		d->nb_process = d->child->nb;
 }

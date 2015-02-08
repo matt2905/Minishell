@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:56 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/08 12:15:11 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 20:48:38 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		ft_check_error(t_line *first)
 	int		i;
 
 	i = 0;
-	while (first->str[i])
+	while (first->str && first->str[i])
 	{
 		word = 0;
 		while (first->str[i] && first->str[i] != ' ')
