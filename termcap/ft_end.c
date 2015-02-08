@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 13:30:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 21:04:29 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 13:41:54 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 int		ft_end(t_data *d)
 {
-	if (d->line && d->last)
+	if (d->line->str)
 	{
-		while (d->line != d->last)
+		while (d->line->index < d->line->len)
 		{
 			tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
-			d->line = d->line->next;
+			d->line->index++;
 			if (ft_check_pos(d->line, d->len_prompt))
 			{
 				tputs(tgetstr("cr", NULL), 1, ft_int_putchar);

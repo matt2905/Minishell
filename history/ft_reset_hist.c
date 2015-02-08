@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 16:33:36 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 20:58:50 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 14:07:17 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ static void		ft_free_tmp(t_tmp **save, t_data *d)
 	{
 		ptr = *save;
 		*save = (*save)->next;
-		ft_free_list(ptr->line);
-		ptr->first = NULL;
-		ptr->last = NULL;
+		ft_free_list(ptr->line, 1);
 		ptr->next = NULL;
 		ptr->prev = NULL;
 		free(ptr);

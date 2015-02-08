@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:56:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 11:32:46 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 14:15:21 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,10 @@ void		ft_reset_termcap(t_data *d);
 void		ft_termcap(t_data *d);
 
 /*
-**		ft_struct.c
-*/
-
-t_line		*ft_find_first(t_line *line);
-t_line		*ft_find_last(t_line *line);
-void		ft_add_char(t_line **tmp, char c);
-t_line		*ft_new_char(char c);
-
-/*
 **		ft_tool_list.c
 */
 
-void		ft_free_list(t_line *list);
+void		ft_free_list(t_line *list, int del);
 void		ft_print_list(t_data *d);
 
 #endif

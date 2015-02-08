@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/25 16:41:52 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/07 18:24:46 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/08 11:15:17 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,6 @@ SRC			=	main.c						\
 				termcap/ft_print.c			\
 				termcap/ft_reset_termcap.c	\
 				termcap/ft_return.c			\
-				termcap/ft_struct.c			\
 				termcap/ft_tab.c			\
 				termcap/ft_termcap.c		\
 				termcap/ft_int_putchar.c	\

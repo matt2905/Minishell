@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:57:46 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 21:10:20 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 14:06:54 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <termcap.h>
 #include <stdlib.h>
-#include <libft.h>
+#include "libft.h"
 #include "ft_termcap.h"
 
 void	ft_print_list(t_data *d)
@@ -22,34 +22,19 @@ void	ft_print_list(t_data *d)
 	tmp = d->line;
 	tputs(tgetstr("cd", NULL), 1, ft_int_putchar);
 	tputs(tgetstr("sc", NULL), 1, ft_int_putchar);
-	if (tmp)
-	{
-		tmp = tmp->next;
-		while (tmp)
-		{
-			ft_putchar_fd(tmp->c, 0);
-			tmp = tmp->next;
-		}
-	}
+	if (tmp->str)
+		ft_putstr_fd(tmp->str + tmp->index, 0);
 	tputs(tgetstr("rc", NULL), 1, ft_int_putchar);
-	d->last = ft_find_last(d->first);
 }
 
-void	ft_free_list(t_line *list)
+void	ft_free_list(t_line *list, int del)
 {
-	t_line	*tmp;
-	t_line	*ptr;
-
-	tmp = list;
-	while (tmp && tmp->prev)
-		tmp = tmp->prev;
-	while (tmp != NULL)
+	if (list)
 	{
-		ptr = tmp;
-		tmp = tmp->next;
-		ptr->next = NULL;
-		ptr->prev = NULL;
-		ptr->c = '\0';
-		free(ptr);
+		ft_strdel(&list->str);
+		list->len = 0;
+		list->index = 0;
+		if (del)
+			free(list);
 	}
 }

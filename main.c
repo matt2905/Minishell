@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/07 15:25:03 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 10:59:35 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ static void		ft_init_data(t_data *d)
 	history = NULL;
 	d->tmp_hist = NULL;
 	d->cpy = NULL;
-	d->first = NULL;
-	d->last = NULL;
 	d->line = NULL;
 	d->str = NULL;
 	d->save_fd[0] = dup(0);

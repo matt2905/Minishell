@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 14:00:31 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/07 15:16:34 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/08 13:58:29 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -138,3 +138,5 @@ SRC_LIB		+=	$(SRC_STR)
 SRC_LIB		+=	$(SRC_TEST)
 
 SRC_LIB		+=	$(SRC_PUT)
+
+OBJ_LIB		=	$(patsubst %.c, $(DOBJ)%.o, $(SRC_LIB))

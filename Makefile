@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/02 09:16:46 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/08 13:57:26 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,9 @@ LIB			=	-L libft -lft -ltermcap
 
 DEPENDS		=	-MT $@ -MD -MP -MF $(subst .o,.d,$@)
 
-OBJ_LIB		=	$(libft/SRC_LIB:.c=.o)
-
 all:		$(LIBFT) $(NAME)
 
-$(LIBFT):	libft/$(OBJ_LIB)
+$(LIBFT):	$(libft/OBJ_LIB)
 	@Make -C libft
 
 $(NAME):		$(OBJ) $(LIBFT)

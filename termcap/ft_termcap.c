@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/07 15:15:16 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 13:24:01 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,17 @@ static const t_tab	g_tab_func[] =
 static int		ft_init_line(t_data *d)
 {
 	d->str = NULL;
-	d->line = ft_new_char(' ');
-	d->first = d->line;
-	d->last = d->line;
+	if (!d->line)
+	{
+		d->line = (t_line *)malloc(sizeof(*d->line));
+		d->line->index = 0;
+		d->line->str = NULL;
+		d->line->len = 0;
+		d->cpy = (t_line *)malloc(sizeof(*d->line));
+		d->cpy->index = 0;
+		d->cpy->str = NULL;
+		d->cpy->len = 0;
+	}
 	return (1);
 }
 

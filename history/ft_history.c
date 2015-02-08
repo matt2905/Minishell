@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 18:06:15 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 20:42:52 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 11:06:26 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,14 @@ static int		ft_open_hist(t_data *d)
 void			ft_history(t_data *d)
 {
 	int			fd;
-	t_line		*tmp;
 	char		*ptr;
-	int			i;
 	t_history	*hist;
 
-	tmp = d->first;
-	if ((fd = ft_open_hist(d)) == -1 || !d->last->prev)
+	if ((fd = ft_open_hist(d)) == -1 || !d->line->len)
 		return ;
-	if (!(ptr = (char *)malloc(sizeof(char) * (d->last->prev->pos + 2))))
+	if (!(ptr = ft_strdup(d->line->str)))
 		return ;
-	i = 0;
-	while ((tmp = tmp->next))
-	{
-		write(fd, &tmp->c, 1);
-		ptr[i++] = tmp->c;
-	}
-	ptr[i] = '\0';
+	write(fd, d->line->str, d->line->len);
 	hist = d->history;
 	ft_add_history(&hist, ptr);
 	d->history = hist;

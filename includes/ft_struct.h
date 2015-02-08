@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 20:00:20 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/07 18:17:31 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 10:59:10 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,14 @@ typedef struct			s_tty
 
 typedef struct			s_line
 {
-	struct s_line		*next;
-	struct s_line		*prev;
-	char				c;
-	int					pos;
+	int					index;
+	int					len;
+	char				*str;
 }						t_line;
 
 typedef struct			s_tmp
 {
 	t_line				*line;
-	t_line				*first;
-	t_line				*last;
 	struct s_tmp		*next;
 	struct s_tmp		*prev;
 }						t_tmp;
@@ -107,8 +104,6 @@ typedef struct			s_data
 	t_history			*last_hist;
 	t_tmp				*tmp_hist;
 	t_line				*line;
-	t_line				*first;
-	t_line				*last;
 	t_line				*cpy;
 	t_alias				*alias;
 	t_id				*child;

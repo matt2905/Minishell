@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 16:08:09 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/07 15:25:05 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 13:25:39 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,24 @@ void			ft_init_term(t_data *d)
 	char	*term;
 	char	buff[1024];
 
-	if (setpgid(0, 0) < 0)
-		ft_puterror("setpgid in termcap/ft_init_term.c line 36: failed\n");
-	if (tcsetpgrp(d->tty.fd, getpgrp()) < 0)
-		ft_puterror("tcsetpgrp in termcap/ft_init_term.c line 38: failed\n");
 	name = ttyname(0);
 	d->tty.fd = open(name, O_WRONLY);
 	free(name);
+	if (setpgid(0, 0) < 0)
+		ft_puterror("setpgid in termcap/ft_init_term.c line 40: failed\n");
+	if (tcsetpgrp(d->tty.fd, getpgrp()) < 0)
+		ft_puterror("tcsetpgrp in termcap/ft_init_term.c line 42: failed\n");
 	if (tcgetattr(d->tty.fd, &(d->tty.backup)) < 0)
-		ft_puterror("tcgetattr in termcap/ft_init_term.c line 43: failed\n");
+		ft_puterror("tcgetattr in termcap/ft_init_term.c line 44: failed\n");
 	ft_modify_termios(d);
 	if (tcsetattr(d->tty.fd, TCSANOW, &(d->tty.new_term)) == -1)
 		ft_oneshot(d);
 	if ((term = ft_getenv_list(d->my_env, "TERM=")) == NULL)
-		ft_puterror("getenv in termcap/ft_init_term.c line 50: failed\n");
+		ft_puterror("getenv in termcap/ft_init_term.c line 49: failed\n");
 	if (tgetent(buff, term + 5) < 0)
 	{
 		free(term);
-		ft_puterror("tgetent in termcap/ft_init_term.c line 52: failed\n");
+		ft_puterror("tgetent in termcap/ft_init_term.c line 51: failed\n");
 	}
 	free(term);
 }

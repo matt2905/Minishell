@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:53:48 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 18:23:41 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 14:07:28 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void			ft_destroy_data(t_data *d, char **argv)
 	d->last_hist = NULL;
 	ft_free_env(&(d->my_env));
 	ft_free_alias(d->alias);
-	ft_free_list(d->line);
+	ft_free_list(d->line, 1);
+	ft_free_list(d->cpy, 1);
 	free(d->save_pwd);
 	free(d->save_old);
 	ft_delete_all_process(d);

@@ -6,33 +6,32 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:08:24 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 21:02:16 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 13:20:29 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <termcap.h>
+#include "libft.h"
 #include "ft_termcap.h"
 
 int		ft_backspace(t_data *d)
 {
-	t_line	*ptr;
+	char	*tmp;
 
-	if (d->line && d->first && d->line != d->first)
+	if (d->line && d->line->index > 0)
 	{
-		if (d->line->next)
-			d->line->next->prev = d->line->prev;
-		if (d->line->prev)
-		{
-			ptr = d->line;
-			d->line->prev->next = d->line->next;
-			d->line = d->line->prev;
-			free(ptr);
-			tputs(tgetstr("le", NULL), 1, ft_int_putchar);
-			tputs(tgetstr("dm", NULL), 1, ft_int_putchar);
-			tputs(tgetstr("dc", NULL), 1, ft_int_putchar);
-			tputs(tgetstr("ed", NULL), 1, ft_int_putchar);
-		}
+		tmp = ft_strnew(d->line->len);
+		ft_strncpy(tmp, d->line->str, d->line->index - 1);
+		ft_strcat(tmp, d->line->str + d->line->index);
+		ft_strdel(&d->line->str);
+		d->line->str = tmp;
+		d->line->index--;
+		d->line->len--;
+		tputs(tgetstr("le", NULL), 1, ft_int_putchar);
+		tputs(tgetstr("dm", NULL), 1, ft_int_putchar);
+		tputs(tgetstr("dc", NULL), 1, ft_int_putchar);
+		tputs(tgetstr("ed", NULL), 1, ft_int_putchar);
 	}
 	ft_print_list(d);
 	return (1);

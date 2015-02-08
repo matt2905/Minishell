@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:55:15 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 18:18:50 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 14:06:36 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ void		ft_processing(t_data *d, char *str)
 	else
 		ft_process(d, str);
 	ft_reset_termcap(d);
-	if (d->first)
-		ft_free_list(d->first);
+	if (d->line)
+		ft_free_list(d->line, 0);
 }

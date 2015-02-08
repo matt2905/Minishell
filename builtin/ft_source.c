@@ -6,7 +6,7 @@
 /*   By: bbouabou <bbouabou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 17:34:42 by bbouabou          #+#    #+#             */
-/*   Updated: 2015/02/02 09:20:31 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 11:02:46 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@
 #include <libft.h>
 #include "ft_exec.h"
 
-static int		ft_error(t_data *d, char **argv, t_line *tmp, int flag)
+static int		ft_error(char **argv, int flag)
 {
 	if (flag == 1)
 	{
 		ft_putstr_fd(argv[0], 2);
 		ft_putstr_fd(": no such file or directory: ", 2);
 		ft_putendl_fd(argv[1], 2);
-		d->first = tmp;
 	}
 	else
 	{
@@ -56,14 +55,11 @@ int				ft_source(t_data *d, char **argv)
 	char	*str;
 	int		ret;
 	int		fd;
-	t_line	*tmp;
 
-	tmp = d->first;
-	d->first = NULL;
 	if (!argv[1])
-		return (ft_error(d, argv, tmp, 0));
+		return (ft_error(argv, 0));
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		return (ft_error(d, argv, tmp, 1));
+		return (ft_error(argv, 1));
 	while ((ret = get_next_line(fd, &str)) == 1)
 	{
 		if (ft_ignore_com(&str))
@@ -71,7 +67,6 @@ int				ft_source(t_data *d, char **argv)
 		ft_strdel(&str);
 	}
 	close(fd);
-	d->first = tmp;
 	if (ret == -1)
 		return (1);
 	return (0);

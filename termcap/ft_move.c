@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 15:25:18 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 21:06:35 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/08 13:12:43 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,6 @@
 #include "ft_termcap.h"
 #include "ft_history.h"
 
-static void		ft_print_hist(t_data *d)
-{
-	if (d->line && d->line->next && d->line->c == ' ')
-		d->line = d->line->next;
-	while (d->line && d->line->next)
-	{
-		ft_putchar_fd(d->line->c, 0);
-		d->line = d->line->next;
-	}
-	if (d->line && d->line != d->first)
-		ft_putchar_fd(d->line->c, 0);
-}
-
 int				ft_go_down(t_data *d)
 {
 	if (d->history && d->history->next->flag == 1)
@@ -37,9 +24,9 @@ int				ft_go_down(t_data *d)
 		tputs(tgetstr("cd", NULL), 1, ft_int_putchar);
 		d->tmp_hist = d->tmp_hist->prev;
 		d->line = d->tmp_hist->line;
-		d->first = d->tmp_hist->first;
-		d->last = d->tmp_hist->last;
-		ft_print_hist(d);
+		d->line->index = d->line->len;
+		if (d->line->str)
+			ft_putstr_fd(d->line->str, 0);
 		d->history = d->history->next;
 		d->history->flag = 0;
 	}
@@ -48,19 +35,19 @@ int				ft_go_down(t_data *d)
 
 int				ft_go_left(t_data *d)
 {
-	if (d->line != d->first)
+	if (d->line->index > 0)
 	{
 		tputs(tgetstr("le", NULL), 1, ft_int_putchar);
-		d->line = d->line->prev;
+		d->line->index--;
 	}
 	return (1);
 }
 
 int				ft_go_right(t_data *d)
 {
-	if (d->line && d->line->next)
+	if (d->line && d->line->index < d->line->len)
 	{
-		d->line = d->line->next;
+		d->line->index++;
 		tputs(tgetstr("nd", NULL), 1, ft_int_putchar);
 		if (ft_check_pos(d->line, d->len_prompt))
 		{
@@ -82,9 +69,8 @@ int				ft_go_up(t_data *d)
 		ft_home(d);
 		tputs(tgetstr("cd", NULL), 1, ft_int_putchar);
 		d->line = d->tmp_hist->line;
-		d->first = d->tmp_hist->first;
-		d->last = d->tmp_hist->last;
-		ft_print_hist(d);
+		d->line->index = d->line->len;
+		ft_putstr_fd(d->line->str, 0);
 		d->history->flag = 1;
 		d->history = d->history->prev;
 	}
