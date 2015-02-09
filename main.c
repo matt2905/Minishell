@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/08 10:59:35 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/09 14:51:18 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,18 @@ static void		ft_term(t_data *d)
 	d->tty.fd = STDIN_FILENO;
 	setpgid(0, 0);
 	tcsetpgrp(d->tty.fd, getpgrp());
-	while (ft_prompt(0) && (ret = get_next_line(0, &line)) > 0)
+	ft_prompt(0);
+	while ((ret = get_next_line(0, &line)))
 	{
-		ft_processing(d, line);
-		ft_strdel(&line);
+		if (ret > 0)
+		{
+			ft_processing(d, line);
+			ft_strdel(&line);
+			ft_prompt(0);
+		}
 	}
 	if (ret == 0)
 		ft_exit(d, NULL);
-	else
-		ft_putendl_fd("42sh: stdin: Interrupted system call", 2);
 }
 
 static void		ft_set_manpath(t_data *d)
