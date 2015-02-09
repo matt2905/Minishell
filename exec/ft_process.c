@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/04 16:24:16 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/07 18:17:44 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/09 16:05:30 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,13 @@ void	ft_delete_process(t_data *d)
 	while (tmp)
 	{
 		ptr = NULL;
-		if (!tmp->jobs && tmp->nb)
+		if (!tmp->jobs && !tmp->run && tmp->nb)
 		{
 			ptr = tmp;
 			d->child = tmp->next;
 		}
-		else if (tmp->next && !tmp->next->jobs && tmp->next->nb)
+		else if (tmp->next &&
+				!tmp->next->jobs && !tmp->next->run && tmp->next->nb)
 		{
 			ptr = tmp->next;
 			tmp->next = ptr->next;

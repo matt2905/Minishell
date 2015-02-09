@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 14:52:11 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/09 14:52:23 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/09 17:17:41 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,9 @@ static void		ft_handle_chld(int sig)
 	pid = wait(&status);
 	while (tmp)
 	{
-		if (tmp->jobs && pid == tmp->pid)
+		if ((tmp->jobs || tmp->run) && pid == tmp->pid)
 		{
 			tmp->id = status;
-			tmp->jobs = 0;
-			tmp->run = 0;
 			ft_printf("[%d]\t", tmp->nb);
 			if (WIFEXITED(tmp->id))
 				ft_printf("exit %d\t%s\n", WEXITSTATUS(tmp->id), tmp->cmd);
@@ -82,6 +80,8 @@ static void		ft_handle_chld(int sig)
 				ft_printf("%s\t%d\n", strsignal(WTERMSIG(tmp->id)), tmp->cmd);
 			ft_prompt(1);
 		}
+		else if (pid == tmp->pid)
+			ft_print_process(status, tmp->cmd);
 		tmp = tmp->next;
 	}
 }

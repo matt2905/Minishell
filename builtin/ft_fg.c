@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/06 11:04:09 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/09 14:29:08 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/09 17:59:13 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 static void		ft_continue_child(t_data *d, t_id *tmp)
 {
+	pid_t		pid;
+
 	ft_printf("[%d]\tcontinued\t%s\n", tmp->nb, tmp->cmd);
 	if (tcsetpgrp(d->tty.fd, getpgid(tmp->pid)) < 0)
 		ft_puterror("tcsetpgrp in builtin/ft_fg.c line 23: failed\n");
@@ -26,8 +28,8 @@ static void		ft_continue_child(t_data *d, t_id *tmp)
 		ft_puterror("kill in builtin/ft_fg.c line 25: failed\n");
 	tmp->jobs = 0;
 	tmp->run = 0;
-	waitpid(-tmp->pid, &tmp->id, WUNTRACED);
-	if (WIFSTOPPED(tmp->id))
+	pid = waitpid(-tmp->pid, &tmp->id, WUNTRACED);
+	if (pid == tmp->pid && WIFSTOPPED(tmp->id))
 	{
 		usleep(30);
 		ft_printf("\n42sh: suspended\t%s\n", tmp->cmd);
