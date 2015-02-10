@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:39 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 13:36:55 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 16:10:31 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void			ft_pipe(t_parser *parser, t_data *d)
 	t_id		*second;
 	t_id		*tmp;
 
+	if (!parser->right && ft_printf("parse error\n"))
+		return ;
 	d->pipe = 1;
 	pipe(fd_pipe);
 	tmp = d->child;

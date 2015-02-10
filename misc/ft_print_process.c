@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/06 12:15:21 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 14:26:24 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 16:21:52 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_print_exit(t_id *proc)
 	{
 		ft_printf("\n[%d]\t", proc->nb);
 		if (WIFEXITED(proc->id) && WEXITSTATUS(proc->id))
-			ft_printf("exit %d\t%s\n", WEXITSTATUS(proc->id), proc->cmd);
+			ft_printf("exit %d\t\t%s\n", WEXITSTATUS(proc->id), proc->cmd);
 		else if (WIFEXITED(proc->id))
 			ft_printf("done\t\t%s\n", proc->cmd);
 		else if (WIFSIGNALED(proc->id))
