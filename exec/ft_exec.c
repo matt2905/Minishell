@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -43,7 +44,7 @@ static void		ft_father(t_data *d)
 		ft_puterror("kill in exec/ft_exec.c => line 42 failed\n");
 	waitpid(-d->child->pid, &d->child->id, WUNTRACED);
 	if (tcsetpgrp(d->tty.fd, getpgrp()) < 0)
-		ft_puterror("tcsetpgrp in exec/ft_exec.c => line 45 failed\n");
+		ft_puterror("tcsetpgrp in exec/ft_exec.c => line 44 failed\n");
 	ft_print_process(d->child);
 }
 

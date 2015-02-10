@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/07 18:16:24 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 14:10:18 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 15:57:42 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,23 @@
 static void		ft_continue_child(t_id *tmp)
 {
 	pid_t	pid;
+	int		i;
 
 	pid = 0;
+	i = 0;
 	ft_printf("[%d]\tcontinued\t%s\n", tmp->nb, tmp->cmd);
 	if (killpg(tmp->pid, SIGCONT) < 0)
 		ft_puterror("killpg in builtin/ft_bg.c line 17: failed\n");
 	tmp->run = 1;
 	tmp->jobs = 0;
-	while (!pid)
+	while (!pid && i < 10)
+	{
+		usleep(10);
+		i++;
 		pid = waitpid (-tmp->pid, &tmp->id, WUNTRACED | WNOHANG);
-	ft_print_process(tmp);
+	}
+	if (pid)
+		ft_print_process(tmp);
 }
 
 static int		ft_continue(t_data *d, int nb)
