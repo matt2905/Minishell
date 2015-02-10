@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:39 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 16:10:31 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 16:37:05 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ static void		ft_right(t_parser *parser, t_data *d, int *fd_pipe)
 	exit(EXIT_SUCCESS);
 }
 
-static void		ft_check_process_pipe(t_id *first, t_id *second)
+static void		ft_check_process_pipe(t_id *first, t_id *second, t_data *d)
 {
 	if (!WIFEXITED(first->id) || !WIFEXITED(second->id))
 	{
-		if (!ft_print_process(first))
+		if (!ft_print_process(d, first))
 			ft_printf("42sh: done\t\t\t%s\n", first->cmd);
-		if (!ft_print_process(second))
+		if (!ft_print_process(d, second))
 			ft_printf("42sh: done\t\t\t%s\n", second->cmd);
 	}
 }
@@ -71,6 +71,6 @@ void			ft_pipe(t_parser *parser, t_data *d)
 	close(fd_pipe[1]);
 	waitpid(first->pid, &first->id, WUNTRACED);
 	waitpid(second->pid, &second->id, WUNTRACED);
-	ft_check_process_pipe(first, second);
+	ft_check_process_pipe(first, second, d);
 	d->pipe = 0;
 }

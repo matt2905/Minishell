@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 15:07:31 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 17:36:10 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		ft_term(t_data *d)
 	setpgid(0, 0);
 	tcsetpgrp(d->tty.fd, getpgrp());
 	ft_prompt(0);
-	while ((ret = get_next_line(0, &line)))
+	while ((ret = get_next_line(0, &line)) || ft_exit(d, NULL))
 	{
 		if (ret > 0)
 		{
@@ -110,6 +110,7 @@ static void		ft_init_data(t_data *d)
 	d->history = history;
 	d->first_hist = ft_first_history(d->history);
 	d->last_hist = ft_last_history(d->history);
+	d->ret = 0;
 	ft_get_data(d);
 }
 

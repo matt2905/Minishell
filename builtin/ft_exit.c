@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:53:48 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/08 21:03:33 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 17:57:40 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ft_termcap.h"
 #include "ft_history.h"
 #include "ft_exec.h"
+#include "ft_minishell.h"
 
 static void		ft_free_env(t_env **my_env)
 {
@@ -73,6 +74,12 @@ int				ft_exit(t_data *d, char **argv)
 		n = ft_atoi(argv[1]);
 	else
 		n = 0;
+	if (d->child && d->child->next)
+	{
+		ft_putendl_fd("\n42sh: you have suspended jobs.", 2);
+		ft_prompt(0);
+		return (1);
+	}
 	if (d->tty.flag)
 		tcsetattr(d->tty.fd, TCSANOW, &(d->tty.backup));
 	ft_destroy_data(d, argv);

@@ -6,24 +6,48 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/01 14:49:05 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 20:52:58 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 17:40:54 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_builtin.h"
 
-static void	ft_realloc_var(char **str, char *var, int index)
+static void	ft_realloc_var(char **str, char *var, int index, int ret)
 {
 	char	*tmp;
 	char	*ptr;
 
-	ptr = ft_strchr(var, '=');
+	if (!ret)
+		ptr = ft_strchr(var, '=');
+	else
+		ptr = var;
 	(*str)[index - 1] = '\0';
 	tmp = *str;
-	*str = ft_xstrjoin("%s%s%s", tmp, ptr + 1, tmp + (ptr - var + index));
+	if (!ret)
+		*str = ft_xstrjoin("%s%s%s", tmp, ptr + 1, tmp + (ptr - var + index));
+	else
+		*str = ft_xstrjoin("%s%s%s", tmp, ptr, tmp + 1 + index);
 	ft_strdel(&tmp);
 	ft_strdel(&var);
+}
+
+static char	*ft_get_var(t_data *d, char *tmp, char *ptr, char **save)
+{
+	char	*var;
+
+	while (*tmp && ft_isalnum(*tmp))
+		++tmp;
+	tmp = ft_strsub(ptr, 0, tmp - ptr);
+	var = ft_getenv_list(d->my_env, tmp);
+	if (var)
+	{
+		ft_realloc_var(save, var, ptr - *save, 0);
+		ft_strdel(&tmp);
+		return (*save);
+	}
+	ft_strdel(&tmp);
+	return (ptr + 1);
 }
 
 char		*ft_replace_var(t_data *d, char *str)
@@ -32,18 +56,22 @@ char		*ft_replace_var(t_data *d, char *str)
 	char	*ptr;
 	char	*var;
 	char	*save;
+	char	*s;
 
 	save = ft_strdup(str);
-	while ((ptr = ft_strchr(save, '$')))
+	s = save;
+	while ((ptr = ft_strchr(s, '$')))
 	{
 		tmp = ++ptr;
-		while (*tmp && ft_isalnum(*tmp))
-			++tmp;
-		tmp = ft_strsub(ptr, 0, tmp - ptr);
-		var = ft_getenv_list(d->my_env, tmp);
-		if (var)
-			ft_realloc_var(&save, var, ptr - save);
-		ft_strdel(&tmp);
+		if (*tmp == '?')
+		{
+			var = ft_itoa(d->ret, 10);
+			if (var)
+				ft_realloc_var(&save, var, ptr - save, 1);
+			s = (var ? save : ptr + 1);
+		}
+		else
+			s = ft_get_var(d, tmp, ptr, &save);
 	}
 	return (save);
 }

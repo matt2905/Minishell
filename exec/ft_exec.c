@@ -45,7 +45,7 @@ static void		ft_father(t_data *d)
 	waitpid(-d->child->pid, &d->child->id, WUNTRACED);
 	if (tcsetpgrp(d->tty.fd, getpgrp()) < 0)
 		ft_puterror("tcsetpgrp in exec/ft_exec.c => line 44 failed\n");
-	ft_print_process(d->child);
+	ft_print_process(d, d->child);
 }
 
 static int		ft_launch(char **my_env, char **argv, char *path)

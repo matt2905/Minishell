@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/06 11:04:09 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 14:14:55 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 16:34:24 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void		ft_continue_child(t_data *d, t_id *tmp)
 	tmp->jobs = 0;
 	tmp->run = 0;
 	waitpid(-tmp->pid, &tmp->id, WUNTRACED);
-	ft_print_process(tmp);
+	ft_print_process(d, tmp);
 	if (tcsetpgrp(d->tty.fd, getpgrp()) < 0)
 		ft_puterror("tcsetpgrp in builtin/ft_fg.c line 30: failed\n");
 }

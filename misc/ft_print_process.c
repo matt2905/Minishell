@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/06 12:15:21 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 16:21:52 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 16:33:49 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "printf.h"
 #include "ft_struct.h"
 
-static int	ft_print_exit(t_id *proc)
+static int	ft_print_exit(t_data *d, t_id *proc)
 {
 	if (WIFEXITED(proc->id) && (proc->jobs || proc->run))
 	{
@@ -27,20 +27,22 @@ static int	ft_print_exit(t_id *proc)
 			ft_printf("%s\t%s\n", strsignal(WTERMSIG(proc->id)), proc->cmd);
 		proc->run = 0;
 		proc->jobs = 0;
+		d->ret = WEXITSTATUS(proc->id);
 		return (1);
 	}
 	return (0);
 }
 
-int			ft_print_process(t_id *proc)
+int			ft_print_process(t_data *d, t_id *proc)
 {
 	extern const char	*sys_siglist[];
 
-	if (ft_print_exit(proc))
+	if (ft_print_exit(d, proc))
 		return (1);
 	if (WIFSIGNALED(proc->id))
 	{
 		ft_printf("42sh: %s\t%s\n", sys_siglist[WTERMSIG(proc->id)], proc->cmd);
+		d->ret = WTERMSIG(proc->id);
 		return (1);
 	}
 	if (WIFSTOPPED(proc->id))

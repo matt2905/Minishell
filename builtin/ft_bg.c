@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/07 18:16:24 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 15:57:42 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 16:34:13 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "printf.h"
 #include "ft_minishell.h"
 
-static void		ft_continue_child(t_id *tmp)
+static void		ft_continue_child(t_data *d, t_id *tmp)
 {
 	pid_t	pid;
 	int		i;
@@ -36,7 +36,7 @@ static void		ft_continue_child(t_id *tmp)
 		pid = waitpid (-tmp->pid, &tmp->id, WUNTRACED | WNOHANG);
 	}
 	if (pid)
-		ft_print_process(tmp);
+		ft_print_process(d, tmp);
 }
 
 static int		ft_continue(t_data *d, int nb)
@@ -53,7 +53,7 @@ static int		ft_continue(t_data *d, int nb)
 		if (tmp->jobs && !tmp->run && (tmp->nb == nb || nb == tmp->pid) &&
 				(previous == -1 || previous != tmp->pid))
 		{
-			ft_continue_child(tmp);
+			ft_continue_child(d, tmp);
 			ok = 0;
 		}
 		previous = tmp->pid;

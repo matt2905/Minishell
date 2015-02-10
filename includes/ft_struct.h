@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 20:00:20 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/08 10:59:10 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 16:22:51 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct			s_data
 	int					nb_process;
 	int					pipe;
 	int					fork;
+	int					ret;
 	int					save_fd[3];
 	char				*save_pwd;
 	char				*save_old;

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:55:47 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 16:17:55 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 16:36:50 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static void		ft_right(t_parser *parser, t_data *d)
 	exit(EXIT_SUCCESS);
 }
 
-static void		ft_check_process_amp(t_id *first, t_id *second)
+static void		ft_check_process_amp(t_id *first, t_id *second, t_data *d)
 {
 	if (!WIFEXITED(first->id) || (second && !WIFEXITED(second->id)))
 	{
-		if (!ft_print_process(first))
+		if (!ft_print_process(d, first))
 			ft_printf("42sh: done\t\t\t%s\n", first->cmd);
-		if (!ft_print_process(second))
+		if (!ft_print_process(d, second))
 			ft_printf("42sh: done\t\t\t%s\n", second->cmd);
 	}
 }
@@ -62,5 +62,5 @@ void			ft_amp(t_parser *parser, t_data *d)
 		second = d->child;
 		waitpid(second->pid, &second->id, WUNTRACED);
 	}
-	ft_check_process_amp(first, second);
+	ft_check_process_amp(first, second, d);
 }

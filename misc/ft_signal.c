@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 14:52:11 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 16:22:08 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 16:32:44 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void		ft_handle_chld(int sig)
 		{
 			tmp->id = status;
 			if (tmp->run || tmp->jobs)
-				ft_print_process(tmp);
+				ft_print_process(d, tmp);
 			tmp->run = 0;
 			tmp->jobs = 0;
 		}
