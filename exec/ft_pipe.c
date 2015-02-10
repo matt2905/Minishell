@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:39 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/06 12:21:11 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 13:36:55 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static void		ft_check_process_pipe(t_id *first, t_id *second)
 {
 	if (!WIFEXITED(first->id) || !WIFEXITED(second->id))
 	{
-		if (!ft_print_process(first->id, first->cmd))
+		if (!ft_print_process(first))
 			ft_printf("42sh: done\t\t\t%s\n", first->cmd);
-		if (!ft_print_process(second->id, second->cmd))
+		if (!ft_print_process(second))
 			ft_printf("42sh: done\t\t\t%s\n", second->cmd);
 	}
 }

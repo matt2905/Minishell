@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/07 18:16:24 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/09 16:06:22 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 14:10:18 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,19 @@
 #include "printf.h"
 #include "ft_minishell.h"
 
-static void		ft_continue_child(t_data *d, t_id *tmp)
+static void		ft_continue_child(t_id *tmp)
 {
+	pid_t	pid;
+
+	pid = 0;
 	ft_printf("[%d]\tcontinued\t%s\n", tmp->nb, tmp->cmd);
-	if (tcsetpgrp(d->tty.fd, getpgid(tmp->pid)) < 0)
-		ft_puterror("tcsetpgrp in builtin/ft_bg.c line 22: failed\n");
 	if (killpg(tmp->pid, SIGCONT) < 0)
 		ft_puterror("killpg in builtin/ft_bg.c line 17: failed\n");
 	tmp->run = 1;
 	tmp->jobs = 0;
-	waitpid(-tmp->pid, &tmp->id, WNOHANG);
-	if (tcsetpgrp(d->tty.fd, getpgrp()) < 0)
-		ft_puterror("tcsetpgrp in builtin/ft_bg.c line 28: failed\n");
+	while (!pid)
+		pid = waitpid (-tmp->pid, &tmp->id, WUNTRACED | WNOHANG);
+	ft_print_process(tmp);
 }
 
 static int		ft_continue(t_data *d, int nb)
@@ -45,7 +46,7 @@ static int		ft_continue(t_data *d, int nb)
 		if (tmp->jobs && !tmp->run && (tmp->nb == nb || nb == tmp->pid) &&
 				(previous == -1 || previous != tmp->pid))
 		{
-			ft_continue_child(d, tmp);
+			ft_continue_child(tmp);
 			ok = 0;
 		}
 		previous = tmp->pid;

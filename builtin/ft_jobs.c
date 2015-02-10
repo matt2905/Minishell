@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/06 12:23:47 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/07 18:31:33 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/09 19:22:26 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			ft_jobs(t_data *d, char **arg)
 	tmp = d->child;
 	while (tmp)
 	{
-		if (tmp->jobs)
+		if (tmp->jobs || tmp->run)
 		{
 			ft_printf("[%d]\t", tmp->nb);
 			if (pidopt)

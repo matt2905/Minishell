@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:57:21 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/09 17:57:24 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/10 14:09:05 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,8 @@ static void		ft_father(t_data *d)
 		ft_puterror("kill in exec/ft_exec.c => line 42 failed\n");
 	waitpid(-d->child->pid, &d->child->id, WUNTRACED);
 	if (tcsetpgrp(d->tty.fd, getpgrp()) < 0)
-		ft_puterror("tcsetpgrp in exec/ft_exec.c => line 50 failed\n");
-	if (WIFSTOPPED(d->child->id))
-	{
-		usleep(30);
-		ft_printf("\n42sh: suspended\t%s\n", d->child->cmd);
-		d->child->jobs = 1;
-	}
-	ft_print_process(d->child->id, d->child->cmd);
+		ft_puterror("tcsetpgrp in exec/ft_exec.c => line 45 failed\n");
+	ft_print_process(d->child);
 }
 
 static int		ft_launch(char **my_env, char **argv, char *path)
