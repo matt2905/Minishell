@@ -1,0 +1,56 @@
+.Dd February 10, 2015
+.Dt jobs 1
+.Os
+.Sh NAME
+.Pp
+.Nm jobs
+.Nd shell built-in functions to display status of jobs in the current session
+.Pp
+.Nm fg
+.Nd shell built-in functions for run jobs in the foreground
+.Pp
+.Nm bg
+.Nd shell built-in functions for run jobs in the background
+.Sh SYNOPSIS
+.Nm jobs
+.Op Ar -p
+.Op Ar job_id...
+.Nm fg
+.Op Ar job_id...
+.Nm bg
+.Op Ar job_id...
+.Sh DESCRIPTION
+.Pp
+If \fIjob_id\fP it's not specified, the
+.Nm jobs
+utility shall display the status of jobs that were started in the current shell environment.
+.Pp
+If job control is enabled, the
+.Nm fg
+utility shall move a background job from the current environment into the foreground.
+.Pp
+If job control is enabled, the
+.Nm bg
+utility shall resume suspended jobs from the current environment by running them as background jobs. If the job specified by \fIjob_id\fP is already a running background job, the
+.Nm bg
+utility shall have no effect and shall exit successfully.
+.Sh OPTIONS
+The following options shall be supported:
+.Pp
+.Bl -tag -Width flag
+.It Ar job_id
+Specifies the jobs for which the status is to be displayed
+.It Ar -p
+Display the process IDs for the process group leaders of the selected jobs.
+.Sh EXAMPLES
+None.
+.Sh EXIT STATUS
+The following exit values shall be returned:
+.Bl -tag -width flag
+.It 0
+Successfull completion
+.It 1
+An error occured.
+.El
+.Sh SEE ALSO
+.Xr 42sh 1
