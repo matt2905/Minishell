@@ -6,25 +6,27 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/01 13:46:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/07 21:09:15 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/11 13:52:07 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "ft_exec.h"
 #include "ft_lexpars.h"
 #include "libft.h"
 
-static void	ft_child(t_data *d, char *str, int *fd_pipe)
+static void	ft_child(t_data *d, char *str)
 {
 	t_lexer		*lex;
 	t_parser	*pars;
+	int			fd;
 
 	lex = NULL;
 	pars = NULL;
-	close(fd_pipe[0]);
-	dup2(fd_pipe[1], 1);
+	fd = open ("/tmp/.backquote", O_WRONLY | O_TRUNC | O_CREAT, 0666);
+	dup2(fd, 1);
 	ft_lexer(&lex, str);
 	if (lex)
 	{
@@ -50,6 +52,7 @@ static void	ft_realloc_bquote(int fd, char **save)
 	while (get_next_line(fd, &line) > 0)
 	{
 		ptr = tmp;
+		line = ft_strdelblank(line);
 		tmp = ft_xstrjoin("%s %s", tmp, line);
 		ft_strdel(&ptr);
 		ft_strdel(&line);
@@ -68,19 +71,18 @@ static void	ft_realloc_bquote(int fd, char **save)
 
 static void	ft_execute(t_data *d, char *str, char **save)
 {
-	int				fd_pipe[2];
-	int				id;
 	pid_t			pid;
+	int				id;
+	int				fd;
 
 	d->fork = 1;
-	pipe(fd_pipe);
 	pid = fork();
 	if (!pid)
-		ft_child(d, str, fd_pipe);
+		ft_child(d, str);
 	waitpid(pid, &id, 0);
-	close(fd_pipe[1]);
-	ft_realloc_bquote(fd_pipe[0], save);
-	close(fd_pipe[0]);
+	fd = open("/tmp/.backquote", O_RDONLY);
+	ft_realloc_bquote(fd, save);
+	close(fd);
 	d->fork = 0;
 }
 

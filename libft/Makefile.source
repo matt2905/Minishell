@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 14:00:31 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/08 15:23:28 by mmartin          ###   ########.fr        #
+#    Updated: 2015/02/11 12:19:27 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ SRC_STR		=	string/ft_strcat.c				\
 				string/ft_strcmp.c				\
 				string/ft_strcpy.c				\
 				string/ft_strdel.c				\
+				string/ft_strdelblank.c			\
 				string/ft_strdup.c				\
 				string/ft_strequ.c				\
 				string/ft_strimplode.c			\

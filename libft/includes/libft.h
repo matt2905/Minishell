@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 14:24:37 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/07 15:16:39 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/11 12:19:07 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUFF_SIZE 512
+# define BUFF_SIZE 1024
 
 # include <sys/shm.h>
 # include "ft_struct_lib.h"
@@ -107,6 +107,7 @@ void			ft_strclr(char *s);
 int				ft_strcmp(const char *s1, const char *s2);
 char			*ft_strcpy(char *s1, const char *s2);
 void			ft_strdel(char **as);
+char			*ft_strdelblank(char *s);
 char			*ft_strdup(const char *s1);
 int				ft_strequ(char const *s1, char const *s2);
 char			*ft_strimplode(char **tab);
