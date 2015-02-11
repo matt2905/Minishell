@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 17:36:10 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/11 18:26:14 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ static void		ft_init_data(t_data *d)
 	d->save_fd[0] = dup(0);
 	d->save_fd[1] = dup(1);
 	d->save_fd[2] = dup(2);
+	d->redirect = 1;
 	ft_create_env(&env);
 	d->my_env = env;
 	ft_levelup_shell(d);

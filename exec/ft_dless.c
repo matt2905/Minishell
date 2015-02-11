@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:03 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/11 14:45:27 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/11 18:30:14 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ void			ft_dless(t_parser *parser, t_data *d)
 	ft_tabdel(&tab);
 	fd = open("/tmp/.less", O_RDONLY);
 	dup2(fd, 0);
+	d->redirect = 0;
 	ft_process_tree(parser->right, d);
+	d->redirect = 1;
 	dup2(d->save_fd[0], 0);
 	close(fd);
 }
