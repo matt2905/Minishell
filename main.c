@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/11 18:26:14 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/13 15:33:06 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ static void		ft_term(t_data *d)
 			ft_strdel(&line);
 			ft_prompt(0);
 		}
+		else if (!d->signal)
+			break ;
+		d->signal = 0;
 	}
 	if (ret == 0)
 		ft_exit(d, NULL);
@@ -98,6 +101,7 @@ static void		ft_init_data(t_data *d)
 	d->cpy = NULL;
 	d->line = NULL;
 	d->str = NULL;
+	d->signal = 0;
 	d->save_fd[0] = dup(0);
 	d->save_fd[1] = dup(1);
 	d->save_fd[2] = dup(2);

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:56 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/08 20:48:38 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/13 15:38:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int		ft_check_error(t_line *first)
 
 int				ft_return(t_data *d)
 {
+	d->signal = 0;
 	ft_end(d);
 	ft_reset_history(d);
 	ft_history(d);

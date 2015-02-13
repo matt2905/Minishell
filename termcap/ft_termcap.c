@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/08 13:24:01 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/13 15:33:26 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ void			ft_termcap(t_data *d)
 			y = 0;
 			i = -1;
 			ft_bzero(d->buff, 8);
-			read(0, d->buff, 8);
+			if (read(0, d->buff, 8) < 0 && !d->signal)
+				return ;
 			while (g_tab_func[++i].buffer != NULL && y == 0)
 			{
 				if (!ft_strcmp(d->buff, g_tab_func[i].buffer))

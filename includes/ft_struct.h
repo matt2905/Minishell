@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 20:00:20 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/11 18:26:36 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/13 15:30:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct			s_data
 	t_id				*child;
 	char				*str;
 	char				buff[8];
+	int					signal;
 	int					len_prompt;
 	int					nb_process;
 	int					pipe;

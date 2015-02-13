@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 14:52:11 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 16:32:44 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/02/13 15:33:57 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@
 
 static void		ft_handle_signal(int sig)
 {
+	t_data	*d;
+
+	d = ft_get_data(NULL);
 	if (sig == SIGINT)
 	{
 		ft_putchar('\n');
 		ft_prompt(1);
 	}
+	d->signal = 1;
 }
 
 static void		ft_handle_chld(int sig)
@@ -60,11 +64,11 @@ void			ft_signal(void)
 	act.sa_handler = &ft_handle_signal;
 	act.sa_flags = SA_NOCLDSTOP;
 	sigaction(SIGINT, &act, NULL);
+	sigaction(SIGHUP, &act, NULL);
+	sigaction(SIGQUIT, &act, NULL);
 	act.sa_handler = &ft_handle_chld;
 	sigaction(SIGCHLD, &act, NULL);
 	act.sa_handler = SIG_IGN;
-	sigaction(SIGHUP, &act, NULL);
-	sigaction(SIGQUIT, &act, NULL);
 	sigaction(SIGTSTP, &act, NULL);
 	sigaction(SIGTTIN, &act, NULL);
 	sigaction(SIGTTOU, &act, NULL);
