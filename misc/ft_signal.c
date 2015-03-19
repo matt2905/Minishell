@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 14:52:11 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/13 15:33:57 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/19 10:24:54 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void		ft_handle_chld(int sig)
 				ft_print_process(d, tmp);
 			tmp->run = 0;
 			tmp->jobs = 0;
+			d->signal = 1;
 		}
 		tmp = tmp->next;
 	}

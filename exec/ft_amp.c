@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:55:47 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 16:36:50 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/19 10:24:56 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,12 @@ static void		ft_right(t_parser *parser, t_data *d)
 	exit(EXIT_SUCCESS);
 }
 
-static void		ft_check_process_amp(t_id *first, t_id *second, t_data *d)
-{
-	if (!WIFEXITED(first->id) || (second && !WIFEXITED(second->id)))
-	{
-		if (!ft_print_process(d, first))
-			ft_printf("42sh: done\t\t\t%s\n", first->cmd);
-		if (!ft_print_process(d, second))
-			ft_printf("42sh: done\t\t\t%s\n", second->cmd);
-	}
-}
-
 void			ft_amp(t_parser *parser, t_data *d)
 {
 	t_id		*tmp;
 	t_id		*second;
 	t_id		*first;
 
-	second = NULL;
 	tmp = d->child;
 	ft_add_process(d, d->nb_process, ft_strdup(parser->left->str), fork());
 	if (d->child == tmp)
@@ -60,7 +48,8 @@ void			ft_amp(t_parser *parser, t_data *d)
 		if (d->child == first)
 			ft_right(parser, d);
 		second = d->child;
+		ft_printf("[%d]\t%d\n", d->child->nb, d->child->pid);
+		waitpid(second->pid, &second->id, WUNTRACED);
 		waitpid(second->pid, &second->id, WUNTRACED);
 	}
-	ft_check_process_amp(first, second, d);
 }

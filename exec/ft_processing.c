@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:55:15 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/09 14:50:04 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/19 10:49:43 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,9 @@ void		ft_process(t_data *d, char *str)
 {
 	int				i;
 	char			**tab;
-	char			*tmp;
 
 	i = 0;
-	tmp = ft_clean_line(d, str);
-	tab = ft_strsplit_shell(tmp);
-	ft_strdel(&tmp);
+	tab = ft_strsplit_shell(str);
 	if (tab && tab[0])
 	{
 		ft_search_alias(d, &tab);
@@ -63,6 +60,7 @@ void		ft_processing(t_data *d, char *str)
 {
 	t_lexer		*lex;
 	t_parser	*parser;
+	char		*tmp;
 
 	parser = NULL;
 	lex = NULL;
@@ -70,7 +68,8 @@ void		ft_processing(t_data *d, char *str)
 	if (!str)
 		return ;
 	ft_backup_termcap(d);
-	ft_lexer(&lex, str);
+	tmp = ft_clean_line(d, str);
+	ft_lexer(&lex, tmp);
 	if (lex)
 	{
 		ft_parser(&parser, lex, 1);
@@ -79,8 +78,9 @@ void		ft_processing(t_data *d, char *str)
 		ft_free_pars(&parser);
 	}
 	else
-		ft_process(d, str);
+		ft_process(d, tmp);
 	ft_reset_termcap(d);
 	if (d->line)
 		ft_free_list(d->line, 0);
+	ft_strdel(&tmp);
 }

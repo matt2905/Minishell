@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/06 11:04:09 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 16:34:24 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/19 09:02:44 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		ft_continue_child(t_data *d, t_id *tmp)
 	ft_printf("[%d]\tcontinued\t%s\n", tmp->nb, tmp->cmd);
 	if (tcsetpgrp(d->tty.fd, getpgid(tmp->pid)) < 0)
 		ft_puterror("tcsetpgrp in builtin/ft_fg.c line 23: failed\n");
-	if (killpg(tmp->pid, SIGCONT) < 0)
+	if (!tmp->run && killpg(tmp->pid, SIGCONT) < 0)
 		ft_puterror("kill in builtin/ft_fg.c line 25: failed\n");
 	tmp->jobs = 0;
 	tmp->run = 0;
