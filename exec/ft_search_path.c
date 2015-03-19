@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:59:01 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 18:06:01 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/19 11:17:08 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static char	*ft_check_exe(char *str, char *path, int *flag)
 	{
 		free(tmp);
 		*flag = 1;
-		ft_putendl("Permission denied");
+		ft_putstr_fd("42sh: permission denied: ", 2);
+		ft_putendl_fd(str, 2);
 		return (NULL);
 	}
 	return (tmp);
@@ -52,7 +53,8 @@ static char	*ft_check_direct(char *str, int *flag)
 	if (access(str, X_OK) == -1 || result & S_IFDIR)
 	{
 		*flag = 1;
-		ft_putendl("Permission denied");
+		ft_putstr_fd("42sh: permission denied: ", 2);
+		ft_putendl_fd(str, 2);
 		return (NULL);
 	}
 	return (ft_strdup(str));
@@ -74,10 +76,8 @@ char		*ft_search_path(char **my_env, char *argv, int *flag)
 	while (tab[++i] && tmp == NULL)
 		tmp = ft_check_exe(argv, tab[i], flag);
 	i = 0;
-	while (tab && tab[i])
-		free(tab[i++]);
-	free(tab);
-	if (tmp == NULL)
+	ft_tabdel(&tab);
+	if (tmp == NULL && (!ft_strncmp(argv, "./", 2) || argv[0] == '/'))
 		return (ft_check_direct(argv, flag));
 	return (tmp);
 }
