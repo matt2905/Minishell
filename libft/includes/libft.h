@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 14:24:37 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/11 12:19:07 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/26 17:17:14 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ int				ft_isascii(int c);
 int				ft_isdigit(int c);
 int				ft_ishexa(int c);
 int				ft_islower(int c);
+int				ft_isnumber(char *str);
 int				ft_isoctale(int c);
 int				ft_isprint(int c);
 int				ft_isspace(int c);

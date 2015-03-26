@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 11:21:56 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/08 15:23:34 by mmartin          ###   ########.fr        #
+#    Updated: 2015/03/23 10:34:44 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ $(DOBJ)%.o:	%.c
 
 clean:
 	@echo "\033[31mObjects of libft.a : deleted\033[0m"
-	@/bin/rm -f $(OBJ_LIB)
+	@/bin/rm -rf $(DOBJ)
 
 fclean:		clean
 	@echo "\033[31mlibft.a : deleted\033[0m"

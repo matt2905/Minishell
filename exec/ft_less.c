@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:24 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/11 18:31:19 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/26 17:55:27 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ static int		ft_check_error(char **tab)
 	result = buff.st_mode & S_IFMT;
 	if (result & S_IFDIR)
 	{
-		ft_printf("42sh: is a directory: %s\n", tab[0]);
+		ft_putstr_fd("42sh: is a directory: ", 2);
+		ft_putendl_fd(tab[0], 2);
 		return (1);
 	}
 	if (access(tab[0], F_OK) == 0 && access(tab[0], R_OK) == -1)
 	{
-		ft_printf("42sh: permission denied: %s\n", tab[0]);
+		ft_putstr_fd("42sh: permission denied: ", 2);
+		ft_putendl_fd(tab[0], 2);
 		return (1);
 	}
 	return (0);
@@ -51,7 +53,8 @@ void			ft_less(t_parser *parser, t_data *d)
 		return ;
 	if ((fd = open(tab[0], O_RDONLY)) == -1)
 	{
-		ft_printf("42sh: no such file or director: %s\n", tab[0]);
+		ft_putstr_fd("42sh: no such file or directory: ", 2);
+		ft_putendl_fd(tab[0], 2);
 		return ;
 	}
 	ft_tabdel(&tab);

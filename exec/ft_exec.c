@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:57:21 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/19 10:46:35 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/26 16:44:06 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void		ft_child(t_data *d)
 	signal(SIGCHLD, SIG_DFL);
 	if (setpgid(0, 0) < 0)
 		ft_puterror("setpgid in exec/ft_exec.c => line 30 failed\n");
-	if (d->redirect && tcsetpgrp(d->tty.fd, getpgrp()) < 0)
+	if (tcgetpgrp(d->tty.fd) > 0 && d->redirect
+			&& tcsetpgrp(d->tty.fd, getpgrp()) < 0)
 		ft_puterror("tcsetpgrp in exec/ft_exec.c => line 32 failed\n");
 }
 
@@ -37,12 +38,13 @@ static void		ft_father(t_data *d)
 {
 	if (setpgid(d->child->pid, d->child->pid) < 0)
 		ft_puterror("setpgid in exec/ft_exec.c => line 38 failed\n");
-	if (d->redirect && tcsetpgrp(d->tty.fd, getpgid(d->child->pid)) < 0)
+	if (tcgetpgrp(d->tty.fd) > 0 && d->redirect
+			&& tcsetpgrp(d->tty.fd, getpgid(d->child->pid)) < 0)
 		ft_puterror("tcsetpgrp in exec/ft_exec.c => line 40 failed\n");
 	if (killpg(getpgid(d->child->pid), SIGCONT) < 0)
 		ft_puterror("kill in exec/ft_exec.c => line 42 failed\n");
 	waitpid(-d->child->pid, &d->child->id, WUNTRACED);
-	if (d->redirect)
+	if (d->redirect && tcgetpgrp(d->tty.fd) > 0)
 	{
 		if (tcsetpgrp(d->tty.fd, getpgrp()) < 0)
 			ft_puterror("tcsetpgrp in exec/ft_exec.c => line 44 failed\n");

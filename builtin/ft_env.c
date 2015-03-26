@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:47:38 by mmartin           #+#    #+#             */
-/*   Updated: 2015/01/27 12:03:00 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/26 17:12:12 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,16 @@ static int		ft_exec_env(t_data *d, char **argv, int i, t_env *new_env)
 {
 	char	**tab;
 	int		k;
+	t_env	*save;
 
 	k = 0;
 	tab = ft_tabdup(argv + i);
 	if (tab && tab[0])
 	{
+		save = d->my_env;
+		d->my_env = new_env;
 		ft_builtin(d, tab, &k);
+		d->my_env = save;
 		if (k == 0)
 		{
 			if (ft_exec(ft_convert_ltt(new_env), tab, d->fork) == 0)
@@ -94,19 +98,16 @@ int				ft_env(t_data *d, char **argv)
 	t_env	*new;
 	int		ret;
 
-	i = 0;
+	i = 1;
 	if ((ret = ft_search_option(argv)) != 0)
 	{
 		if (ret == 2)
 			ret = 0;
 		return (ret);
 	}
-	new = ft_new_env(d->my_env, argv);
-	while (argv[++i])
-	{
-		if (!ft_strchr(argv[i], '=') && !ft_strchr(argv[i], '-'))
-			return (ft_exec_env(d, argv, i, new));
-	}
+	new = ft_new_env(d->my_env, argv, &i);
+	if (argv[i])
+		return (ft_exec_env(d, argv, i, new));
 	while (new)
 	{
 		ft_putendl(new->tab);

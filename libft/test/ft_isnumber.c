@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isnumber.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/23 12:52:21 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/26 17:30:37 by mmartin          ###   ########.fr       */
+/*   Created: 2015/03/26 17:15:33 by mmartin           #+#    #+#             */
+/*   Updated: 2015/03/26 17:17:48 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+int		ft_isnumber(char *str)
 {
 	int		i;
 
 	i = 0;
-	if (!s)
-		return ;
-	while (s[i])
-		i++;
-	write(fd, s, i);
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+	}
+	return (1);
 }

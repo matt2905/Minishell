@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 10:32:38 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 20:46:49 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/26 17:05:44 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,11 @@ static void		ft_add_arg(t_env **new, char **argv, int i)
 		ft_add_env(new, argv[i]);
 }
 
-t_env			*ft_new_env(t_env *my_env, char **argv)
+t_env			*ft_new_env(t_env *my_env, char **argv, int *i)
 {
 	t_env	*tmp;
 	t_env	*new;
-	int		i;
 
-	i = 0;
 	new = NULL;
 	tmp = my_env;
 	if (!argv[1] || argv[1][0] != '-')
@@ -56,8 +54,14 @@ t_env			*ft_new_env(t_env *my_env, char **argv)
 			ft_add_env(&new, ft_strdup(tmp->tab));
 			tmp = tmp->next;
 		}
-		while (argv[++i] && argv[i][0] != '-' && ft_strrchr(argv[i], '='))
-			ft_add_arg(&new, argv, i);
+	}
+	while (argv[*i] && argv[*i][0] == '-')
+		(*i)++;
+	while (argv[(*i)] && argv[*i][0] != '-' && ft_strrchr(argv[*i], '='))
+	{
+		if (argv[*i][0] != '-')
+			ft_add_arg(&new, argv, *i);
+		(*i)++;
 	}
 	return (new);
 }

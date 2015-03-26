@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:56:51 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/02 09:37:41 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/26 17:41:38 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,29 @@
 #include "ft_exec.h"
 #include "ft_minishell.h"
 
-static int		ft_check_error(char **tab)
+static int		ft_check_error(char **tab, int fd)
 {
 	struct stat		buf;
 	int				result;
 
+	if (fd < 0)
+	{
+		ft_putstr_fd("42sh: cannot create file: ", 2);
+		ft_putendl_fd(tab[0], 2);
+		return (1);
+	}
 	stat(tab[0], &buf);
 	result = buf.st_mode & S_IFMT;
 	if (result & S_IFDIR)
 	{
-		ft_printf("42sh: is a directory: %s\n", tab[0]);
+		ft_putstr_fd("42sh: is a directory: ", 2);
+		ft_putendl_fd(tab[0], 2);
 		return (1);
 	}
 	if (access(tab[0], F_OK) == 0 && access(tab[0], W_OK) == -1)
 	{
-		ft_printf("42sh: permission denied: %s\n", tab[0]);
+		ft_putstr_fd("42sh: permission denied: ", 2);
+		ft_putendl_fd(tab[0], 2);
 		return (1);
 	}
 	return (0);
@@ -48,7 +56,7 @@ void			ft_dgreat(t_parser *parser, t_data *d)
 	tab = ft_strsplit_shell(tmp);
 	ft_strdel(&tmp);
 	fd = open(tab[0], O_CREAT | O_APPEND | O_RDWR, 0644);
-	if (ft_check_error(tab))
+	if (ft_check_error(tab, fd))
 		return ;
 	ft_tabdel(&tab);
 	if (d->pipe == 0)

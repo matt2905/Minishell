@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 14:00:31 by mmartin           #+#    #+#              #
-#    Updated: 2015/02/11 12:19:27 by mmartin          ###   ########.fr        #
+#    Updated: 2015/03/26 17:17:24 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,7 @@ SRC_TEST	=	test/ft_isalnum.c				\
 				test/ft_isdigit.c				\
 				test/ft_ishexa.c				\
 				test/ft_islower.c				\
+				test/ft_isnumber.c				\
 				test/ft_isoctale.c				\
 				test/ft_isprint.c				\
 				test/ft_isspace.c				\

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:55:29 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 20:50:51 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/26 17:20:36 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ static int		ft_error(char **argv)
 
 	i = ft_tablen(argv);
 	if (i < 2)
-	{
 		ft_putendl_fd("Too few arguments", 2);
+	else if (i == 4 && !ft_isnumber(argv[3]))
+		ft_putendl_fd("4th parameter isn't a number", 2);
+	else if (i > 4)
+		ft_putendl_fd("Too many arguments", 2);
+	if (i < 2 || i > 4 || (i == 4 && !ft_isnumber(argv[3])))
+	{
 		ft_putendl_fd("Usage: setenv <VARIABLE> [value] [1-0]", 2);
 		ft_putendl_fd("1 = overwrite, 0 = add", 2);
-		return (1);
-	}
-	if (i > 4)
-	{
-		ft_putendl_fd("Too many arguments", 2);
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:45:51 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/07 18:24:20 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/26 17:02:20 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		ft_search_alias(t_data *d, char ***tab);
 void		ft_putstr_echo(char *str, int *ok);
 void		ft_builtin(t_data *d, char **arg, int *i);
 void		ft_add_env(t_env **my_env, char *str);
-t_env		*ft_new_env(t_env *my_env, char **argv);
+t_env		*ft_new_env(t_env *my_env, char **argv, int *i);
 void		ft_modify_env(t_env **my_env, char *arg, char *env);
 char		*ft_getenv_list(t_env *my_env, char *str);
 void		ft_modify_pwd(t_data *d, char *path, int opt);
