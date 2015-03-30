@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 14:24:37 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/26 17:17:14 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 13:46:28 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,12 @@ void			ft_shmdt(void **shaddr);
 void			ft_shmdel(int shmid);
 
 /*
+**		SORT
+*/
+
+char			**ft_bubble_sort_str(char **tab);
+
+/*
 **		STRING
 */
 
@@ -125,6 +131,7 @@ char			*ft_strncpy(char *s1, const char *s2, size_t n);
 char			*ft_strndup(const char *s1, size_t n);
 int				ft_strnequ(char const *s1, char const *s2, size_t n);
 char			*ft_strnew(size_t size);
+char			*ft_strnrchr(const char *s, int c, size_t n);
 char			*ft_strnstr(const char *s1, const char *s2, size_t n);
 char			*ft_strrchr(const char *s, int c);
 char			**ft_strsplit(char const *s, char c);

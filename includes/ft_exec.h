@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:48:33 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/04 18:22:59 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 11:47:44 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char		*ft_bquote(t_data *d, char *str);
 */
 
 void		ft_processing(t_data *d, char *str);
-void		ft_process(t_data *d, char *str);
+void		ft_process(t_data *d, char **str);
 
 /*
 **		ft_process.c

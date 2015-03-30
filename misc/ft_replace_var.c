@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/01 14:49:05 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 17:40:54 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/27 13:44:45 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static char	*ft_get_var(t_data *d, char *tmp, char *ptr, char **save)
 
 	while (*tmp && ft_isalnum(*tmp))
 		++tmp;
+	if (tmp == ptr)
+		return (ptr + 1);
 	tmp = ft_strsub(ptr, 0, tmp - ptr);
 	var = ft_getenv_list(d->my_env, tmp);
 	if (var)

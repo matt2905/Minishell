@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:55:15 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/19 10:49:43 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 11:47:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ static char	*ft_clean_line(t_data *d, char *str)
 	return (tmp);
 }
 
-void		ft_process(t_data *d, char *str)
+void		ft_process(t_data *d, char **str)
 {
 	int				i;
 	char			**tab;
 
 	i = 0;
-	tab = ft_strsplit_shell(str);
+	tab = ft_strsplit_shell(*str);
+	ft_strdel(str);
 	if (tab && tab[0])
 	{
 		ft_search_alias(d, &tab);
@@ -72,15 +73,15 @@ void		ft_processing(t_data *d, char *str)
 	ft_lexer(&lex, tmp);
 	if (lex)
 	{
+		ft_strdel(&tmp);
 		ft_parser(&parser, lex, 1);
 		ft_free_lex(&lex);
 		ft_process_tree(parser, d);
 		ft_free_pars(&parser);
 	}
 	else
-		ft_process(d, tmp);
+		ft_process(d, &tmp);
 	ft_reset_termcap(d);
 	if (d->line)
 		ft_free_list(d->line, 0);
-	ft_strdel(&tmp);
 }

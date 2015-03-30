@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 14:00:31 by mmartin           #+#    #+#              #
-#    Updated: 2015/03/26 17:17:24 by mmartin          ###   ########.fr        #
+#    Updated: 2015/03/30 13:39:56 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,8 @@ SRC_SH		=	share/ft_semlock.c				\
 				share/ft_shmdel.c				\
 				share/ft_shmdt.c
 
+SRC_SRT		=	sort/ft_bubble_sort_str.c		\
+
 SRC_STR		=	string/ft_strcat.c				\
 				string/ft_strchr.c				\
 				string/ft_strclr.c				\
@@ -87,6 +89,7 @@ SRC_STR		=	string/ft_strcat.c				\
 				string/ft_strndup.c				\
 				string/ft_strnequ.c				\
 				string/ft_strnew.c				\
+				string/ft_strnrchr.c			\
 				string/ft_strnstr.c				\
 				string/ft_strrchr.c				\
 				string/ft_strsplit.c			\
@@ -134,6 +137,8 @@ SRC_LIB		+=	$(SRC_PRINTF)
 SRC_LIB		+=	$(SRC_REGEX)
 
 SRC_LIB		+=	$(SRC_SH)
+
+SRC_LIB		+=	$(SRC_SRT)
 
 SRC_LIB		+=	$(SRC_STR)
 

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:59:11 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 16:33:19 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 11:48:52 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void				ft_process_tree(t_parser *parser, t_data *d)
 			i++;
 		}
 		if (parser->rank == 5)
-			ft_process(d, parser->str);
+			ft_process(d, &parser->str);
 	}
 }

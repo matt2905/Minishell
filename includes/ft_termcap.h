@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:56:18 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/08 14:15:21 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 15:56:06 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ void		ft_oneshot(t_data *d);
 void		ft_backup_termcap(t_data *d);
 void		ft_reset_termcap(t_data *d);
 void		ft_termcap(t_data *d);
+
+/*
+**		ft_tab_replace.c
+*/
+
+void		ft_tab_replace(t_data *d, char *result, char *name);
+int			ft_prefix_completion(t_data *d, char **tab, char *name);
 
 /*
 **		ft_tool_list.c

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 12:14:42 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/11 12:20:22 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 11:55:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ char	*ft_strdelblank(char *str)
 	tab = ft_strsplit_space(str);
 	free(str);
 	str = ft_strimplode(tab);
+	ft_tabdel(&tab);
 	return (str);
 }

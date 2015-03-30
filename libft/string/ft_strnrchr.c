@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getenv_list.c                                   :+:      :+:    :+:   */
+/*   ft_strnrchr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/25 13:34:44 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/27 13:43:50 by mmartin          ###   ########.fr       */
+/*   Created: 2015/03/27 14:25:05 by mmartin           #+#    #+#             */
+/*   Updated: 2015/03/27 17:27:39 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include "ft_minishell.h"
+#include <string.h>
 
-char	*ft_getenv_list(t_env *my_env, char *str)
+char	*ft_strnrchr(const char *s, int c, size_t len)
 {
-	t_env	*tmp;
+	char	*save;
+	size_t	i;
 
-	tmp = my_env;
-	while (tmp && ft_strncasecmp(tmp->tab, str, ft_strlen(str)))
-		tmp = tmp->next;
-	if (tmp)
-		return (ft_strdup(tmp->tab));
-	else
-		return (NULL);
+	i = 0;
+	save = NULL;
+	while (s[i] && i < len)
+	{
+		if (s[i] == c)
+			save = (char *)(s + i);
+		i++;
+	}
+	return (save);
 }

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/01 13:46:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/11 18:30:35 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 11:48:35 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	ft_child(t_data *d, char *str)
 		ft_free_pars(&pars);
 	}
 	else
-		ft_process(d, str);
+		ft_process(d, &str);
 	exit(EXIT_SUCCESS);
 }
 

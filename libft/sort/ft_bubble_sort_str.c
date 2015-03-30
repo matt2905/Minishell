@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getenv_list.c                                   :+:      :+:    :+:   */
+/*   ft_bubble_sort_str.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/25 13:34:44 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/27 13:43:50 by mmartin          ###   ########.fr       */
+/*   Created: 2015/03/30 13:40:04 by mmartin           #+#    #+#             */
+/*   Updated: 2015/03/30 14:00:39 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include "ft_minishell.h"
+#include "libft.h"
 
-char	*ft_getenv_list(t_env *my_env, char *str)
+char		**ft_bubble_sort_str(char **tab)
 {
-	t_env	*tmp;
+	int		i;
+	int		j;
+	int		ok;
+	char	*tmp;
 
-	tmp = my_env;
-	while (tmp && ft_strncasecmp(tmp->tab, str, ft_strlen(str)))
-		tmp = tmp->next;
-	if (tmp)
-		return (ft_strdup(tmp->tab));
-	else
-		return (NULL);
+	i = ft_tablen(tab) - 1;
+	ok = 1;
+	while (i > 0 && ok)
+	{
+		j = 0;
+		ok = 0;
+		while (j < i)
+		{
+			if (ft_strcmp(tab[j], tab[j + 1]) > 0)
+			{
+				tmp = tab[j];
+				tab[j] = tab[j + 1];
+				tab[j + 1] = tmp;
+				ok = 1;
+			}
+			j++;
+		}
+		i--;
+	}
+	return (tab);
 }
