@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/30 11:07:58 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/30 16:09:10 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 18:18:31 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		ft_tab_replace(t_data *d, char *str, char *name)
 	tmp = ft_strnew(d->line->len - ft_strlen(name) + ft_strlen(str) + 1);
 	ptr = d->line->str;
 	i = d->line->index;
-	while (ptr[i - 1] != '/' && !ft_isspace(ptr[i - 1]))
+	while (i > 1 && ptr[i - 1] != '/' && !ft_isspace(ptr[i - 1]))
 	{
 		i--;
 		tputs(tgetstr("le", NULL), 1, ft_int_putchar);
@@ -46,7 +46,7 @@ void		ft_tab_replace(t_data *d, char *str, char *name)
 	d->line->index = i;
 	ft_strncpy(tmp, ptr, d->line->index);
 	ft_strcat(tmp, str);
-	ft_strcat(tmp, ptr + d->line->index + ft_strlen(name));
+	ft_strcat(tmp, ptr + d->line->index + ft_strlen(name) + 1);
 	ft_strdel(&d->line->str);
 	d->line->str = tmp;
 	d->line->len += ft_strlen(str) - ft_strlen(name);

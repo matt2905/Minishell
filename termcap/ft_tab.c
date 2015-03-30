@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:25 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/30 17:54:39 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 18:13:41 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char		*ft_search_path(char *str, int i)
 	char	*path;
 	char	*tmp;
 
-	if (!str || !*str)
+	if (!str)
 		return (NULL);
 	path = NULL;
 	while (!ft_isspace(str[i]) && i > 0)
@@ -45,6 +45,7 @@ static char		*ft_search_path(char *str, int i)
 	return (path);
 }
 
+#include <stdio.h>
 static char		*ft_get_name(char *str, int i)
 {
 	char	*name;
@@ -135,9 +136,11 @@ int				ft_tab(t_data *d)
 	}
 	name = ft_get_name(d->line->str, d->line->index);
 	result = ft_search_files(dirp, name);
-	ft_bubble_sort_str(result);
 	if (result)
+	{
+		ft_bubble_sort_str(result);
 		ft_completion(d, result, name);
+	}
 	closedir(dirp);
 	ft_strdel(&path);
 	ft_strdel(&name);
