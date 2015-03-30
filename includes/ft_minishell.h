@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:31 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/30 13:18:28 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 17:38:17 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 */
 
 void		ft_check_option(int argc, char **argv, t_data *d);
+char		*ft_escape_char(char *str);
 t_data		*ft_get_data(t_data *d);
 char		*ft_get_word(char *str);
 void		ft_init_source(t_data *d);

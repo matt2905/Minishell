@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 12:34:27 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/27 14:14:39 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 17:04:44 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static int		ft_count_word(char *str)
 		if (str[i])
 		{
 			word++;
-			while (str[i] && !ft_isspace(str[i]))
+			while (str[i] && ((!ft_isspace(str[i]))
+						|| (ft_isspace(str[i]) && i > 1 && str[i - 1] == '\\')))
 			{
 				if (((i == 0) || (i > 0 && str[i - 1] != '\\'))
 						&& (str[i] == '\"' || str[i] == '\''))
@@ -75,7 +76,8 @@ char			**ft_strsplit_shell(char *str)
 		while (*str && ft_isspace(*str))
 			str++;
 		tab[i] = ft_get_word(str);
-		while (*str && !ft_isspace(*str))
+		while (*str && ((!ft_isspace(*str)
+					|| (ft_isspace(*str) && *str - 1 == '\\'))))
 		{
 			if (*str - 1 != '\\' && (*str == '\"' || *str == '\''))
 				str += ft_search_next_word(str, 0, *str);

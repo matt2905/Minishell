@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:25 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/30 15:56:09 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 17:54:39 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char		*ft_search_path(char *str, int i)
 	char	*path;
 	char	*tmp;
 
-	if (!str)
+	if (!str || !*str)
 		return (NULL);
 	path = NULL;
 	while (!ft_isspace(str[i]) && i > 0)
@@ -74,6 +74,7 @@ static char		**ft_search_files(DIR *dirp, char *name)
 	char			**result;
 	int				i;
 	char			*dir;
+	char			*tmp;
 
 	dir = NULL;
 	result = NULL;
@@ -83,12 +84,11 @@ static char		**ft_search_files(DIR *dirp, char *name)
 		if ((!name || !ft_strncmp(name, file->d_name, ft_strlen(name))) &&
 				ft_strcmp(file->d_name, ".") && ft_strcmp(file->d_name, ".."))
 		{
-			if (file->d_type == DT_DIR)
-				dir = ft_strjoin(file->d_name, "/");
-			else
-				dir = ft_strdup(file->d_name);
-			result = ft_tabrealloc(&result, dir, i);
+			dir = ft_strjoin(file->d_name, (file->d_type == DT_DIR ? "/" : ""));
+			tmp = ft_escape_char(dir);
 			ft_strdel(&dir);
+			result = ft_tabrealloc(&result, tmp, i);
+			ft_strdel(&tmp);
 			i++;
 		}
 	}
