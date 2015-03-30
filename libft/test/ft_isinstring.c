@@ -6,11 +6,10 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/30 17:43:53 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/30 17:53:39 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 18:07:07 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 int		ft_isinstring(char c, char *str)
 {
 	int		i;
