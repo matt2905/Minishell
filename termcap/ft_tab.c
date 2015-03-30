@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:25 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/30 18:13:41 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 18:23:30 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static char		*ft_search_path(char *str, int i)
 	return (path);
 }
 
-#include <stdio.h>
 static char		*ft_get_name(char *str, int i)
 {
 	char	*name;
