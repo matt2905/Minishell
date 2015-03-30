@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:25 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/30 18:23:30 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/30 19:08:47 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,18 @@ static char		*ft_search_path(char *str, int i)
 	if (!str)
 		return (NULL);
 	path = NULL;
-	while (!ft_isspace(str[i]) && i > 0)
+	while (i > 0 && (!ft_isspace(str[i])
+				|| (ft_isspace(str[i]) && str[i - 1] == '\\')))
 		i--;
 	end = ++i;
-	while (str[end] && !ft_isspace(str[end]))
+	while (str[end] && (!ft_isspace(str[end])
+				|| (ft_isspace(str[end]) && str[end - 1] == '\\')))
 		end++;
+	path = ft_strnrchr(str + i, '/', end - i);
 	if (str[i] == '/')
-	{
-		path = ft_strnrchr(str + i, '/', end - i);
 		path = ft_strndup(str + i, path - (str + i) + 1);
-	}
 	else
 	{
-		path = ft_strnrchr(str + i, '/', end - i);
 		tmp = ft_strndup(str + i, path - (str + i) + 1);
 		path = ft_strjoin("./", path ? tmp : "");
 		ft_strdel(&tmp);
@@ -70,7 +69,7 @@ static char		*ft_get_name(char *str, int i)
 
 static char		**ft_search_files(DIR *dirp, char *name)
 {
-	struct dirent	*file;
+	struct dirent	*f;
 	char			**result;
 	int				i;
 	char			*dir;
@@ -79,12 +78,12 @@ static char		**ft_search_files(DIR *dirp, char *name)
 	dir = NULL;
 	result = NULL;
 	i = 1;
-	while ((file = readdir(dirp)))
+	while ((f = readdir(dirp)))
 	{
-		if ((!name || !ft_strncmp(name, file->d_name, ft_strlen(name))) &&
-				ft_strcmp(file->d_name, ".") && ft_strcmp(file->d_name, ".."))
+		if ((!name || !ft_strncmp(name, f->d_name, ft_strlen(name))) &&
+				ft_strcmp(f->d_name, ".") && ft_strcmp(f->d_name, ".."))
 		{
-			dir = ft_strjoin(file->d_name, (file->d_type == DT_DIR ? "/" : ""));
+			dir = ft_strjoin(f->d_name, (f->d_type == DT_DIR ? "/" : ""));
 			tmp = ft_escape_char(dir);
 			ft_strdel(&dir);
 			result = ft_tabrealloc(&result, tmp, i);
@@ -99,6 +98,8 @@ static void		ft_completion(t_data *d, char **result, char *name)
 {
 	int		save;
 
+	if (!result)
+		return ;
 	if (ft_tablen(result) == 1)
 		ft_tab_replace(d, result[0], name);
 	else
@@ -121,25 +122,25 @@ static void		ft_completion(t_data *d, char **result, char *name)
 
 int				ft_tab(t_data *d)
 {
-	char			*path;
-	DIR				*dirp;
-	char			**result;
-	char			*name;
+	char		*path;
+	DIR			*dirp;
+	char		**result;
+	char		*name;
+	char		*tmp;
 
 	if (!(path = ft_search_path(d->line->str, d->line->index)))
 		return (1);
-	if (!(dirp = opendir(path)))
+	tmp = ft_preg_replace("\\", "", path);
+	if (!(dirp = opendir(tmp)))
 	{
 		ft_strdel(&path);
 		return (1);
 	}
+	ft_strdel(&tmp);
 	name = ft_get_name(d->line->str, d->line->index);
 	result = ft_search_files(dirp, name);
-	if (result)
-	{
-		ft_bubble_sort_str(result);
-		ft_completion(d, result, name);
-	}
+	ft_bubble_sort_str(result);
+	ft_completion(d, result, name);
 	closedir(dirp);
 	ft_strdel(&path);
 	ft_strdel(&name);
