@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/30 11:07:58 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/31 16:03:15 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 16:25:12 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_print_tab(t_line *line)
 	ft_putstr_fd(line->str + line->index, 0);
 	end = save;
 	while (line->str[end] && (!ft_isspace(str[end])
-				|| (end > 0 && ft_isspace(str[end] && str[end - 1] == '\\'))))
+				|| (end > 0 && ft_isspace(str[end]) && str[end - 1] == '\\')))
 		end++;
 	while (len > end)
 	{

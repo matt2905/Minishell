@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:25 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/31 15:35:28 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 16:24:34 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "ft_termcap.h"
 #include "ft_minishell.h"
 
-#include <stdio.h>
 static int		ft_get_first(char *str, int i)
 {
 	while (i > 0 && ft_isspace(str[i]) && str[i - 1] != '\\')
@@ -61,10 +60,9 @@ static char		*ft_get_name(char *str, int i)
 
 	name = NULL;
 	i = ft_get_first(str, i);
-	while (!ft_isspace(str[i]) && i > 0)
-		i--;
 	end = (i > 0 ? ++i : i);
-	while (str[end] && !ft_isspace(str[end]))
+	while (str[end] && (!ft_isspace(str[end])
+				|| (ft_isspace(str[end]) && str[end - 1] == '\\')))
 		end++;
 	tmp = ft_strnrchr(str + i, '/', end - i);
 	if (!tmp)
