@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/30 11:07:58 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/30 18:18:31 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 16:03:15 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,27 @@
 #include "libft.h"
 #include "ft_termcap.h"
 
-static void	ft_print_tab(t_line *line, int len_name)
+static int	ft_print_tab(t_line *line)
 {
 	int		save;
 	int		len;
+	int		end;
+	char	*str;
 
 	save = line->index;
 	len = line->len;
+	str = line->str;
 	ft_putstr_fd(line->str + line->index, 0);
-	while (len > save + len_name)
+	end = save;
+	while (line->str[end] && (!ft_isspace(str[end])
+				|| (end > 0 && ft_isspace(str[end] && str[end - 1] == '\\'))))
+		end++;
+	while (len > end)
 	{
 		len--;
 		tputs(tgetstr("le", NULL), 1, ft_int_putchar);
 	}
+	return (end);
 }
 
 void		ft_tab_replace(t_data *d, char *str, char *name)
@@ -38,7 +46,7 @@ void		ft_tab_replace(t_data *d, char *str, char *name)
 	tmp = ft_strnew(d->line->len - ft_strlen(name) + ft_strlen(str) + 1);
 	ptr = d->line->str;
 	i = d->line->index;
-	while (i > 1 && ptr[i - 1] != '/' && !ft_isspace(ptr[i - 1]))
+	while (i > 0 && ptr[i - 1] != '/' && !ft_isspace(ptr[i - 1]))
 	{
 		i--;
 		tputs(tgetstr("le", NULL), 1, ft_int_putchar);
@@ -46,13 +54,12 @@ void		ft_tab_replace(t_data *d, char *str, char *name)
 	d->line->index = i;
 	ft_strncpy(tmp, ptr, d->line->index);
 	ft_strcat(tmp, str);
-	ft_strcat(tmp, ptr + d->line->index + ft_strlen(name) + 1);
+	ft_strcat(tmp, ptr + d->line->index + ft_strlen(name));
 	ft_strdel(&d->line->str);
 	d->line->str = tmp;
 	d->line->len += ft_strlen(str) - ft_strlen(name);
 	d->line->str[d->line->len] = 0;
-	ft_print_tab(d->line, ft_strlen(str));
-	d->line->index += ft_strlen(str);
+	d->line->index = ft_print_tab(d->line);
 }
 
 int			ft_prefix_completion(t_data *d, char **tab, char *name)
