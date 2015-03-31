@@ -6,14 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/23 15:33:13 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 17:50:58 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 13:52:39 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
-#include <libft.h>
-#include <printf.h>
+#include "libft.h"
 #include "ft_builtin.h"
 
 static char		*ft_get_path(char *dst, char *tmp)
@@ -87,26 +86,38 @@ static char		*ft_get_curpath(char *env, char *str)
 	return (ptr);
 }
 
-static void		ft_is_valid_path(char **path, char *str, char *tmp)
+static int		ft_is_valid_path(char **path, char *str, char *tmp)
 {
+	int		flag;
+
+	flag = 0;
 	if (*path == NULL)
-		return ;
+		return (flag);
 	if (access(*path, F_OK) != -1)
 	{
 		if (access(*path, X_OK) != -1)
-			return ;
-		else if (!tmp)
-			ft_printf("cd: permission denied: %s\n", str);
+			return (flag);
+		else
+		{
+			ft_putstr_fd("cd: permission denied: ", 2);
+			ft_putendl_fd(str, 2);
+			flag = 1;
+		}
 	}
 	else if (!tmp)
-		ft_printf("cd: no such file or directory: %s\n", str);
+	{
+		ft_putstr_fd("cd: no such file or directory: ", 2);
+		ft_putendl_fd(str, 2);
+	}
 	ft_strdel(path);
+	return (flag);
 }
 
 char			*ft_return_path(t_data *d, char *pwd, char *tmp, char *str)
 {
 	char	*path;
 	char	*ptr;
+	int		flag;
 
 	if (!str)
 	{
@@ -117,10 +128,10 @@ char			*ft_return_path(t_data *d, char *pwd, char *tmp, char *str)
 	}
 	else
 		path = ft_get_curpath(pwd, str);
-	ft_is_valid_path(&path, str, tmp);
+	flag = ft_is_valid_path(&path, str, tmp);
 	if (path)
 		return (path);
-	else if (tmp)
+	else if (!flag && tmp)
 	{
 		path = ft_get_curpath(tmp, str);
 		ft_is_valid_path(&path, str, NULL);

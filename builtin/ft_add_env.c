@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 12:26:44 by mmartin           #+#    #+#             */
-/*   Updated: 2015/01/27 12:52:42 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 13:58:52 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
-#include <libft.h>
+#include "libft.h"
 #include "ft_builtin.h"
 
 void			ft_modify_pwd(t_data *d, char *path, int opt)

@@ -6,12 +6,12 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:01:46 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/02 11:32:41 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 14:02:13 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <libft.h>
+#include "libft.h"
 #include "ft_builtin.h"
 
 static char		*ft_realloc_tilde(char *str, int i, char *var)

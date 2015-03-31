@@ -6,12 +6,12 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 12:34:27 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/30 17:04:44 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 14:02:08 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <libft.h>
+#include "libft.h"
 #include "ft_minishell.h"
 
 static int		ft_search_next_word(char *str, int i, char c)

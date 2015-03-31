@@ -6,11 +6,11 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 10:05:46 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/25 21:38:27 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 14:02:40 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 static double		ft_convert(const char *str, t_atof res)
 {

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 14:52:11 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/19 10:24:54 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 13:56:27 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include "libft.h"
-#include "printf.h"
 #include "ft_minishell.h"
 #include "ft_exec.h"
 

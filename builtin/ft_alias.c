@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/26 15:52:16 by mmartin           #+#    #+#             */
-/*   Updated: 2015/01/27 12:00:41 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 13:57:38 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <libft.h>
-#include <printf.h>
+#include "libft.h"
+#include "printf.h"
 #include "ft_builtin.h"
 
 static int		ft_print_alias(t_data *d, char *str)

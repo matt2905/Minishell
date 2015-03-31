@@ -6,11 +6,11 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 13:34:44 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/27 13:43:50 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 13:59:35 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 #include "ft_minishell.h"
 
 char	*ft_getenv_list(t_env *my_env, char *str)

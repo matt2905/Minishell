@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 15:57:21 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/26 16:44:06 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 13:53:28 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "libft.h"
-#include "printf.h"
 #include "ft_exec.h"
 #include "ft_minishell.h"
 

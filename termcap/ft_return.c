@@ -6,14 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:56 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/13 15:38:15 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 14:00:51 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include "libft.h"
-#include "printf.h"
 #include "ft_history.h"
 #include "ft_termcap.h"
 
@@ -33,7 +32,8 @@ static int		ft_check_error(t_line *first)
 		}
 		if (word >= 256)
 		{
-			ft_printf("\n42sh: file name too long: %s\n", first->str);
+			ft_putstr_fd("\n42sh: file name too long: ", 2);
+			ft_putendl_fd(first->str, 2);
 			return (-1);
 		}
 		if (first->str[i])

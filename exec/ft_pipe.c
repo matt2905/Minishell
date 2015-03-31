@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:39 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 16:37:05 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 13:55:40 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ static void		ft_check_process_pipe(t_id *first, t_id *second, t_data *d)
 	}
 }
 
+int				ft_print_error(char *str)
+{
+	ft_putendl_fd(str, 2);
+	return (1);
+}
+
 void			ft_pipe(t_parser *parser, t_data *d)
 {
 	int			fd_pipe[2];
@@ -54,7 +60,7 @@ void			ft_pipe(t_parser *parser, t_data *d)
 	t_id		*second;
 	t_id		*tmp;
 
-	if (!parser->right && ft_printf("parse error\n"))
+	if (!parser->right && ft_print_error("parse error"))
 		return ;
 	d->pipe = 1;
 	pipe(fd_pipe);

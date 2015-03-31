@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 18:43:18 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/01 20:40:19 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 14:01:23 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdlib.h>
-#include <libft.h>
+#include "libft.h"
 #include "ft_history.h"
 
 void	ft_create_history(char *ptr, t_history **history)

@@ -6,11 +6,11 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 19:24:19 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/30 17:35:03 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 14:24:44 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 static void		ft_get_len(char *str, int *len)
 {
@@ -64,7 +64,6 @@ static void		ft_get_quote(char *str, int *i, int *j, char **tmp)
 			*j += 1;
 		}
 	}
-	*j -= 1;
 }
 
 char			*ft_get_word(char *str)
@@ -84,13 +83,13 @@ char			*ft_get_word(char *str)
 	{
 		if (str[i])
 		{
-			if ((str[i] == '\'' || str[i] == '\"') && str[i - 1] != '\\')
+			if ((str[i] == '\'' || str[i] == '\"') && (
+						i == 0 || (i > 1 && str[i - 1] != '\\')))
 				ft_get_quote(str, &i, &j, &tmp);
-			else if (str[i - 1] == '\\')
-				tmp[--j] = str[i];
+			else if (i > 1 && str[i - 1] == '\\' && --j >= 0)
+				tmp[j++] = str[i];
 			else
-				tmp[j] = str[i];
-			j++;
+				tmp[j++] = str[i];
 		}
 	}
 	return (tmp);

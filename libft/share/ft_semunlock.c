@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/01 16:09:50 by mmartin           #+#    #+#             */
-/*   Updated: 2014/06/01 16:12:43 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 14:03:28 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <sys/sem.h>
-#include <libft.h>
+#include "libft.h"
 
 void		ft_semunlock(int semid)
 {

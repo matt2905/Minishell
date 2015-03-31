@@ -6,13 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 15:25:18 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/08 13:12:43 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 14:02:19 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <termcap.h>
-#include <libft.h>
+#include "libft.h"
 #include "ft_termcap.h"
 #include "ft_history.h"
 

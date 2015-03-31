@@ -6,14 +6,13 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/23 13:41:11 by mmartin           #+#    #+#             */
-/*   Updated: 2014/03/27 17:46:02 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/03/31 13:51:10 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
-#include <libft.h>
-#include <printf.h>
+#include "libft.h"
 #include "ft_builtin.h"
 
 static int		ft_get_option(char **str, int *i)
@@ -46,7 +45,7 @@ static char		*ft_get_old_pwd(t_data *d)
 	ptr = ft_strdup(tmp + 7);
 	free(tmp);
 	if (access(ptr, F_OK) != -1 && access(ptr, X_OK) != -1)
-		ft_printf("%s\n", ptr);
+		ft_putendl(ptr);
 	return (ptr);
 }
 
@@ -84,7 +83,8 @@ int				ft_cd(t_data *d, char **argv)
 	{
 		if (chdir(path) == -1)
 		{
-			ft_printf("cd: not a directory: %s\n", path);
+			ft_putstr_fd("cd: not a director: ", 2);
+			ft_putendl_fd(path, 2);
 			ft_strdel(&path);
 			return (1);
 		}
