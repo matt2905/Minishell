@@ -1,14 +1,8 @@
-.TH "42SH" "1" "March 16, 2014" "42sh 1\&.0\&.0"
+.TH "42SH" "1" "April 2, 2015" "42sh 2\&.0\&.0"
 .SH "NAME"
-42sh
-.SH "OVERVIEW"
-.PP
-.PD 0
-.TP
-\fI42sh\fP			42sh overview(this section)
-.PD
+42sh - the 42 shell
 .SH "DESCRIPTION"
-This is a projects for school's name 42
+This is a projects for school named 42
 .SH "HOTKEY"
 .PD 0
 .TP
@@ -25,16 +19,20 @@ navigate in history
 delete char on cursor
 .TP
 .PD
-[\fBHOME\fP]
+[\fBHOME\fP] or [\fB CONTROL + A\fP]
 move cursor to the first char of line
 .TP
 .PD
-[\fBEND\fP]
+[\fBEND\fP] or [\fB CONTRL + E\fP]
 move cursor to the last char of line
 .TP
 .PD
 [\fBBACKSPACE\fP]
 delete char left to cursor
+.TP
+.PD
+[\fBTABULATION\fP]
+autocompletion
 .TP
 .PD
 [\fBOPTION\fP] + [\fB<\fP | \fB>\fP]
@@ -108,12 +106,14 @@ Enable termcap mode.
 .PD 0
 .TP
 \fB$HOME/\&.42shrc
+\fBHOME/\&.42sh_history
 .PD
 .SH "SEE ALSO"
 \fIalias\fP(1),
 \fIcd\fP(1),
 \fIecho\fP(1),
 \fIenv\fP(1),
+\fIjobs\fP(1),
 \fIsetenv\fP(1),
 \fIsource\fP(1),
 \fIunalias\fP(1),

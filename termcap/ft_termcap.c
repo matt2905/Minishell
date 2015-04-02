@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2015/04/02 10:49:59 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/02 11:28:33 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ static const t_tab	g_tab_func[] =
 	{"\033[D", ft_go_left},
 	{"\033\033[D", ft_alt_left},
 	{"\033[H", ft_home},
+	{"\001", ft_home},
 	{"\033[F", ft_end},
+	{"\005", ft_end},
 	{"\012", ft_return},
 	{"\011", ft_tab},
 	{"\033[3~", ft_delete},
