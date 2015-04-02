@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/31 14:02:30 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/02 10:49:59 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ void			ft_termcap(t_data *d)
 				y = g_tab_func[i].func(d);
 		}
 		ft_processing(d, d->str);
-		free(d->str);
+		ft_strdel(&d->str);
 	}
 }
