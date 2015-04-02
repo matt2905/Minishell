@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 11:05:25 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/31 16:33:42 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/02 13:56:19 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int				ft_tab(t_data *d)
 	char		*name;
 	char		*tmp;
 
-	if (!(path = ft_search_path(d->line->str, d->line->index)))
+	if (!d->line->str || !(path = ft_search_path(d->line->str, d->line->index)))
 		return (1);
 	tmp = ft_preg_replace("\\", "", path);
 	if (!(dirp = opendir(tmp)))
