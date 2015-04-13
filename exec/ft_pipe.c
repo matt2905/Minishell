@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 10:57:39 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/31 13:55:40 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/13 17:30:16 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 static void		ft_left(t_parser *parser, t_data *d, int *fd_pipe)
 {
+	d->pipe = 1;
 	d->fork = 1;
 	close(fd_pipe[0]);
 	dup2(fd_pipe[1], 1);
@@ -62,7 +63,6 @@ void			ft_pipe(t_parser *parser, t_data *d)
 
 	if (!parser->right && ft_print_error("parse error"))
 		return ;
-	d->pipe = 1;
 	pipe(fd_pipe);
 	tmp = d->child;
 	ft_add_process(d, d->nb_process, ft_strdup(parser->left->str), fork());
