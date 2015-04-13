@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/04/13 14:14:42 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/13 20:37:26 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int				main(int argc, char **argv)
 {
 	t_data		d;
 
-	d.tty.flag = 0;
+	d.tty.flag = 1;
 	d.fork = 0;
 	d.alias = NULL;
 	d.nb_process = 0;
