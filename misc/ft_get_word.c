@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 19:24:19 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/31 14:24:44 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/13 14:11:57 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char			*ft_get_word(char *str)
 			if ((str[i] == '\'' || str[i] == '\"') && (
 						i == 0 || (i > 1 && str[i - 1] != '\\')))
 				ft_get_quote(str, &i, &j, &tmp);
-			else if (i > 1 && str[i - 1] == '\\' && --j >= 0)
+			else if (i > 0 && str[i - 1] == '\\' && --j >= 0)
 				tmp[j++] = str[i];
 			else
 				tmp[j++] = str[i];

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/31 14:01:43 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/13 14:14:42 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static void		ft_term(t_data *d)
 	setpgid(0, 0);
 	tcsetpgrp(d->tty.fd, getpgrp());
 	ft_prompt(0);
-	while ((ret = get_next_line(0, &line)) || ft_exit(d, NULL))
+	while ((ret = get_next_line(0, &line))
+			|| (ret = ft_exit(d, NULL)))
 	{
 		if (ret > 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 11:53:48 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/31 13:59:28 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/13 14:20:24 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,12 @@ int				ft_exit(t_data *d, char **argv)
 		n = ft_atoi(argv[1]);
 	else
 		n = 0;
-	if (d->child && d->child->next && ft_strncmp(d->child->cmd, "exit", 4))
+	if ((d->child->cmd && ft_strcmp(d->child->cmd, "exit"))
+			|| (d->child->next && d->child->next->cmd))
 	{
-		ft_tabdel(&argv);
 		ft_putendl_fd("\n42sh: you have suspended jobs.", 2);
-		ft_prompt(0);
+		if (d->tty.flag)
+			ft_prompt(0);
 		return (1);
 	}
 	if (d->tty.flag)
