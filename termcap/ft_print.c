@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:57:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/03/31 14:02:26 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/15 16:10:39 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			ft_print(t_data *d)
 		read(0, NULL, 16384);
 	if (ft_isprint(d->buff[0]) && d->buff[1] == '\0')
 	{
-		tmp = ft_strnew(d->line->len + 2);
+		tmp = ft_strnew(d->line->len + 1);
 		if (d->line->str)
 			ft_strncpy(tmp, d->line->str, d->line->index);
 		ft_strcat(tmp, d->buff);

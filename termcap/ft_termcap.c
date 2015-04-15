@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2015/04/02 11:28:33 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/15 16:16:26 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 static const t_tab	g_tab_func[] =
 {
+	{"\022", ft_ctrlr},
 	{"\033[A", ft_go_up},
 	{"\033\033[A", ft_alt_up},
 	{"\033[B", ft_go_down},
@@ -65,6 +66,7 @@ void			ft_termcap(t_data *d)
 	int		y;
 
 	ft_init_term(d);
+	ft_init_source(d);
 	while (ft_prompt(0) && ft_init_line(d))
 	{
 		y = 0;

@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:00:13 by mmartin           #+#    #+#             */
-/*   Updated: 2015/04/13 20:37:26 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/15 16:16:33 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void		ft_term(t_data *d)
 	d->tty.fd = STDIN_FILENO;
 	setpgid(0, 0);
 	tcsetpgrp(d->tty.fd, getpgrp());
+	ft_init_source(d);
 	ft_prompt(0);
 	while ((ret = get_next_line(0, &line))
 			|| (ret = ft_exit(d, NULL)))
@@ -130,7 +131,6 @@ int				main(int argc, char **argv)
 	d.nb_process = 0;
 	d.child = ft_create_process(getpid(), d.nb_process, NULL);
 	ft_init_data(&d);
-	ft_init_source(&d);
 	ft_signal();
 	if (d.last_hist)
 		d.last_hist->prev = d.first_hist;

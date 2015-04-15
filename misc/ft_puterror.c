@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/07 12:29:25 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/07 21:01:21 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/15 16:15:47 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void		ft_puterror(char const *str)
 	len = ft_strlen(str);
 	write(2, str, len);
 	ft_exit(d, argv);
+	ft_tabdel(&argv);
 }

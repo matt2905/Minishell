@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/25 16:41:52 by mmartin           #+#    #+#              #
-#    Updated: 2015/03/30 17:43:01 by mmartin          ###   ########.fr        #
+#    Updated: 2015/04/15 10:45:11 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ SRC			=	main.c						\
 				termcap/ft_backup_termcap.c	\
 				termcap/ft_check_pos.c		\
 				termcap/ft_ctrll.c			\
+				termcap/ft_ctrlr.c			\
 				termcap/ft_cut.c			\
 				termcap/ft_delete.c			\
 				termcap/ft_end.c			\

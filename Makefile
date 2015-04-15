@@ -6,7 +6,7 @@
 #    By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 13:39:05 by mmartin           #+#    #+#              #
-#    Updated: 2015/03/26 15:53:07 by mmartin          ###   ########.fr        #
+#    Updated: 2015/04/15 16:18:40 by mmartin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ include		libft/Makefile.source
 
 include		Makefile.source
 
-export	CFLAGS	=	-Wall -Wextra -Werror -g
+export	CFLAGS	=	-Wall -Wextra -Werror
 
 export	CC		=	gcc
 
@@ -24,7 +24,7 @@ LIBFT		=	libft/libft.a
 
 DOBJ		=	obj/
 
-NAME		=	ft_minishell1
+NAME		=	42sh
 
 INC			+=	-I includes
 

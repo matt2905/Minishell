@@ -17,6 +17,7 @@
 *.exe
 *.out
 *.app
+42sh
 
 # Debugg
 *.dSYM
