@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:42:16 by mmartin           #+#    #+#             */
-/*   Updated: 2015/04/15 16:16:26 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/15 16:37:37 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void			ft_termcap(t_data *d)
 	int		y;
 
 	ft_init_term(d);
-	ft_init_source(d);
 	while (ft_prompt(0) && ft_init_line(d))
 	{
 		y = 0;

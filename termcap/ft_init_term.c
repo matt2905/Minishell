@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 16:08:09 by mmartin           #+#    #+#             */
-/*   Updated: 2015/02/10 17:36:49 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/15 16:37:48 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ void			ft_init_term(t_data *d)
 		ft_puterror("tgetent in termcap/ft_init_term.c line 51: failed\n");
 	}
 	free(term);
+	ft_init_source(d);
 }

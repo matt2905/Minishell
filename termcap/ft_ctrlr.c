@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/15 10:40:59 by mmartin           #+#    #+#             */
-/*   Updated: 2015/04/15 16:07:31 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/15 18:14:13 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static void	ft_print_search(t_history *result, char *s, t_data *d, int f)
 		d->line->len = ft_strlen(result->line);
 	}
 	ft_putstr_fd(d->line->str, 0);
-	d->line->index = d->line->len;
-	len = size.ws_col - ((d->line->len + d->len_prompt) % size.ws_col);
-	ft_printf("%*sbck-i-search: %s_", len, (result || f ? "" : "failing "), s);
+	d->line->index = ft_strlen(d->line->str);
+	len = size.ws_col - ((d->line->index + d->len_prompt) % size.ws_col);
+	ft_printf("%*s%sbck-i-search: %s_", len, "\0", (result || f ? "" : "failing "), s);
 	len += (result || f ? 15 : 23);
 	len += ft_strlen(s);
 	while (len)
@@ -46,31 +46,63 @@ static void	ft_print_search(t_history *result, char *s, t_data *d, int f)
 	}
 }
 
-static void	ft_search(t_data *d, t_line *tmp)
-{
-	(void)tmp;
-	(void)d;
-}
-
 static void	ft_history_up(t_data *d, t_line search, t_history **hist)
 {
-	search.str = "cat";
+	static char		*str = NULL;
 
-	if (!*hist || !search.str)
+	if (!search.str)
 		return ;
-	while ((*hist)->next != d->history)
+	while (*hist && (*hist)->prev != d->history)
 	{
-		*hist = (*hist)->next;
+		if (str == search.str)
+			*hist = (*hist)->prev;
+		if (!str || str != search.str)
+			str = search.str;
 		if (ft_strstr((*hist)->line, search.str))
 		{
 			ft_print_search(*hist, search.str, d, 0);
 			return ;
 		}
 	}
-	if (ft_strstr((*hist)->line, search.str))
-		ft_print_search(*hist, search.str, d, 0);
+	ft_print_search(NULL, search.str, d, 0);
+}
+
+static void	ft_delete_search(t_line *line)
+{
+	char	*tmp;
+
+	if (line->len > 0)
+	{
+		tmp = ft_strnew(line->len);
+		ft_strncpy(tmp, line->str, line->len - 1);
+		ft_strdel(&line->str);
+		line->str = tmp;
+		line->len--;
+	}
+}
+
+static void	ft_search(t_data *d, t_line *line, t_history **hist)
+{
+	char				*tmp;
+	static t_history	*save;
+
+	if (d->buff[0] == '\177')
+	{
+		ft_delete_search(line);
+		*hist = save;
+	}
 	else
-		ft_print_search(NULL, search.str, d, 0);
+	{
+		tmp = ft_strnew(line->len + 1);
+		if (line->str)
+			ft_strcpy(tmp, line->str);
+		ft_strcat(tmp, d->buff);
+		ft_strdel(&line->str);
+		line->str = tmp;
+		line->len++;
+	}
+	save = *hist;
+	ft_history_up(d, *line, hist);
 }
 
 int			ft_ctrlr(t_data *d)
@@ -83,6 +115,7 @@ int			ft_ctrlr(t_data *d)
 	ft_reset_history(d);
 	hist = d->first_hist;
 	ft_print_search(NULL, "", d, 1);
+	search.len = 0;
 	search.str = NULL;
 	while (ok)
 	{
@@ -90,7 +123,7 @@ int			ft_ctrlr(t_data *d)
 		if (read(0, d->buff, 8) < 0)
 			return (1);
 		if (!d->buff[1] && (ft_isprint(d->buff[0]) || d->buff[0] == '\177'))
-			ft_search(d, &search);
+			ft_search(d, &search, &hist);
 		else if (!d->buff[1] && d->buff[0] == '\022')
 			ft_history_up(d, search, &hist);
 		else
