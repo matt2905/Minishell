@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/15 10:40:59 by mmartin           #+#    #+#             */
-/*   Updated: 2015/04/15 18:14:13 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/17 11:58:02 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static void	ft_print_search(t_history *result, char *s, t_data *d, int f)
 	ft_putstr_fd(d->line->str, 0);
 	d->line->index = ft_strlen(d->line->str);
 	len = size.ws_col - ((d->line->index + d->len_prompt) % size.ws_col);
-	ft_printf("%*s%sbck-i-search: %s_", len, "\0", (result || f ? "" : "failing "), s);
+	ft_printf("%*s%s", len, "\0", (result || f ? "" : "failing "));
+	ft_printf("bck-i-search: %s_", s);
 	len += (result || f ? 15 : 23);
 	len += ft_strlen(s);
 	while (len)
