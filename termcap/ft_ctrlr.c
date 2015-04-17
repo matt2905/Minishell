@@ -6,7 +6,7 @@
 /*   By: mmartin <mmartin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/15 10:40:59 by mmartin           #+#    #+#             */
-/*   Updated: 2015/04/17 11:58:02 by mmartin          ###   ########.fr       */
+/*   Updated: 2015/04/17 12:04:30 by mmartin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,11 @@ static void	ft_print_search(t_history *result, char *s, t_data *d, int f)
 
 static void	ft_history_up(t_data *d, t_line search, t_history **hist)
 {
-	static char		*str = NULL;
+	static char			*str = NULL;
+	static t_history	*save = NULL;
 
+	if (!save)
+		save = *hist;
 	if (!search.str)
 		return ;
 	while (*hist && (*hist)->prev != d->history)
@@ -61,11 +64,13 @@ static void	ft_history_up(t_data *d, t_line search, t_history **hist)
 			str = search.str;
 		if (ft_strstr((*hist)->line, search.str))
 		{
+			save = *hist;
 			ft_print_search(*hist, search.str, d, 0);
 			return ;
 		}
 	}
 	ft_print_search(NULL, search.str, d, 0);
+	*hist = save;
 }
 
 static void	ft_delete_search(t_line *line)
@@ -85,13 +90,9 @@ static void	ft_delete_search(t_line *line)
 static void	ft_search(t_data *d, t_line *line, t_history **hist)
 {
 	char				*tmp;
-	static t_history	*save;
 
 	if (d->buff[0] == '\177')
-	{
 		ft_delete_search(line);
-		*hist = save;
-	}
 	else
 	{
 		tmp = ft_strnew(line->len + 1);
@@ -102,7 +103,6 @@ static void	ft_search(t_data *d, t_line *line, t_history **hist)
 		line->str = tmp;
 		line->len++;
 	}
-	save = *hist;
 	ft_history_up(d, *line, hist);
 }
 
